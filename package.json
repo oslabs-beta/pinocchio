@@ -1,0 +1,49 @@
+{
+  "name": "pinocchio",
+  "version": "1.0.0",
+  "description": "A GUI for Puppeteer Test Creation",
+  "main": "./dist/main.js",
+  "scripts": {
+    "dev:electron": "NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
+    "dev:react": "NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
+    "build:electron": "NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
+    "build:react": "NODE_ENV=production webpack --config webpack.react.config.js --mode production",
+    "build": "npm run build:electron && npm run build:react",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "Team Geppetto",
+  "license": "ISC",
+  "build": {
+    "files": [
+      "dist/",
+      "node_modules/",
+      "package.json"
+    ],
+    "productName": "example",
+    "appId": "com.example.app",
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "electron": "^8.2.2",
+    "electron-builder": "^22.7.0",
+    "html-webpack-plugin": "^4.2.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
