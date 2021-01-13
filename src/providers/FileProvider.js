@@ -18,8 +18,6 @@ const FileProvider = (props) => {
     setMyPath(pathValue);
   }
 
-
-
   return (
     <FileContext.Provider value={{ myPath, pathHandler }}>
       {props.children}

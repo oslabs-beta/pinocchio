@@ -27,7 +27,7 @@ const Landing = () => {
           { name: 'Style', extensions: ['css', 'scss'] },
           { name: 'Html', extensions: ['html'] },
         ]
-      }).then(filePath => { pathHandler(filePath.filePaths[0]) })
+      }).then(filePath => pathHandler(filePath.filePaths[0]))
     // TODO
     //console.log(filePath);
     //pathHandler(filePath);
