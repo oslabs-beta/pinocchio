@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FileContext } from '../providers/FileProvider';
 
 const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 // Display native system dialogs for opening and saving files, alerting, etc.
 const { dialog } = remote;
 
-const Upload = () => {
+const Landing = () => {
+  const { myPath, pathHandler } = useContext(FileContext);
 
   //returns file path of desired project folder
   const handleUploadButton = () => {
@@ -15,7 +17,7 @@ const Upload = () => {
     // TODO Create type reference for filePath to be an array
     // OR
     // Create type for filePath[0] to be string
-    let filePath = dialog.showOpenDialog(
+    dialog.showOpenDialog(
       {
         properties: ['openDirectory', 'multiSelections'],
         message: 'Please choose a project',
@@ -25,17 +27,21 @@ const Upload = () => {
           { name: 'Style', extensions: ['css', 'scss'] },
           { name: 'Html', extensions: ['html'] },
         ]
-      });
-    console.log(filePath);
+      }).then(filePath => { pathHandler(filePath.filePaths[0]) })
+    // TODO
+    //console.log(filePath);
+    //pathHandler(filePath);
+
+    // invoke that context pathhandler function here
   }
 
   return (
     <div>
       <button onClick={handleUploadButton}>UPLOAD</button>
-      <h1>{ }</h1>
+      <h1>{myPath}</h1>
 
     </div>
   )
 }
 
-export default Upload;
+export default Landing;
