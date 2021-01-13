@@ -4,10 +4,10 @@
   "description": "A GUI for Puppeteer Test Creation",
   "main": "./dist/main.js",
   "scripts": {
-    "dev:electron": "NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
-    "dev:react": "NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
-    "build:electron": "NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
-    "build:react": "NODE_ENV=production webpack --config webpack.react.config.js --mode production",
+    "dev:electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\"",
+    "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
+    "build:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
+    "build:react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
     "build": "npm run build:electron && npm run build:react",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
@@ -33,6 +33,7 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.3",
     "electron": "^8.2.2",
     "electron-builder": "^22.7.0",
     "html-webpack-plugin": "^4.2.0",
@@ -43,6 +44,7 @@
   "dependencies": {
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "concurrently": "^5.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
