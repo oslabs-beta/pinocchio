@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import Upload from './components/landing';
 
 // const mainElement = document.createElement('div');
 // document.body.appendChild(mainElement);
 
 const App = () => {
   return (
-    <h1>
-      poof
+    <div>
+      <h1>
+        poof
     </h1>
+      <Upload />
+
+    </div >
+
   )
 }
 
