@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Redirect, Link } from 'react-router-dom';
 import { FileContext } from '../providers/FileProvider';
 
 const { remote } = window.require('electron');
@@ -8,6 +9,7 @@ const { dialog } = remote;
 
 const Landing = () => {
   const { myPath, pathHandler } = useContext(FileContext);
+  const [pathUploaded, setPathUploaded] = useState(false);
 
   // returns file path of desired project folder
   const handleUploadButton = () => {
@@ -29,21 +31,30 @@ const Landing = () => {
           { name: 'Html', extensions: ['html'] },
         ],
       },
-    ).then((filePath) => pathHandler(filePath.filePaths[0]));
-    // TODO
-    // console.log(filePath);
-    // pathHandler(filePath);
-
-    // invoke that context pathhandler function here
+    )
+    // invoked the pathhandler function from our fileProvider.ts
+      .then((res) => {
+        console.log(res);
+        pathHandler(res.filePaths[0]);
+      })
+    // if it works .then
+      .then(() => setPathUploaded(true))
+    // if it doesn't oopsie woopsie
+      .catch((err) => {
+        console.log('Error: ', err)
+      });
   };
 
+  // a boolean if something was true, redirect
+  // two return statements, the first only having the <Redirect />
+  if (pathUploaded) return <Redirect to='/home' />;
+  // the actual return
   return (
     <div>
       <button onClick={handleUploadButton}>UPLOAD</button>
       <h1>{myPath}</h1>
-
     </div>
-  )
-}
+  );
+};
 
 export default Landing;

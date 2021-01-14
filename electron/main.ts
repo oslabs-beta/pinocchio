@@ -21,6 +21,7 @@ app.whenReady().then(() => {
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    // Harlan: We can create a minWidth and minHeight
     width: 800,
     height: 800,
     title: 'Pinocchio',
