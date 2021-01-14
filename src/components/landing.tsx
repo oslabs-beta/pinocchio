@@ -9,10 +9,11 @@ const { dialog } = remote;
 const Landing = () => {
   const { myPath, pathHandler } = useContext(FileContext);
 
-  //returns file path of desired project folder
+  // returns file path of desired project folder
   const handleUploadButton = () => {
-    console.log("You clicked me; dialog: ", dialog)
-    // showOpenDialog is an electron method that returns a string of file path from user's local machine
+    console.log("You clicked me; dialog: ", dialog);
+    // showOpenDialog is an electron method that returns a string of file path
+    // from user's local machine
     // filter the directory path a user can choose depending on file extension
     // TODO Create type reference for filePath to be an array
     // OR
@@ -26,14 +27,15 @@ const Landing = () => {
           { name: 'Typescript Files', extensions: ['ts', 'tsx'] },
           { name: 'Style', extensions: ['css', 'scss'] },
           { name: 'Html', extensions: ['html'] },
-        ]
-      }).then(filePath => pathHandler(filePath.filePaths[0]))
+        ],
+      },
+    ).then((filePath) => pathHandler(filePath.filePaths[0]));
     // TODO
-    //console.log(filePath);
-    //pathHandler(filePath);
+    // console.log(filePath);
+    // pathHandler(filePath);
 
     // invoke that context pathhandler function here
-  }
+  };
 
   return (
     <div>
