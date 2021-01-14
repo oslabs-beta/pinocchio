@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "description": "A GUI for Puppeteer Test Creation",
   "main": "./dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/pinocchio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/pinocchio/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/pinocchio#readme",
   "scripts": {
-    "dev:electron": "NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
-    "dev:react": "NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
-    "build:electron": "NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
-    "build:react": "NODE_ENV=production webpack --config webpack.react.config.js --mode production",
+    "dev:electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\"",
+    "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
+    "build:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
+    "build:react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
     "build": "npm run build:electron && npm run build:react",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
@@ -32,9 +40,19 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
     "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.3",
     "electron": "^8.2.2",
     "electron-builder": "^22.7.0",
+    "electron-devtools-installer": "^3.1.1",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^4.2.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
@@ -43,7 +61,10 @@
   "dependencies": {
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "concurrently": "^5.3.0",
+    "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "typescript": "^4.1.3"
   }
 }
