@@ -15,6 +15,7 @@ const FileProvider = (props) => {
   const pathHandler = (pathValue: string) => {
     console.log('hitting provider handler');
     setMyPath(pathValue);
+    // redirect logic here
   };
 
   return (
