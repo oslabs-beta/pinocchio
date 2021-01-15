@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
-
-// in case of class components
-// export const FileConsumer = FileContext.Consumer;
-
-export const FileContext = React.createContext(null);
+export const FileContext = React.createContext(null); // ! Throwing an error because of null
 
 const FileProvider = (props) => {
-  // state hooks
-  // state === {myPath: 'start'}
   const [myPath, setMyPath] = useState('start');
-  // lifecycle methods --> useEffect
-
-  // any other functions/handlers we need to interact with our state
   const pathHandler = (pathValue: string) => {
+    // eslint-disable-next-line no-console
     console.log('hitting provider handler');
     setMyPath(pathValue);
-    // redirect logic here
+    // TODO: redirect logic here
   };
 
   return (

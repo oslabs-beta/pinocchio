@@ -13,5 +13,5 @@ ReactDOM.render(
       <App />
     </FileProvider>
   </BrowserRouter>,
-  main
+  main,
 );
