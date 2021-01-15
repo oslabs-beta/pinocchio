@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import ReactDom from 'react-dom';
-import Landing from './components/landing';
-//import FileProvider from './providers/FileProvider';
-
+import { Switch, Route } from 'react-router-dom';
+import Landing from './components/Landing';
+import Home from './components/Home';
+// import FileProvider from './providers/FileProvider';
 
 // const mainElement = document.createElement('div');
 // document.body.appendChild(mainElement);
@@ -10,23 +10,18 @@ import Landing from './components/landing';
 const App = () => {
   // state/context
 
-
-
-
   return (
     // <FileProvider>
-
     <div>
-      <h1>
-        poof
-    </h1>
-      <Landing />
-
+      <Switch>
+        <Route exact path="/" component={Landing}/>
+        <Route exact path="/home" component={Home}/>
+      </Switch>
     </div >
     // </FileProvider >
 
   )
-}
+};
 
 // ReactDom.render(<App />, mainElement);
 
