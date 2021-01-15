@@ -40,7 +40,7 @@ function createWindow() {
     // if not in development mode, do the following...
     mainWindow.loadURL(
       url.format({
-        pathname: path.join(__dirname, 'index.html'), // ! This path may be incorrect
+        pathname: path.join(__dirname, 'index.html'), // ? This path may be incorrect
         protocol: 'file:',
         slashes: true,
       }),
