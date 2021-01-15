@@ -10,7 +10,7 @@ const electronFs = remote.require('fs');
 const { dialog } = remote;
 
 const Landing = () => {
-  const { myPath, pathHandler } = useContext(FileContext);
+  const { myPath, pathHandler, fileTreeHandler } = useContext(FileContext);
   const [pathUploaded, setPathUploaded] = useState(false);
   let mainDirectory: string = '';
   const filePathMap: any = {};
@@ -66,7 +66,7 @@ const Landing = () => {
     )
       .then((filePath) => {
         mainDirectory = filePath.filePaths[0];
-        generateFileTree(mainDirectory);
+        fileTreeHandler(generateFileTree(mainDirectory));
         pathHandler(filePath.filePaths[0]);
       })
       .then(() => setPathUploaded(true))

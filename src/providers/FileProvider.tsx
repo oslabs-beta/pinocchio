@@ -9,6 +9,7 @@ const FileProvider = (props) => {
   // state hooks
   // state === {myPath: 'start'}
   const [myPath, setMyPath] = useState('start');
+  const [fileTree, setFileTree] = useState([]);
   // lifecycle methods --> useEffect
 
   // any other functions/handlers we need to interact with our state
@@ -17,9 +18,13 @@ const FileProvider = (props) => {
     setMyPath(pathValue);
     // redirect logic here
   };
+  const fileTreeHandler = (tree: any) => {
+    console.log('hitting tree handler');
+    setFileTree(tree);
+  };
 
   return (
-    <FileContext.Provider value={{ myPath, pathHandler }}>
+    <FileContext.Provider value={{ myPath, pathHandler, fileTreeHandler }}>
       {props.children}
     </FileContext.Provider>
   );
