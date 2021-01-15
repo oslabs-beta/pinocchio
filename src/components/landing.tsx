@@ -27,7 +27,7 @@ const Landing = () => {
       };
       // any is used here since we could be interacting with a 3rd party API
       const fileData: any = electronFs.statSync(file.filePath);
-      if (file.fileName !== 'node_modules' && file.fileName !== '.git') {
+      if (file.fileName !== 'node_modules' && file.fileName[0] !== '.') {
         if (fileData.isDirectory()) {
           // grab all files inside the directory if fileData is directory
           file.files = generateFileTree(file.filePath);

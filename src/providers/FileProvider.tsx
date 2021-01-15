@@ -24,7 +24,7 @@ const FileProvider = (props) => {
   };
 
   return (
-    <FileContext.Provider value={{ myPath, pathHandler, fileTreeHandler }}>
+    <FileContext.Provider value={{ myPath, pathHandler, fileTree, fileTreeHandler }}>
       {props.children}
     </FileContext.Provider>
   );
