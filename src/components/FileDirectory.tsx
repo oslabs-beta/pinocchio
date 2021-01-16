@@ -16,7 +16,7 @@ const FileDirectory = () => {
     } else setFolderOpen({ ...isFolderOpen, [fileName]: true });
   };
 
-  const idx: number = myPath.lastIndexOf('/');
+  const idx: number = myPath.lastIndexOf('\\');
   const projectName: string = myPath.substring(idx + 1);
 
   const renderFileTree = (tree: Array<fileInterface>) => tree.map((file) => {
@@ -60,6 +60,7 @@ const FileDirectory = () => {
 
   return (
     <div>
+      <h3>{projectName}</h3>
       {renderFileTree(fileTree)}
     </div>
   );
