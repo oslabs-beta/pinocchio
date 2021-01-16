@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FileContext } from '../providers/FileProvider';
 import { fileInterface } from '../utils/fileTypes';
 
@@ -7,23 +7,53 @@ const electronFs = remote.require('fs');
 
 const FileDirectory = () => {
   const { myPath, fileTree, fileTreeHandler } = useContext(FileContext);
+  const [isFolderOpen, setFolderOpen] = useState({});
+  const folderOpenObj = {};
+
+  const toggleOpenFolder = (fileName: string) => {
+    if (isFolderOpen[fileName]) {
+      setFolderOpen({ ...isFolderOpen, [fileName]: false });
+    } else setFolderOpen({ ...isFolderOpen, [fileName]: true });
+  };
 
   const idx: number = myPath.lastIndexOf('/');
   const projectName: string = myPath.substring(idx + 1);
 
-  const renderFileTree = (tree: Array<fileInterface>) => tree.map((file) => { //map undefined!!
+  const renderFileTree = (tree: Array<fileInterface>) => tree.map((file) => {
+    // check to see if file is a directory
+    // console.log('in render file tree')
     if (file.files.length) {
+      folderOpenObj[file.fileName] = false;
+
       return (
         <ul key={file.fileName}>
           <li>
-            <button type="button">
+            <button
+              type="button"
+              onClick={() => toggleOpenFolder(file.fileName)}
+            >
               {file.fileName}
             </button>
           </li>
+          {isFolderOpen[file.fileName] && renderFileTree(file.files)}
         </ul>
       );
     }
+    return (
+      <ul key={file.filePath}>
+        <li>
+          <button type="button">
+            {file.fileName}
+          </button>
+        </li>
+      </ul>
+    );
   });
+
+  useEffect(() => {
+    // console.log('in use effect');
+    setFolderOpen(folderOpenObj);
+  }, []);
 
   return (
     <div>

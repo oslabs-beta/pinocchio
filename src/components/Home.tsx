@@ -1,11 +1,16 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react';
-import FileProvider from '../components/FileDirectory';
+import { Link } from 'react-router-dom';
+import FileDirectory from '../components/FileDirectory';
 
 function Home() {
   return (
     <div>
       <h1>Hi Home!</h1>
-      <FileProvider></FileProvider>
+      <FileDirectory></FileDirectory>
+      <Link to='/'>
+        Go To Home
+      </Link>
 
     </div>
   );

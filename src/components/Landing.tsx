@@ -1,12 +1,15 @@
+/* eslint-disable import/no-unresolved */ // * be careful
+// eslint-disable-next-line no-use-before-define
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { FileContext } from '../providers/FileProvider';
 import { fileInterface } from '../utils/fileTypes';
 
+// allow communicaiton between react app and electron renderer
 const { remote } = window.require('electron');
+// allow remote process to have access to node fs module
 const electronFs = remote.require('fs');
-
-// Display native system dialogs for opening and saving files, alerting, etc.
+// display native system dialogs for opening and saving files, alerting, etc.
 const { dialog } = remote;
 
 const Landing = () => {
@@ -16,22 +19,32 @@ const Landing = () => {
   const filePathMap: any = {};
 
   const generateFileTree = (directory: string) => {
+    // use readdirSync fs node module through electron to read folder contents at given path
+    // this returns an array of file/folder paths that are mapped over
     // eslint-disable-next-line max-len
-    const fileArray: Array<fileInterface> | fileInterface = electronFs.readdirSync(directory).map((fileName: string) => {
+    const filterArray: Array<string> = electronFs.readdirSync(directory).filter((element: string) => element !== 'node_modules' && element[0] !== '.');
+
+    const fileArray: Array<fileInterface> = filterArray.map((fileName: string) => {
+      // remove backslashes from path of the directory and replace with forward (for PC)
       let filePath: string = directory.replace(/\\/g, '/');
+      // create a filepath to the current file/folder being iterated over
       filePath = `${filePath}/${fileName}`;
+      // returned after each iteration: The path to the current file/folder, file name, nested files
       const file: fileInterface = {
         filePath,
         fileName,
         files: [],
       };
-      // any is used here since we could be interacting with a 3rd party API
+      // Allow access to meta data about current file/folder being iterated over
+      // any is used here since we are interacting with a 3rd party API
       const fileData: any = electronFs.statSync(file.filePath);
       if (file.fileName !== 'node_modules' && file.fileName[0] !== '.') {
         if (fileData.isDirectory()) {
-          // grab all files inside the directory if fileData is directory
+          // if the current element being iterated over is a folder...
+          // use recursion to assign all nested files/folders arbitrarily deep to current file.files
           file.files = generateFileTree(file.filePath);
-          file.files.forEach((nestedFile: fileInterface) => {
+          // if any files in dir have appropriate file ext, save name + filepath to filePathMap
+          file.files.forEach((nestedFile: fileInterface) => { // ? applied to all nested files?
             const javaScriptFileTypes: Array<string> = ['js', 'jsx', 'ts', 'tsx'];
             const fileType = nestedFile.fileName.split('.')[1];
             if (javaScriptFileTypes.includes(fileType)) {
@@ -43,18 +56,16 @@ const Landing = () => {
       }
       return file;
     });
-    console.log(fileArray);
+    console.log(fileArray); // ? eventually delete
     return fileArray;
   };
 
-  // returns file path of desired project folder
+  // handles click of upload button and returns file path of desired project folder
   const handleUploadButton = () => {
-    console.log('You clicked me; dialog: ', dialog);
-    // showOpenDialog is an electron method that returns file path from user's local machine
-    // filter the directory path a user can choose depending on file extension
+    // open systems dialog to upload folder to app, restrict file type by extension
     dialog.showOpenDialog(
       {
-        properties: ['openDirectory', 'openFile'],
+        properties: ['openDirectory', 'openFile'], // ? Does openFile do anything?
         message: 'Please choose a project',
         filters: [
           { name: 'Javascript Files', extensions: ['js', 'jsx'] },
@@ -65,21 +76,22 @@ const Landing = () => {
       },
     )
       .then((filePath) => {
+        // extract directory file path, send it to global state and create a file tree from it
         mainDirectory = filePath.filePaths[0];
         fileTreeHandler(generateFileTree(mainDirectory));
         pathHandler(filePath.filePaths[0]);
       })
+      // boolean used for react router redirection
       .then(() => setPathUploaded(true))
+      // eslint-disable-next-line no-console
       .catch((err: any) => console.log(err));
   };
 
-  // a boolean if something was true, redirect
-  // two return statements, the first only having the <Redirect />
-  if (pathUploaded) return <Redirect to='/home' />;
-  // the actual return
+  // conditional rendering of homepage via react router
+  if (pathUploaded) return <Redirect to="/home" />;
   return (
     <div>
-      <button onClick={handleUploadButton}>UPLOAD</button>
+      <button type="button" onClick={handleUploadButton}>UPLOAD</button>
       <h1>{myPath}</h1>
     </div>
   );
