@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */ // * be careful
+// eslint-disable-next-line no-use-before-define
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -13,5 +15,5 @@ ReactDOM.render(
       <App />
     </FileProvider>
   </BrowserRouter>,
-  main
+  main,
 );
