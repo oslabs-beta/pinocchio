@@ -6,7 +6,7 @@ const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 
 const FileDirectory = () => {
-  const { myPath, fileTree, fileTreeHandler } = useContext(FileContext);
+  const { myPath, fileTree, chosenFileHandler } = useContext(FileContext);
   const [isFolderOpen, setFolderOpen] = useState({});
   const folderOpenObj = {};
 
@@ -42,7 +42,10 @@ const FileDirectory = () => {
     return (
       <ul key={file.filePath}>
         <li>
-          <button type="button">
+          <button
+            type="button"
+            onClick={() => chosenFileHandler(file.filePath)}
+          >
             {file.fileName}
           </button>
         </li>
