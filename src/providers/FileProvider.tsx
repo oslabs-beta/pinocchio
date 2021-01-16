@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 export const FileContext = React.createContext(null); // ! Throwing an error because of null
 
-const FileProvider = (props) => {
+const FileProvider = ({children}) => {
   const [myPath, setMyPath] = useState('start');
   const pathHandler = (pathValue: string) => {
     // eslint-disable-next-line no-console
@@ -12,7 +12,7 @@ const FileProvider = (props) => {
 
   return (
     <FileContext.Provider value={{ myPath, pathHandler }}>
-      {props.children}
+      {children}
     </FileContext.Provider>
   );
 };
