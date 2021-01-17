@@ -63,14 +63,8 @@ const Landing = () => {
     // open systems dialog to upload folder to app, restrict file type by extension
     dialog.showOpenDialog(
       {
-        properties: ['openDirectory', 'openFile'], // ? Does openFile do anything?
-        message: 'Please choose a project',
-        filters: [
-          { name: 'Javascript Files', extensions: ['js', 'jsx'] },
-          { name: 'Typescript Files', extensions: ['ts', 'tsx'] },
-          { name: 'Style', extensions: ['css', 'scss'] },
-          { name: 'Html', extensions: ['html'] },
-        ],
+        properties: ['openDirectory'],
+        message: 'Please choose your project folder',
       },
     )
       .then((filePath) => {
