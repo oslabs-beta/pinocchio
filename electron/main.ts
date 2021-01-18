@@ -3,7 +3,7 @@ import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { installExtension, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
+import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
 // type check mainwindow to either be null or an instantiation of BrowserWindow object
 let mainWindow: BrowserWindow | null;
@@ -17,7 +17,7 @@ app.whenReady().then(() => {
     // eslint-disable-next-line no-console
     .then((name: string) => console.log(`Added Extension:  ${name}`))
     // eslint-disable-next-line no-console
-    .catch((err: string) => console.log('An error occurred: ', err));
+    .catch((err: any) => console.log('An error occurred: ', err));
 });
 
 function createWindow() {
