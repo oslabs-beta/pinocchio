@@ -3,6 +3,8 @@ import React from 'react';
 import Editor from './Monaco/Monaco.jsx';
 import * as monaco from 'monaco-editor'
 
+import { Link } from 'react-router-dom';
+import FileDirectory from '../components/FileDirectory';
 
 function Home() {
 
@@ -10,6 +12,11 @@ function Home() {
     <div>
       <h1>Hi Home!</h1>
       <Editor />
+      <FileDirectory></FileDirectory>
+      <Link to='/'>
+        Go To Landing
+      </Link>
+
     </div>
   );
 }
