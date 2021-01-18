@@ -13,7 +13,7 @@ const electronFs = remote.require('fs');
 const { dialog } = remote;
 
 const Landing = () => {
-  const { myPath, pathHandler } = useContext(FileContext);
+  const { myPath, pathHandler, fileTreeHandler } = useContext(FileContext);
   const [pathUploaded, setPathUploaded] = useState(false);
   let mainDirectory: string = '';
   const filePathMap: any = {};
@@ -22,7 +22,9 @@ const Landing = () => {
     // use readdirSync fs node module through electron to read folder contents at given path
     // this returns an array of file/folder paths that are mapped over
     // eslint-disable-next-line max-len
-    const fileArray: Array<fileInterface> = electronFs.readdirSync(directory).map((fileName: string) => {
+    const filterArray: Array<string> = electronFs.readdirSync(directory).filter((element: string) => element !== 'node_modules' && element[0] !== '.');
+
+    const fileArray: Array<fileInterface> = filterArray.map((fileName: string) => {
       // remove backslashes from path of the directory and replace with forward (for PC)
       let filePath: string = directory.replace(/\\/g, '/');
       // create a filepath to the current file/folder being iterated over
@@ -36,7 +38,7 @@ const Landing = () => {
       // Allow access to meta data about current file/folder being iterated over
       // any is used here since we are interacting with a 3rd party API
       const fileData: any = electronFs.statSync(file.filePath);
-      if (file.fileName !== 'node_modules' && file.fileName !== '.git') { // ? change git to include all hidden files?
+      if (file.fileName !== 'node_modules' && file.fileName[0] !== '.') {
         if (fileData.isDirectory()) {
           // if the current element being iterated over is a folder...
           // use recursion to assign all nested files/folders arbitrarily deep to current file.files
@@ -70,8 +72,8 @@ const Landing = () => {
       .then((filePath) => {
         // extract directory file path, send it to global state and create a file tree from it
         mainDirectory = filePath.filePaths[0];
-        generateFileTree(mainDirectory);
-        pathHandler(mainDirectory);
+        fileTreeHandler(generateFileTree(mainDirectory));
+        pathHandler(filePath.filePaths[0]);
       })
       // boolean used for react router redirection
       .then(() => setPathUploaded(true))
