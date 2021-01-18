@@ -22,6 +22,7 @@ const FileDirectory = () => {
   const renderFileTree = (tree: Array<fileInterface>) => tree.map((file) => {
     // check to see if file is a directory
     // console.log('in render file tree')
+    // if file.files.length is truthy -> it's a folder
     if (file.files.length) {
       folderOpenObj[file.fileName] = false;
 
@@ -35,7 +36,8 @@ const FileDirectory = () => {
               {file.fileName}
             </button>
           </li>
-          {isFolderOpen[file.fileName] && renderFileTree(file.files)}
+          
+          {isFolderOpen[file.fileName] && renderFileTree(file.files)} 
         </ul>
       );
     }

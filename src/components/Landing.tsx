@@ -65,6 +65,8 @@ const Landing = () => {
     // open systems dialog to upload folder to app, restrict file type by extension
     dialog.showOpenDialog(
       {
+        // There was a filter for file types such as .jsx, .js .tsx, etc
+        // removed for Linux compatibililty
         properties: ['openDirectory'],
         message: 'Please choose your project folder',
       },

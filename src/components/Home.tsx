@@ -9,7 +9,7 @@ function Home() {
       <h1>Hi Home!</h1>
       <FileDirectory></FileDirectory>
       <Link to='/'>
-        Go To Home
+        Go To Landing
       </Link>
 
     </div>
