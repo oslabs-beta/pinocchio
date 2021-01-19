@@ -2,13 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FileDirectory from '../components/FileDirectory';
-
+import ManualTestCreation from './TestCreation/ManualTestCreation';
 function Home() {
   return (
     <div>
       <h1>Hi Home!</h1>
-      <FileDirectory></FileDirectory>
-      <Link to='/'>
+      <FileDirectory />
+      <ManualTestCreation />
+      <Link to="/">
         Go To Landing
       </Link>
 
