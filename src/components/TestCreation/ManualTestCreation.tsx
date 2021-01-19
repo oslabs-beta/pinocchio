@@ -7,6 +7,7 @@ const ManualTestCreation = (props) => (
     <h1>
       Manual Test Creation
     </h1>
+    <button type="button">+Describe block</button>
     <DescribeBlock />
   </div>
 );

@@ -10,6 +10,7 @@ const DescribeBlock = (props) => (
     <label> Describe Block</label>
     <input type="text" placeholder="What the test suite is testing" />
     <button type="button">+It Statement</button>
+    <button type="button">+Describe block</button>
     <ItBlock />
   </div>
 );
