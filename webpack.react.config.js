@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
+
 module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.css'],
@@ -14,7 +15,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\css$/, include: MONACO_DIR, use: ['style-loader', 'css-loader'],
+        test: /\.css$/, include: MONACO_DIR, use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.ttf$/,
+        use: ['file-loader'],
       },
       {
         test: /\.js|ts|tsx|jsx$/, // previously /\.(js|ts|tsx|jsx)$/
@@ -35,6 +40,5 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js',
   },
-  plugins: [new HtmlWebpackPlugin(), new MonacoWebpackPlugin()],
-  
+  plugins: [new HtmlWebpackPlugin(), new MonacoWebpackPlugin({ languages: ['json'] })],
 };
