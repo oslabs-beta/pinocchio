@@ -40,5 +40,5 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js',
   },
-  plugins: [new HtmlWebpackPlugin(), new MonacoWebpackPlugin({ languages: ['json'] })],
+  plugins: [new HtmlWebpackPlugin(), new MonacoWebpackPlugin()],
 };

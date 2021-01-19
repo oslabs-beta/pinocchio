@@ -36,7 +36,7 @@ const FileDirectory = () => {
               {file.fileName}
             </button>
           </li>
-          
+
           {isFolderOpen[file.fileName] && renderFileTree(file.files)} 
         </ul>
       );

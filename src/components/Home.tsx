@@ -1,11 +1,11 @@
 // eslint-disable-next-line no-use-before-define
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FileDirectory from '../components/FileDirectory';
+import FileDirectory from './FileDirectory';
 import Editor from './Monaco/Monaco';
 // import * as monaco from 'monaco-editor'
 
-function Home() {
+const Home = () => {
   return (
     <div>
       <h1>Hi Home!</h1>
