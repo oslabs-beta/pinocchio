@@ -4,7 +4,7 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   resolve: {
-    extensions: ['.tsx', '.ts', '.js','.jsx', '.css'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.css'],
     mainFields: ['main', 'module', 'browser'],
   },
   entry: './src/index.js',
@@ -13,14 +13,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\css$/, use: 'css-loader'
+        test: /\css$/, use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(js|ts|tsx|jsx)$/,   
+        test: /\.js|ts|tsx|jsx$/, // previously /\.(js|ts|tsx|jsx)$/
         exclude: /node_modules/,
-        use: [
-          {loader: "babel-loader"}, 
-        ]
+        use: 'babel-loader',
       },
     ],
   },
