@@ -6,8 +6,6 @@ export interface assertionInterface {
 export interface puppeteerActionInterface {
   method: string,
   tag: string | undefined,
-
-
 }
 
 export interface itInterface {
