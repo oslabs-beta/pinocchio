@@ -1,35 +1,39 @@
-import MonacoEditor from "react-monaco-editor";
-import { editor } from "monaco-editor";
-import React from "react";
+import React from 'react';
+import MonacoEditor from 'react-monaco-editor';
+import * as monaco from 'monaco-editor';
+// import { editor } from 'monaco-editor';
 
+const Monaco = () => {
+  // From spearmint component EditorView.jsx
+  const options = {
+    selectOnLineNumbers: true,
+    wordWrap: 'wordWrapColumn',
+    wordWrapColumn: 90,
+    autoIndent: true,
+    colorDecorators: true,
+    wrappingIndent: 'indent',
+    automaticLayout: true,
+};
 
+  const editorDidMount = (editor) => {
+    console.log('editorDidMount', editor)
+    // editor.setTheme('light-dark');
+    // editor.focus();
+  };
 
-function Editor() {
+  return (
+    <div>
+      <h1>Monaco is below me</h1>
+      <MonacoEditor
+        height="100vh"
+        language="javascript"
+        theme="light-dark"
+        editorDidMount={editorDidMount}
+        // monacoEditorCreate={monacoEditorCreate}
+        options={options}
+      />
+    </div>
+  );
+};
 
-    const monacoEditorCreate = monaco.editor.create(document.getElementById("container"), {
-        value: 'console.log("Hello, world")',
-        language: 'javascript'
-      });
-
-    const editorDidMount = () => {
-        editor.setTheme('light-dark');
-        // editor.focus();
-      };
-
-    return(
-        <div>
-            <MonacoEditor 
-                height='100vh'
-                language='javascript'
-                theme='light-dark'
-                editorDidMount={editorDidMount}
-                monacoEditorCreate={monacoEditorCreate}
-            />
-        </div>
-    )
-}
-
-
-
-
-export default Editor;
+export default Monaco;
