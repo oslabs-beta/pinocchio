@@ -16,6 +16,6 @@ export interface itInterface {
 
 export interface describeInterface {
   description: string,
-  nestedIts: Array<itInterface>,
-  nestedDescribes: Array<describeInterface>
+  nestedIts: itInterface,
+  // nestedDescribes: Array<describeInterface>
 }

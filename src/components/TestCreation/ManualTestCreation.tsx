@@ -8,7 +8,7 @@ const ManualTestCreation = (props) => (
       Manual Test Creation
     </h1>
     <button type="button">+Describe block</button>
-    <DescribeBlock key = 0/>
+    <DescribeBlock />
   </div>
 );
 

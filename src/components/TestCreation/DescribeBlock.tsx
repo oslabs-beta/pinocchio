@@ -3,7 +3,7 @@ import ItBlock from './ItBlock';
 import { TestContext } from '../../providers/TestProvider'
 
 const DescribeBlock = (props) => {
-  const { test, handleTest } = useContext(TestContext);
+  const { test, handleDBlockDescription } = useContext(TestContext);
 
   return (
     <div>
@@ -14,7 +14,7 @@ const DescribeBlock = (props) => {
         <label> Describe Block</label>
         <input
           type="text"
-          value={dBlockDescription}
+          value={test.description}
           placeholder="What the test suite is testing"
           onChange={(e) => handleDBlockDescription(e.target.value)}
         />
