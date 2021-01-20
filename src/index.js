@@ -9,8 +9,8 @@ import FileProvider from './providers/FileProvider';
 const main = document.createElement('div');
 document.body.appendChild(main);
 
-const container = document.createElement('container');
-
+const EditorView = document.createElement('div');
+EditorView.id = 'container';
 
 ReactDOM.render(
   <BrowserRouter>

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FileDirectory from './FileDirectory';
-import Editor from './Monaco/Monaco';
+import Monaco from './Monaco/Monaco';
 // import * as monaco from 'monaco-editor'
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
       <Link to='/'>
         Go To Landing
       </Link>
-      <Editor />
+      <Monaco />
     </div>
   );
 }
