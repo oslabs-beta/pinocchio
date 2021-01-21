@@ -10,6 +10,9 @@ import TestProvider from './providers/TestProvider';
 const main = document.createElement('div');
 document.body.appendChild(main);
 
+const EditorView = document.createElement('div');
+EditorView.id = 'container';
+
 ReactDOM.render(
   <BrowserRouter>
     <FileProvider>
@@ -18,5 +21,5 @@ ReactDOM.render(
       </TestProvider>
     </FileProvider>
   </BrowserRouter>,
-  main,
+  main
 );

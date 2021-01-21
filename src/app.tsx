@@ -1,4 +1,5 @@
-/* eslint-disable import/no-unresolved */ // * be careful
+/* eslint-disable import/no-unresolved */ 
+// * be careful
 // eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';

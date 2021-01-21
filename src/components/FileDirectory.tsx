@@ -6,9 +6,18 @@ const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 
 const FileDirectory = () => {
-  const { myPath, fileTree, chosenFileHandler } = useContext(FileContext);
+
+  const { myPath, fileTree, chosenFileHandler} = useContext(FileContext);
   const [isFolderOpen, setFolderOpen] = useState({});
   const folderOpenObj = {};
+
+  // grabbing the file contents and logging it to the console
+  // const grabFileContents = (filePath) => {
+  //   const fileContents = electronFs.readFileSync(filePath, 'utf8');
+  //   console.log(fileContents);
+  // }
+
+  // grabFileContents needs to be a use effect once clicked
 
   const toggleOpenFolder = (fileName: string) => {
     if (isFolderOpen[fileName]) {
@@ -36,7 +45,7 @@ const FileDirectory = () => {
               {file.fileName}
             </button>
           </li>
-          
+
           {isFolderOpen[file.fileName] && renderFileTree(file.files)} 
         </ul>
       );
@@ -46,7 +55,7 @@ const FileDirectory = () => {
         <li>
           <button
             type="button"
-            onClick={() => chosenFileHandler(file.filePath)}
+            onClick={() => {chosenFileHandler(file.filePath)}}
           >
             {file.fileName}
           </button>
@@ -55,6 +64,8 @@ const FileDirectory = () => {
     );
   });
 
+
+  
   useEffect(() => {
     // console.log('in use effect');
     setFolderOpen(folderOpenObj);
