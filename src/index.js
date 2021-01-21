@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */ // * be careful
+// eslint-disable-next-line no-use-before-define
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -6,6 +8,9 @@ import FileProvider from './providers/FileProvider';
 
 const main = document.createElement('div');
 document.body.appendChild(main);
+
+const EditorView = document.createElement('div');
+EditorView.id = 'container';
 
 ReactDOM.render(
   <BrowserRouter>
