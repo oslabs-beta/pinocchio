@@ -29,7 +29,6 @@ const Monaco = () => {
         language="javascript"
         theme="light-dark"
         editorDidMount={editorDidMount}
-        // monacoEditorCreate={monacoEditorCreate}
         options={options}
       />
     </div>
