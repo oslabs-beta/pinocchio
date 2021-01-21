@@ -9,11 +9,14 @@ import FileProvider from './providers/FileProvider';
 const main = document.createElement('div');
 document.body.appendChild(main);
 
+const EditorView = document.createElement('div');
+EditorView.id = 'container';
+
 ReactDOM.render(
   <BrowserRouter>
     <FileProvider>
       <App />
     </FileProvider>
   </BrowserRouter>,
-  main,
+  main
 );
