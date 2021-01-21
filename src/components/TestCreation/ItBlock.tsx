@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { TestContext } from "../../providers/TestProvider";
 import PuppeteerAction from "./PuppeteerAction";
+import AssertionBlock from './AssertionBlock';
 
 const ItBlock = (props) => {
   const { test, handleItBlockDescription, actionArrayIndex, addPuppeteerAction } = useContext(TestContext);
@@ -10,7 +11,7 @@ const ItBlock = (props) => {
   // start with number 
   // for how many numbres we iterate and render the puppeteer action componeent
   return (
-    <div>
+    <div style={{border: 'solid 3px blue'}}>
       <h1>It Block</h1>
       <label> It Block </label>
       <input
@@ -19,9 +20,12 @@ const ItBlock = (props) => {
         value={test.nestedIts.itDescription}
         onChange={(e) => handleItBlockDescription(e.target.value)}
       />
-      <button type="button" onClick={() => addPuppeteerAction()}>+Puppeteer Action</button>
-      <PuppeteerAction index={actionArrayIndex}/>
+      <button type="button" onClick={() => addPuppeteerAction()}>
+        +Puppeteer Action
+      </button>
+      <PuppeteerAction index={actionArrayIndex} />
       <button type="button">+Assertion</button>
+      <AssertionBlock index = {0}/>
     </div>
   );
 };
