@@ -1,9 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import * as monaco from 'monaco-editor';
+import { fileInterface } from '/Users/brandirichardson/Desktop/Codesmith/pinocchio/src/utils/fileTypes';
+import { FileContext } from '/Users/brandirichardson/Desktop/Codesmith/pinocchio/src/providers/FileProvider';
+
 // import { editor } from 'monaco-editor';
+const { remote } = window.require('electron');
+const electronFs = remote.require('fs');
 
 const Monaco = () => {
+  const [ grabContents, setGrabContents ] = useState('');
+  const { myPath ,fileTree, chosenFile} = useContext(FileContext);
+
+  useEffect(() => {
+    grabFileContents(chosenFile) 
+  }, [chosenFile]);
+
+  const grabFileContents = (filePath) => {
+    if (filePath.length > 0){
+      setGrabContents(electronFs.readFileSync(filePath, 'utf8'));
+    }
+    console.log(grabContents);
+  }
   // From spearmint component EditorView.jsx
   const options = {
     selectOnLineNumbers: true,
@@ -13,13 +31,14 @@ const Monaco = () => {
     colorDecorators: true,
     wrappingIndent: 'indent',
     automaticLayout: true,
-};
+  };
 
   const editorDidMount = (editor) => {
     console.log('editorDidMount', editor)
     // editor.setTheme('light-dark');
     // editor.focus();
   };
+
 
   return (
     <div>
@@ -30,6 +49,7 @@ const Monaco = () => {
         theme="light-dark"
         editorDidMount={editorDidMount}
         options={options}
+        value={grabContents}
       />
     </div>
   );
