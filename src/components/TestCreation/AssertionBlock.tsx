@@ -11,8 +11,8 @@ const AssertionBlock = (props) => {
   const assertionArrays = ["to.be.equal", "to.not.equal", "to.be.true", "to.be.false"];
 
   const renderAssertionOptions = () => {
-    return assertionArrays.map((ass) => {
-      return <option value={ass}>{ass}</option>;
+    return assertionArrays.map((assert) => {
+      return <option value={assert}>{assert}</option>;
     });
   };
 

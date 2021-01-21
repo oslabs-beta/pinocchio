@@ -4,7 +4,7 @@ import PuppeteerAction from "./PuppeteerAction";
 import AssertionBlock from './AssertionBlock';
 
 const ItBlock = (props) => {
-  const { test, handleItBlockDescription, actionArrayIndex, addPuppeteerAction } = useContext(TestContext);
+  const { test, handleItBlockDescription, addPuppeteerAction } = useContext(TestContext);
   // const [actionsNumber, setActionsNumber] = useState(1)
 
 
@@ -24,10 +24,10 @@ const ItBlock = (props) => {
         +Puppeteer Action
       </button>
       <PuppeteerAction index={0} />
-      <button type="button">+Assertion</button>
-      <AssertionBlock index = {0}/>
+      <button type="button">+Assertion</button> 
+      <AssertionBlock index={0} />
     </div>
   );
 };
-
+// TODO: The ability to allow multiple puppeteer actions and assertions after one another
 export default ItBlock;

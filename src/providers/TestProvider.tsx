@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   describeInterface,
   itInterface,
   puppeteerActionInterface,
   assertionInterface,
-} from "../utils/testTypes";
+} from '../utils/testTypes';
 
 export const TestContext = React.createContext(null);
 
@@ -18,12 +18,12 @@ const TestProvider = (props) => {
   // You don't have to necessarily do that with an object, you only refer to the key.
   // But if we do objects, it can get a little weird with how we create those objects initially
   const [test, setTest] = useState({
-    dDescription: "",
+    dDescription: '',
     nestedIts: {
-        itDescription: "",
+        itDescription: '',
 
-        assertions: { 0: { assertion: "", userInput: "" } },
-        actions: {0: {action: "", htmlNode: ""}},
+        assertions: { 0: { assertion: '', userInput: '' } }, // TODO: Is this the best data structure ?
+        actions: {0: {action: '', htmlNode: ''}},
       },
     // nestedDescribes: [],
   });
@@ -43,7 +43,6 @@ const TestProvider = (props) => {
       ...test,
       nestedIts: {
         ...test.nestedIts,
-          ...test.nestedIts,
           itDescription: itBlockDesription,
         
       },
@@ -89,7 +88,7 @@ const TestProvider = (props) => {
     });
   };
 
-  const handleAssertionsUserInput = (newAssInput: string, index: number) => {
+  const handleAssertionsUserInput = (newAssertInput: string, index: number) => {
     setTest({
       ...test,
       nestedIts: {
@@ -98,7 +97,7 @@ const TestProvider = (props) => {
           ...test.nestedIts.assertions,
           [index]: {
             ...test.nestedIts.assertions[index],
-            userInput: newAssInput,
+            userInput: newAssertInput,
           },
         },
       },

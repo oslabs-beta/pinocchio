@@ -9,7 +9,7 @@ import Monaco from './Monaco/Monaco';
 const Home = () => {
   return (
     <div>
-      <h1>Hi Home!</h1>
+      <h1>Welcome to pinocchio</h1>
       <FileDirectory />
       <ManualTestCreation />
       <Link to="/">

@@ -2,7 +2,7 @@ import React , { useContext }from "react";
 import DescribeBlock from "./DescribeBlock";
 import { TestContext } from "../../providers/TestProvider";
 import GenerateTest from './GenerateTest';
-
+// TODO: Possibly rethink naming convention
 const ManualTestCreation = (props) => {
   // const { test } = useContext(TestContext);
 

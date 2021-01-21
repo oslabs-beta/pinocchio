@@ -13,7 +13,9 @@ describe('Your generated test: ', function() {\n
   let page;\n
   \n
   before(async function(){\n
-    browser = await puppeteer.launch();\n
+    browser = await puppeteer.launch({
+      headless: true,
+    });\n
     page = await browser.newPage();\n
   });\n
   \n
@@ -41,7 +43,7 @@ const actionMap = {
   getInnerText: `(el) => el.innerText`
 }
 
-function GenerateTest(testObject: any, APP: any){
+function GenerateTest(testObject: any, APP: any) {
   const dBlockDescription = testObject.dDescription;
   const itDescription = testObject.nestedIts.itDescription;
   const assertion = testObject.nestedIts.assertions[0].assertion;
