@@ -5,7 +5,7 @@ import AssertionBlock from './AssertionBlock';
 
 const ItBlock = (props) => {
   const { test, handleItBlockDescription, actionArrayIndex, addPuppeteerAction } = useContext(TestContext);
-  const [actionsNumber, setActionsNumber] = useState(1)
+  // const [actionsNumber, setActionsNumber] = useState(1)
 
 
   // start with number 
@@ -23,7 +23,7 @@ const ItBlock = (props) => {
       <button type="button" onClick={() => addPuppeteerAction()}>
         +Puppeteer Action
       </button>
-      <PuppeteerAction index={actionArrayIndex} />
+      <PuppeteerAction index={0} />
       <button type="button">+Assertion</button>
       <AssertionBlock index = {0}/>
     </div>

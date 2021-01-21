@@ -3,10 +3,15 @@ import { TestContext } from "../../providers/TestProvider";
 import AssertionBlock from "./AssertionBlock";
 
 const PuppeteerAction = (props) => {
-  const { handleActions } = useContext(TestContext);
+  const { handleActions, handleActionsNode } = useContext(TestContext);
   const [selectAction, setSelectAction] = useState("");
 
-  const actionsList = ["Title", "Tap", "Click"];
+  const actionsList = ["getValue", "getInnerText", "getLength"];
+
+  // How do we allow the user to dynamically create their tests,
+  // or do explicitally tell them what they can do.
+//   {getInnerText: `.$eval(${label}, (el) => el.getInnerText)`,
+// getLength: `.$eval(${label}, (el) => el.getLength)`}
 
   const renderOptions = () => {
     return actionsList.map((action) => {
@@ -18,10 +23,14 @@ const PuppeteerAction = (props) => {
     });
   };
 
-  const handleSelectValue = (value) => {
+  const handleActionSelect = (value) => {
     // props.index
-    handleActions(value);
+    handleActions(value, props.index);
   };
+
+  const handleHTMLNode = (value) => {
+    handleActionsNode(value, props.index)
+  }
 
   // TODO Adjust <select> to reflect chosen option value
   return (
@@ -29,13 +38,14 @@ const PuppeteerAction = (props) => {
       <h1>PuppeteerAction</h1>
       <select
         value={selectAction}
-        onChange={(e) => handleSelectValue(e.target.value)}
+        onChange={(e) => handleActionSelect(e.target.value)}
         >
         <option value="" disabled>
           Select Puppeteer Action
         </option>
         {renderOptions()}
       </select>
+      <input placeholder="HTML Tag" onChange={(e) => handleHTMLNode(e.target.value)}/>
     </div>
   );
 };

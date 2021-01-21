@@ -8,7 +8,7 @@ const AssertionBlock = (props) => {
   const { handleAssertionsChoice, handleAssertionsUserInput, test} = useContext(TestContext)
   // expect (html node) --> assertions compared to (a user input)
 
-  const assertionArrays = ["To be", "Not to be", "to equal"];
+  const assertionArrays = ["to.be.equal", "to.not.equal", "to.be.true", "to.be.false"];
 
   const renderAssertionOptions = () => {
     return assertionArrays.map((ass) => {
