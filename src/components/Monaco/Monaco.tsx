@@ -1,8 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import MonacoEditor from 'react-monaco-editor';
-import * as monaco from 'monaco-editor';
-import { fileInterface } from '/Users/brandirichardson/Desktop/Codesmith/pinocchio/src/utils/fileTypes';
-import { FileContext } from '/Users/brandirichardson/Desktop/Codesmith/pinocchio/src/providers/FileProvider';
+import { FileContext } from '../../providers/FileProvider';
 
 // import { editor } from 'monaco-editor';
 const { remote } = window.require('electron');
@@ -10,7 +8,7 @@ const electronFs = remote.require('fs');
 
 const Monaco = () => {
   const [ grabContents, setGrabContents ] = useState('');
-  const { myPath ,fileTree, chosenFile} = useContext(FileContext);
+  const { chosenFile } = useContext(FileContext);
 
   useEffect(() => {
     grabFileContents(chosenFile) 
