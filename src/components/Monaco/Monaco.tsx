@@ -40,9 +40,10 @@ const Monaco = () => {
 
   return (
     <div>
-      <h1>Monaco is below me</h1>
+      <h1>Code Preview</h1>
       <MonacoEditor
         height="100vh"
+        width="33vw"
         language="javascript"
         theme="light-dark"
         editorDidMount={editorDidMount}

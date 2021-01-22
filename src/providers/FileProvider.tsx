@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const FileContext = React.createContext(null); // ! Throwing an error because of null
 
 const FileProvider = ({ children }) => {
-  const [myPath, setMyPath] = useState('start');
+  const [myPath, setMyPath] = useState('');
   const [fileTree, setFileTree] = useState([]);
   const [chosenFile, setChosenFile] = useState('');
   // lifecycle methods --> useEffect

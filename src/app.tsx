@@ -7,7 +7,7 @@ import Landing from './components/Landing';
 import Home from './components/Home';
 
 const App = () => (
-  <div>
+  <div style={{backgroundColor: 'white'}}>
     <Switch>
       <Route exact path="/" component={Landing} />
       <Route exact path="/home" component={Home} />
