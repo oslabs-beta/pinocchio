@@ -87,8 +87,9 @@ const Landing = () => {
   if (pathUploaded) return <Redirect to="/home" />;
   return (
     <div>
+      <h1>pinocchio</h1>
+      <h2>Please, upload your project here  </h2>
       <button type="button" onClick={handleUploadButton}>UPLOAD</button>
-      <h1>{myPath}</h1>
     </div>
   );
 };

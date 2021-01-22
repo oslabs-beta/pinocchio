@@ -11,7 +11,7 @@ const ItBlock = (props) => {
   // start with number 
   // for how many numbres we iterate and render the puppeteer action componeent
   return (
-    <div style={{border: 'solid 3px blue'}}>
+    <div style={{backgroundColor: '#099CD7'}}>
       <h1>It Block</h1>
       <label> It Block </label>
       <input
@@ -23,8 +23,8 @@ const ItBlock = (props) => {
       <button type="button" onClick={() => addPuppeteerAction()}>
         +Puppeteer Action
       </button>
-      <PuppeteerAction index={0} />
       <button type="button">+Assertion</button> 
+      <PuppeteerAction index={0} />
       <AssertionBlock index={0} />
     </div>
   );

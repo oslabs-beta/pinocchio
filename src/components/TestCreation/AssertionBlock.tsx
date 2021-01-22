@@ -27,7 +27,7 @@ const AssertionBlock = (props) => {
   };
 
   return (
-    <div style={{ border: "solid 3px red" }}>
+    <div style={{ backgroundColor: '#FEDE87' }}>
       <h1>Assertion Block</h1>
       <div>
         <select

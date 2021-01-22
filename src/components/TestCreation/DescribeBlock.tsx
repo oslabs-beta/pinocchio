@@ -6,7 +6,7 @@ const DescribeBlock = (props) => {
   const { test, handleDBlockDescription } = useContext(TestContext);
 
   return (
-    <div style={{ border: "solid 3px brown" }}>
+    <div style={{ backgroundColor: "#FEAE20" }}>
       <h1>Describe Block</h1>
       <form>
         <label> Describe Block</label>

@@ -34,7 +34,7 @@ const PuppeteerAction = (props) => {
 
   // TODO Adjust <select> to reflect chosen option value
   return (
-    <div style={{ border: "solid 3px green" }}>
+    <div style={{ backgroundColor: "#D82802"}}>
       <h1>PuppeteerAction</h1>
       <select
         value={selectAction}

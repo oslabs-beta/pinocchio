@@ -10,12 +10,18 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to pinocchio</h1>
+      <div style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around"
+      }}>
       <FileDirectory />
       <ManualTestCreation />
+      <Monaco />
+      </div>
       <Link to="/">
         Go To Landing
       </Link>
-      <Monaco />
     </div>
   );
 }

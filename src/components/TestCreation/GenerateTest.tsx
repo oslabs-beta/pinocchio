@@ -5,24 +5,24 @@
 
 
 // Boilerplate Function
-let test = `const { expect } = require('chai'); \n
-const puppeteer = require('puppeteer'); \n
-\n
-describe('Your generated test: ', function() {\n
-  let browser;\n
-  let page;\n
-  \n
-  before(async function(){\n
+let test = `const { expect } = require('chai'); 
+const puppeteer = require('puppeteer'); 
+
+describe('Your generated test: ', function() {
+  let browser;
+  let page;
+  
+  before(async function(){
     browser = await puppeteer.launch({
       headless: true,
-    });\n
-    page = await browser.newPage();\n
-  });\n
-  \n
-  after(function(){\n
-    browser.close();\n
-  })\n
-\n`
+    });
+    page = await browser.newPage();
+  });
+  
+  after(function(){
+    browser.close();
+  })
+`
 
 const endString = `});`
 
@@ -51,24 +51,24 @@ function GenerateTest(testObject: any, APP: any) {
   const puppeteerAction = testObject.nestedIts.actions[0].action;
   const puppeteerHtmlNode = testObject.nestedIts.actions[0].htmlNode;
 
-const actualTest = `describe('${dBlockDescription}', function(){\n
-    before(){\n
-      page.goto('${APP}');\n
-    }\n
-    after(){\n
-      page.close();\n
-    }\n
-    \n
-    it('${itDescription}', async function() {\n
-      await page.waitForSelector('${puppeteerHtmlNode}');\n
-      const result = page.$eval(${puppeteerHtmlNode}, ${actionMap[puppeteerAction]});\n
-      expect(result).${assertion}(${userInputAssertion});\n
-      \n
-    })\n
-  })`
+const actualTest = `describe('${dBlockDescription}', function(){
+    before(){
+      page.goto('${APP}');
+    }
+    after(){
+      page.close();
+    }
+    it('${itDescription}', async function() {
+      await page.waitForSelector('${puppeteerHtmlNode}');
+      const result = page.$eval('${puppeteerHtmlNode}', ${actionMap[puppeteerAction]});
+      expect(result).${assertion}('${userInputAssertion}')
+    })
+  })`;
 
   return test + actualTest + endString;
 }
+
+export default GenerateTest;
 
 //FOR FURTURE USE IN THE CASE OF MULTIPLE IT BLOCKS
 // function generateItBlocks(itObject: any) {
