@@ -27,9 +27,6 @@ const TestProvider = (props) => {
       },
     // nestedDescribes: [],
   });
-  const [actionArrayIndex, setActionArrayIndex] = useState(
-    test.nestedIts.actions.length
-  );
 
   const handleDBlockDescription = (dBlockDescription: string) => {
     setTest({ ...test, dDescription: dBlockDescription });
@@ -75,14 +72,16 @@ const TestProvider = (props) => {
     });
   };
 
-  const handleAssertionsChoice = (newAss: string, index: number) => {
+  const handleAssertionsChoice = (newAssert: string, index: number) => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
         assertions: {
           ...test.nestedIts.assertions,
-          [index]: { ...test.nestedIts.assertions[index], assertion: newAss },
+          [index]: { ...test.nestedIts.assertions[index],
+             assertion: newAssert,
+          },
         },
       },
     });
@@ -107,6 +106,32 @@ const TestProvider = (props) => {
   const handleTest = (updatedTest) => {
     setTest(updatedTest);
   };
+/***************************************************************************** */
+  const addAssertion = (index) => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        assertions: {
+          ...test.nestedIts.assertions,
+          [index]: { assertion: '', userInput: '' },
+        },
+      },
+    });
+  };
+
+  const addPuppeteerAction = (index) => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        actions: {
+          ...test.nestedIts.actions,
+          [index]: { action: '', htmlNode: '' },
+        },
+      },
+    });
+  };
 
   return (
     <TestContext.Provider
@@ -117,9 +142,10 @@ const TestProvider = (props) => {
         handleItBlockDescription,
         handleActions,
         handleActionsNode,
-        actionArrayIndex,
         handleAssertionsChoice,
         handleAssertionsUserInput,
+        addPuppeteerAction,
+        addAssertion,
       }}
     >
       {props.children}

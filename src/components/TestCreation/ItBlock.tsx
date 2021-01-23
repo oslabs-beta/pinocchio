@@ -4,12 +4,23 @@ import PuppeteerAction from "./PuppeteerAction";
 import AssertionBlock from './AssertionBlock';
 
 const ItBlock = (props) => {
-  const { test, handleItBlockDescription, addPuppeteerAction } = useContext(TestContext);
+  const { test, handleItBlockDescription, addPuppeteerAction, addAssertion } = useContext(TestContext);
   // const [actionsNumber, setActionsNumber] = useState(1)
-
-
+  let newAssertIndex = Object.keys(test.nestedIts.assertions).length;
+  let newPuppeteerIndex = Object.keys(test.nestedIts.actions).length;
+  
   // start with number 
   // for how many numbres we iterate and render the puppeteer action componeent
+  const assertionBlockArray = [];
+  for (let key in test.nestedIts.assertions) {
+      assertionBlockArray.push(
+          <AssertionBlock 
+            key={`assertion-${key}`} 
+            index={key} 
+            assertion={test.nestedIts.assertions[key].assertion}
+            userInput={test.nestedIts.assertions[key].userInput}
+          />)
+  }
   return (
     <div style={{backgroundColor: '#099CD7'}}>
       <h1>It Block</h1>
@@ -20,12 +31,12 @@ const ItBlock = (props) => {
         value={test.nestedIts.itDescription}
         onChange={(e) => handleItBlockDescription(e.target.value)}
       />
-      <button type="button" onClick={() => addPuppeteerAction()}>
+      <button type="button" onClick={() => addPuppeteerAction(newPuppeteerIndex)}>
         +Puppeteer Action
       </button>
-      <button type="button">+Assertion</button> 
+      <button type="button" onClick={() => addAssertion(newAssertIndex)}>+Assertion</button>
       <PuppeteerAction index={0} />
-      <AssertionBlock index={0} />
+      {assertionBlockArray}
     </div>
   );
 };
