@@ -11,6 +11,16 @@ const ItBlock = (props) => {
   
   // start with number 
   // for how many numbres we iterate and render the puppeteer action componeent
+  const puppeteerBlockArray = [];
+  for (let key in test.nestedIts.actions) {
+      puppeteerBlockArray.push(
+        <PuppeteerAction
+        key={`action-${key}`} 
+        index={key} 
+        action={test.nestedIts.actions[key].action}
+        htmlNode={test.nestedIts.actions[key].htmlNode}
+      />)
+  }
   const assertionBlockArray = [];
   for (let key in test.nestedIts.assertions) {
       assertionBlockArray.push(
@@ -35,7 +45,7 @@ const ItBlock = (props) => {
         +Puppeteer Action
       </button>
       <button type="button" onClick={() => addAssertion(newAssertIndex)}>+Assertion</button>
-      <PuppeteerAction index={0} />
+      {puppeteerBlockArray}
       {assertionBlockArray}
     </div>
   );
