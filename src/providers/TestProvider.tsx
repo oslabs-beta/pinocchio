@@ -23,7 +23,7 @@ const TestProvider = (props) => {
         itDescription: '',
 
         assertions: { 0: { assertion: '', userInput: '' } }, // TODO: Is this the best data structure ?
-        actions: {0: {action: '', htmlNode: ''}},
+        actions: {0: {action: '', selector: '', text: '', key: '', options: '' }},
       },
     // nestedDescribes: [],
   });
@@ -45,7 +45,8 @@ const TestProvider = (props) => {
       },
     });
   };
-
+  
+  // ********************* ACTIONS *********************
   const handleActions = (newAction: string, actionIndex: number) => {
     setTest({
       ...test,
@@ -59,18 +60,59 @@ const TestProvider = (props) => {
     });
   };
 
-  const handleActionsNode = (newNode: string, actionIndex: number) => {
+  const handleActionSelector = (selector: string, actionIndex: number) => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
         actions: {
           ...test.nestedIts.actions,
-          [actionIndex]: { ...test.nestedIts.actions[actionIndex], htmlNode: newNode },
+          [actionIndex]: { ...test.nestedIts.actions[actionIndex], selector: selector },
         },
       },
     });
   };
+
+  
+  const handleActionKey = (key: string, actionIndex: number) => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        actions: {
+          ...test.nestedIts.actions,
+          [actionIndex]: { ...test.nestedIts.actions[actionIndex], key: key },
+        },
+      },
+    });
+  };
+
+  const handleActionText = (text: string, actionIndex: number) => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        actions: {
+          ...test.nestedIts.actions,
+          [actionIndex]: { ...test.nestedIts.actions[actionIndex], text: text },
+        },
+      },
+    });
+  };
+
+  const handleActionOptions = (option: string, actionIndex: number) => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        actions: {
+          ...test.nestedIts.actions,
+          [actionIndex]: { ...test.nestedIts.actions[actionIndex], option: option},
+        },
+      },
+    });
+  };
+
 
   const handleAssertionsChoice = (newAssert: string, index: number) => {
     setTest({
@@ -141,7 +183,10 @@ const TestProvider = (props) => {
         handleDBlockDescription,
         handleItBlockDescription,
         handleActions,
-        handleActionsNode,
+        handleActionSelector,
+        handleActionKey,
+        handleActionText,
+        handleActionOptions,
         handleAssertionsChoice,
         handleAssertionsUserInput,
         addPuppeteerAction,
