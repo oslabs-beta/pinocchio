@@ -87,9 +87,13 @@ const Landing = () => {
   if (pathUploaded) return <Redirect to="/home" />;
   return (
     <div>
-      <h1>pinocchio</h1>
-      <h2>Please, upload your project here  </h2>
-      <button type="button" onClick={handleUploadButton}>UPLOAD</button>
+      <h1>Welcome to Pinocchio</h1>
+      <h2>a GUI for Puppeteer test generation with Mocha</h2>
+      <h3>Get started:</h3>
+      <input type="text" placeholder="Insert your URL" />
+      <h3>Or</h3>
+      <button type="button" onClick={handleUploadButton}>Upload your directory</button>
+      <img src="file:///Users/giaotran/Desktop/Codesmith/projects/pinocchio/src/assets/Pinocchio.png" alt="Pinnochio Icon"/>
     </div>
   );
 };
