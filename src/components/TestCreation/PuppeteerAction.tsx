@@ -87,16 +87,27 @@ const PuppeteerAction = (props) => {
       {/* determine what selectAction use chose --> dyncamilly render those inputs below*/}
       {/* Ternaries based upon selectAction's value */}
       {/*  actionsObject[selectAction].text && render the thing you want*/}
-       {/* create a little 'hint' button they can press?  */}
+       {/*TODO create a little 'hint' button they can press?  */}
       {actionObjects[selectAction].selector &&
         <input
           placeholder="selector"
           onChange={(e) => handleSelector(e.target.value)}
         />}
-      {actionObjects[selectAction].key && <input placeholder = "key"/>}
-      {actionObjects[selectAction].text && <input type="text" placeholder = "text"/>}
-      {actionObjects[selectAction].options && <input placeholder = "options"/>}
-      <input placeholder="HTML Tag" onChange={(e) => handleHTMLNode(e.target.value)} />
+      {actionObjects[selectAction].key && 
+      <input 
+          placeholder="key"
+          onChange={(e) => handleKey(e.target.value)}
+        />}
+      {actionObjects[selectAction].text && 
+      <input type="text" 
+          placeholder="text"
+          onChange={(e) => handleText(e.target.value)}
+          />}
+      {actionObjects[selectAction].options && 
+      <input 
+          placeholder="options"
+          onChange={(e) => handleOptions(e.target.value)}
+          />}
     </div>
   );
 };
