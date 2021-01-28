@@ -42,7 +42,7 @@ const Monaco = () => {
     <div>
       <h1>Code Preview</h1>
       <MonacoEditor
-        height="100vh"
+        height="100%"
         width="33vw"
         language="javascript"
         theme="light-dark"
