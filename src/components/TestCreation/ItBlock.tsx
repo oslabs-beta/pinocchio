@@ -17,8 +17,6 @@ const ItBlock = (props) => {
         <PuppeteerAction
         key={`action-${key}`} 
         index={key} 
-        action={test.nestedIts.actions[key].action}
-        htmlNode={test.nestedIts.actions[key].htmlNode}
       />)
   }
   const assertionBlockArray = [];
@@ -27,8 +25,6 @@ const ItBlock = (props) => {
           <AssertionBlock 
             key={`assertion-${key}`} 
             index={key} 
-            assertion={test.nestedIts.assertions[key].assertion}
-            userInput={test.nestedIts.assertions[key].userInput}
           />)
   }
   return (

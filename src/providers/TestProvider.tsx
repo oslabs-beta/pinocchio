@@ -23,7 +23,7 @@ const TestProvider = (props) => {
         itDescription: '',
 
         assertions: { 0: { assertion: '', userInput: '' } }, // TODO: Is this the best data structure ?
-        actions: {0: {action: '', selector: '', text: '', key: '', options: '' }},
+        actions: {0: {action: '', selector: '', text: '', key: ''}},
       },
     // nestedDescribes: [],
   });
@@ -100,19 +100,6 @@ const TestProvider = (props) => {
     });
   };
 
-  const handleActionOptions = (option: string, actionIndex: number) => {
-    setTest({
-      ...test,
-      nestedIts: {
-        ...test.nestedIts,
-        actions: {
-          ...test.nestedIts.actions,
-          [actionIndex]: { ...test.nestedIts.actions[actionIndex], option: option},
-        },
-      },
-    });
-  };
-
 
   const handleAssertionsChoice = (newAssert: string, index: number) => {
     setTest({
@@ -169,7 +156,7 @@ const TestProvider = (props) => {
         ...test.nestedIts,
         actions: {
           ...test.nestedIts.actions,
-          [index]: { action: '', htmlNode: '' },
+          [index]: { action: '', selector: '', text: '', key: '' },
         },
       },
     });
@@ -186,7 +173,6 @@ const TestProvider = (props) => {
         handleActionSelector,
         handleActionKey,
         handleActionText,
-        handleActionOptions,
         handleAssertionsChoice,
         handleAssertionsUserInput,
         addPuppeteerAction,
