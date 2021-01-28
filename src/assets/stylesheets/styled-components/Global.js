@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import './colors.scss'
 
 // $lora: 'Lora', serif;
 // $montserrat:  'Montserrat', sans-serif;
@@ -15,7 +14,7 @@ export const Input = styled.input`
   padding: 1em;
 
   ::placeholder {
-    color: ${red};
+    color: ${babyBlue};
     font-family: "Montserrat", sans-serif;
     text-align: center;
   }

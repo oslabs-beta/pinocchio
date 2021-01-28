@@ -40,6 +40,27 @@ module.exports = {
           "sass-loader",
         ],
       },
+      // Images
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
+      },
+      // SVG
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "svg-url-loader",
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ],
   },
   devServer: {

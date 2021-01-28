@@ -14,6 +14,7 @@ const { dialog } = remote;
 // styles
 import './Landing.scss';
 import { Input, Button } from '../../assets/stylesheets/styled-components/Global';
+import Logo from '../../assets/icons/pinocchio.svg';
 
 const Landing = () => {
   const { myPath, pathHandler, fileTreeHandler } = useContext(FileContext);
@@ -91,14 +92,17 @@ const Landing = () => {
   return (
     <div id='landingCont'>
       <div id='titleCont'>
-      <header id='header'>Welcome to Pinocchio</header>
-      <header id='subheader'>a GUI for Puppeteer test generation with Mocha</header>
+        <header id='header'>Welcome to Pinocchio</header>
+        <div id='imgCont'>
+        <img src={Logo} style={{color: 'white'}}/>
+        </div>
+      <header id='subheader'>A Puppeteer test GUI</header>
       </div>
       <div id='getStarted'>
-        <text >Get started</text>
-        <label>Please enter your application URL</label>
-      <Input type="text" placeholder="Insert your URL" />
-      <div>&</div>
+        <span>1</span>
+      <Input type="text" placeholder="Please Enter Your Applications URL" id='input'/>
+      <span id='span'></span>
+        <span>2</span>
       <Button type="button" onClick={handleUploadButton}>Upload your directory</Button>
       </div>
     </div>
