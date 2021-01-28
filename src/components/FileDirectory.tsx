@@ -25,7 +25,7 @@ const FileDirectory = () => {
     } else setFolderOpen({ ...isFolderOpen, [fileName]: true });
   };
 
-  const idx: number = myPath.lastIndexOf('\\');
+  const idx: number = myPath.lastIndexOf('/'); // TODO: will this work for pc?
   const projectName: string = myPath.substring(idx + 1);
 
   const renderFileTree = (tree: Array<fileInterface>) => tree.map((file) => {
