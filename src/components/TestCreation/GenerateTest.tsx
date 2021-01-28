@@ -31,16 +31,21 @@ const endString = `});`
   // const [test, setTest] = useState({
   //   dDescription: "",
   //   nestedIts: 
-  //     {
-  //     itDescription: "",
+  //     {0 :{itDescription: "",
 
-  //       assertions: {0: {assertion: '', userInput: ''}},
-  //       actions: {0: {action: '', selector: '', text: '', key: ''}},
-  //     },
+  //       assertions: {assertion: '', userInput: '', $evalSelector: '', $evalCallback: ''},
+  //       actions: {0: {action: 'keyboardPress', selector: '', text: '', key: 'Backspace'}},
+  //     }
+  //      1: {
+    //        itDesc
+  //}
+
+  //}
+  //     ,
 const actionMap = {
-  getValue: `(el) => el.value`,
-  getLength: `(el) => el.length`,
-  getInnerText: `(el) => el.innerText`
+  'getValue': `(el) => el.value`,
+  'getLength': `(el) => el.length`,
+  'getInnerText': `(el) => el.innerText`,
 }
 //page.type: `page.type(${puppeteerActionObj[key].selector}, ${puppeteerActionObj[key].text}
   //page.focus: `page.focus(
@@ -52,21 +57,32 @@ function GenerateTest(testObject: any, APP: any) {
   const puppeteerAction = testObject.nestedIts.actions;
   // const puppeteerHtmlNode = testObject.nestedIts.actions[0].htmlNode;
 
-const puppeteerGeneration = (puppeteerActionObj: any ,) => {
-  let result = ``;
-  for (let keys in puppeteerActionObj) {
-    let thisAction = `${puppeteerActionObj[keys].action}` //page.type(
-    if (puppeteerActionObj[keys].selector.length)
-    thisAction += puppeteerActionObj[keys].selector + `,`; //page.type('input',
-    //if text.length
-    //thisaction concats text -->  page.type('input', 'birthdays',
+  // input: object of puppeteer actions
+  // output: a string of test code that transcribes the actions object to puppeteer code
 
+  const puppeteerGeneration = (puppeteerActionObj: any) => {
+    let result = '';
 
+    for (let keys in puppeteerActionObj) {
+      let thisAction = `${puppeteerActionObj[keys].action}(` 
+      if (puppeteerActionObj[keys].selector.length) {
+        thisAction += `'${puppeteerActionObj[keys].selector}', `;
+      }
+      if (puppeteerActionObj[keys].text.length) {
+        thisAction += `'${puppeteerActionObj[keys].text}', `;
+      }
+      if (puppeteerActionObj[keys].key.length) {
+        thisAction += `'${puppeteerActionObj[keys].key}', `;
+      }
+      result += thisAction + ');\n';
+    }
 
-
-    thisAction+= `);`; //page.type('input', 'birthdays', );
+    return result;
   }
-}
+  // await page.waitForSelector('blank');
+
+  // const result = page.$eval('blank', blank);
+  // expect(result).${assertion}('${userInputAssertion}')
 
   // function myFunc(arg1,) {
 //   console.log(arg1)
@@ -74,8 +90,9 @@ const puppeteerGeneration = (puppeteerActionObj: any ,) => {
 // }
 
 // myFunc('1', '2',)
+  const puppeteerActionTest = puppeteerGeneration(puppeteerAction);
 
-const actualTest = `describe('${dBlockDescription}', function(){
+  const actualTest = `describe('${dBlockDescription}', function(){
     before(){
       page.goto('${APP}');
     }
@@ -83,13 +100,10 @@ const actualTest = `describe('${dBlockDescription}', function(){
       page.close();
     }
     it('${itDescription}', async function() {
-      await page.waitForSelector('${puppeteerHtmlNode}');
-
-      const result = page.$eval('${puppeteerHtmlNode}', ${actionMap[puppeteerAction]});
-      expect(result).${assertion}('${userInputAssertion}')
+      ${puppeteerActionTest}
     })
   })`;
-  
+    
   return test + actualTest + endString;
 }
 
