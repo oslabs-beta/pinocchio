@@ -4,11 +4,20 @@ import { TestContext } from "../../providers/TestProvider";
 const AssertionBlock = (props) => {
   const [userInput, setUserInput] = useState("");
   const [assertionChoice, setAssertionChoice] = useState("");
+  const [callbackChoice, setCallbackChoice] = useState("");
+  const [selector, setSelector] = useState('');
 
-  const { handleAssertionsChoice, handleAssertionsUserInput, test} = useContext(TestContext)
+  const { handleAssertionsChoice, handleAssertionsUserInput, handleCallbackChoice, handleSelectionChoice, test} = useContext(TestContext)
   // expect (html node) --> assertions compared to (a user input)
 
   const assertionArrays = ["to.be.equal", "to.not.equal", "to.be.true", "to.be.false"];
+  const evalCallbacks = ['getValue', 'getLength', 'getInnerText'];
+
+  const renderCallbackOptions = () => {
+    return evalCallbacks.map((callback) => {
+      return <option value={callback}>{callback}</option>;
+    });
+  };
 
   const renderAssertionOptions = () => {
     return assertionArrays.map((assert) => {
@@ -16,23 +25,30 @@ const AssertionBlock = (props) => {
     });
   };
 
-  const handleAssertionChoice = (e: string) => {
-    // global handler
-    handleAssertionsChoice( e, props.index)
-  };
-
-  const handleAssertionInput = (e: string) => {
-    // global handler
-    handleAssertionsUserInput(e, props.index)
-  };
 
   return (
     <div style={{ backgroundColor: '#FEDE87' }}>
       <h1>Assertion Block</h1>
       <div>
+        <input
+          placeholder="Selector"
+          value={selector}
+          onChange={(e) => {setSelector(e.target.value); handleSelectionChoice(e.target.value)}}
+        />
+      <select
+          value={callbackChoice}
+          onChange={(e) => {setCallbackChoice(e.target.value); handleCallbackChoice(e.target.value)}}
+        >
+          <option value="" disabled>
+            Callbacks
+          </option>
+          {renderCallbackOptions()}
+        </select>
+      </div>
+      <div>
         <select
           value={assertionChoice}
-          onChange={(e) => handleAssertionChoice(e.target.value)}
+          onChange={(e) => {setAssertionChoice(e.target.value); handleAssertionsChoice(e.target.value)}}
         >
           <option value="" disabled>
             Assertions
@@ -42,7 +58,7 @@ const AssertionBlock = (props) => {
         <input
           placeholder="User input"
           value={userInput}
-          onChange={(e) => {setUserInput(e.target.value); handleAssertionInput(e.target.value)}}
+          onChange={(e) => {setUserInput(e.target.value); handleAssertionsUserInput(e.target.value)}}
         />
       </div>
     </div>

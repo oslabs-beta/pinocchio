@@ -1,15 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { TestContext } from "../../providers/TestProvider";
 import PuppeteerAction from "./PuppeteerAction";
 import AssertionBlock from './AssertionBlock';
 
 const ItBlock = (props) => {
-  const { test, handleItBlockDescription, addPuppeteerAction, addAssertion } = useContext(TestContext);
-  // const [actionsNumber, setActionsNumber] = useState(1)
-  let newAssertIndex = Object.keys(test.nestedIts.assertions).length;
-  let newPuppeteerIndex = Object.keys(test.nestedIts.actions).length;
-  
-  // start with number 
+  const {
+    test,
+    handleItBlockDescription,
+    addPuppeteerAction,
+    addAssertion 
+  } = useContext(TestContext);
+  const [assertionPresent, setAssertionPresent] = useState(false);
+  const newPuppeteerIndex = Object.keys(test.nestedIts.actions).length;
+  // start with number
   // for how many numbres we iterate and render the puppeteer action componeent
   const puppeteerBlockArray = [];
   for (let key in test.nestedIts.actions) {
@@ -19,13 +22,16 @@ const ItBlock = (props) => {
         index={key} 
       />)
   }
-  const assertionBlockArray = [];
-  for (let key in test.nestedIts.assertions) {
-      assertionBlockArray.push(
-          <AssertionBlock 
-            key={`assertion-${key}`} 
-            index={key} 
-          />)
+  const didMountRef = useRef(false);
+  let assertionButton;
+  
+  useEffect(() => {
+    if (didMountRef.current) setAssertionPresent(true);
+    else didMountRef.current = true;
+  }, [test.nestedIts.assertions]);
+
+  if (!assertionPresent) {
+    assertionButton = <button type="button" onClick={() => addAssertion()}>+Assertion</button>;
   }
   return (
     <div style={{backgroundColor: '#099CD7'}}>
@@ -40,9 +46,9 @@ const ItBlock = (props) => {
       <button type="button" onClick={() => addPuppeteerAction(newPuppeteerIndex)}>
         +Puppeteer Action
       </button>
-      <button type="button" onClick={() => addAssertion(newAssertIndex)}>+Assertion</button>
+      {assertionButton}
       {puppeteerBlockArray}
-      {assertionBlockArray}
+      {assertionPresent ? <AssertionBlock /> : null}
     </div>
   );
 };

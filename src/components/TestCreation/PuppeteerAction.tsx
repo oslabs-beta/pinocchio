@@ -9,6 +9,7 @@ const PuppeteerAction = (props) => {
   // options that the user will see and choose
   const actionsList = ["keyboard.press", "keyboard.type", "page.focus", "page.click", "page.type"]; // TODO: more actions
 
+
   const renderOptions = () => {
     return actionsList.map((action) => {
       return (

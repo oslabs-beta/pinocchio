@@ -22,7 +22,7 @@ const TestProvider = (props) => {
     nestedIts: {
         itDescription: '',
 
-        assertions: { 0: { assertion: '', userInput: '' } }, // TODO: Is this the best data structure ?
+        assertions: {}, // TODO: Is this the best data structure ?
         actions: {0: {action: '', selector: '', text: '', key: ''}},
       },
     // nestedDescribes: [],
@@ -101,34 +101,59 @@ const TestProvider = (props) => {
   };
 
 
-  const handleAssertionsChoice = (newAssert: string, index: number) => {
+  const handleAssertionsChoice = (newAssert: string) => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
         assertions: {
           ...test.nestedIts.assertions,
-          [index]: { ...test.nestedIts.assertions[index],
-             assertion: newAssert,
+            assertion: newAssert,
           },
         },
-      },
+     
     });
   };
 
-  const handleAssertionsUserInput = (newAssertInput: string, index: number) => {
+  const handleAssertionsUserInput = (newAssertInput: string) => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
         assertions: {
           ...test.nestedIts.assertions,
-          [index]: {
-            ...test.nestedIts.assertions[index],
+
             userInput: newAssertInput,
           },
         },
-      },
+    });
+  };
+
+  const handleCallbackChoice = (newAssertCB: string) => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        assertions: {
+          ...test.nestedIts.assertions,
+
+            callback: newAssertCB,
+          },
+        },
+    });
+  };
+
+  const handleSelectionChoice = (newAssertSel: string) => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        assertions: {
+          ...test.nestedIts.assertions,
+
+            selector: newAssertSel,
+          },
+        },
     });
   };
 
@@ -136,14 +161,13 @@ const TestProvider = (props) => {
     setTest(updatedTest);
   };
 /***************************************************************************** */
-  const addAssertion = (index) => {
+  const addAssertion = () => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
         assertions: {
-          ...test.nestedIts.assertions,
-          [index]: { assertion: '', userInput: '' },
+          assertion: '', userInput: '', selector: '', callback: '',
         },
       },
     });
@@ -175,6 +199,8 @@ const TestProvider = (props) => {
         handleActionText,
         handleAssertionsChoice,
         handleAssertionsUserInput,
+        handleCallbackChoice,
+        handleSelectionChoice,
         addPuppeteerAction,
         addAssertion,
       }}
