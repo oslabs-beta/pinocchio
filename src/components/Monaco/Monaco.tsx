@@ -27,8 +27,9 @@ const Monaco = () => {
   // From spearmint component EditorView.jsx
   const options = {
     selectOnLineNumbers: true,
-    wordWrap: 'wordWrapColumn',
-    wordWrapColumn: 90,
+    // allows min vw of wrapped code in editor
+    wordWrap: 'bounded',
+    // wordWrapColumn: 90,
     autoIndent: true,
     colorDecorators: true,
     wrappingIndent: 'indent',
@@ -46,7 +47,7 @@ const Monaco = () => {
     <div id='monacoCont'>
       <Header>Code Preview</Header>
       <MonacoEditor
-        height="50%"
+        height="75%"
         width="33vw"
         language="javascript"
         theme="light-dark"
