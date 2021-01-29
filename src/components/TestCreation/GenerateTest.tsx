@@ -52,8 +52,7 @@ const actionMap = {
 function GenerateTest(testObject: any, APP: any) {
   const dBlockDescription = testObject.dDescription;
   const itDescription = testObject.nestedIts.itDescription;
-  const assertion = testObject.nestedIts.assertions[0].assertion;
-  const userInputAssertion = testObject.nestedIts.assertions[0].userInput;
+  const assertion = testObject.nestedIts.assertions;
   const puppeteerAction = testObject.nestedIts.actions;
   // const puppeteerHtmlNode = testObject.nestedIts.actions[0].htmlNode;
 
@@ -78,11 +77,20 @@ function GenerateTest(testObject: any, APP: any) {
     }
 
     return result;
-  }
-  // await page.waitForSelector('blank');
+  };
 
-  // const result = page.$eval('blank', blank);
-  // expect(result).${assertion}('${userInputAssertion}')
+
+  const assertionGeneration = (assertionObj: any) => {
+    const result = `await page.waitForSelector('${assertionObj.selector}');
+    const result = page.$eval('${assertionObj.selector}', ${actionMap[assertionObj.callback]});
+    expect(result).${assertionObj.assertion}('${assertionObj.userInput}')`;
+    
+    return result;
+  };
+  // await page.waitForSelector('selector');
+
+  // const result = page.$eval('selector', callback);
+  // expect(result).${assertion}('${userInput}')
 
   // function myFunc(arg1,) {
 //   console.log(arg1)
@@ -91,16 +99,17 @@ function GenerateTest(testObject: any, APP: any) {
 
 // myFunc('1', '2',)
   const puppeteerActionTest = puppeteerGeneration(puppeteerAction);
-
+  const assertionTest = assertionGeneration(assertion);
   const actualTest = `describe('${dBlockDescription}', function(){
-    before(){
+    before(function() {
       page.goto('${APP}');
-    }
-    after(){
+    })
+    after(function() {
       page.close();
-    }
+    })
     it('${itDescription}', async function() {
       ${puppeteerActionTest}
+      ${assertionTest}
     })
   })`;
     
@@ -115,4 +124,4 @@ export default GenerateTest;
 //       `it('${itObject[key].itDescription}')`
 //     }
 
-//   }
+//   }`

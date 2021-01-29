@@ -10,7 +10,7 @@ const AssertionBlock = (props) => {
   const { handleAssertionsChoice, handleAssertionsUserInput, handleCallbackChoice, handleSelectionChoice, test} = useContext(TestContext)
   // expect (html node) --> assertions compared to (a user input)
 
-  const assertionArrays = ["to.be.equal", "to.not.equal", "to.be.true", "to.be.false"];
+  const assertionArrays = ["to.be.equal", "to.not.equal"];
   const evalCallbacks = ['getValue', 'getLength', 'getInnerText'];
 
   const renderCallbackOptions = () => {

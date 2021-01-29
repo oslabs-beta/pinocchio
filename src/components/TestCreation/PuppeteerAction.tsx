@@ -7,7 +7,7 @@ const PuppeteerAction = (props) => {
   const [selectAction, setSelectAction] = useState("");
 
   // options that the user will see and choose
-  const actionsList = ["keyboard.press", "keyboard.type", "page.focus", "page.click", "page.type"]; // TODO: more actions
+  const actionsList = ["page.keyboard.press", "page.keyboard.type", "page.focus", "page.click", "page.type"]; // TODO: more actions
 
 
   const renderOptions = () => {
@@ -24,9 +24,9 @@ const PuppeteerAction = (props) => {
   // the object holding all the parameters
   const actionObjects = {
     //keyboard.press(key)// >>> takes an argument of a key that you press (ArrowLeft, ArrowUp)
-    'keyboard.press' : {selector: false, key: true, text: false},
+    'page.keyboard.press' : {selector: false, key: true, text: false},
     // (text[, options]) >>> takes an argument of your input value, (Optional value of delay between key press)
-    'keyboard.type' : {selector: false, key: false, text: true},
+    'page.keyboard.type' : {selector: false, key: false, text: true},
     //page.focus(selector) >>> takes arugment of ID, Class, Type, Attribute, focuses, asserting presence on DOM
     'page.focus' : {selector: true, key: false, text: false},
     //page.click(selector[, options] >>> takes argument of ID, Class, Type, Attribute, and optional arg of number of clicks
