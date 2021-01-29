@@ -3,8 +3,8 @@ import {
   Input,
   Select,
   SubHeader,
-} from "../../../assets/stylesheets/styled-components/Global";
-import { TestContext } from "../../../providers/TestProvider";
+} from "../../assets/stylesheets/styled-components/Global";
+import { TestContext } from "../../providers/TestProvider";
 
 // STYLES
 import "./AssertionBlock.scss";

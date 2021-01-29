@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import ItBlock from "../ItBlock/ItBlock";
-import { TestContext } from "../../../providers/TestProvider";
+import ItBlock from "./ItBlock";
+import { TestContext } from "../../providers/TestProvider";
 
 // STYLES
 import "./DescribeBlock.scss";
@@ -10,7 +10,7 @@ import {
   Input,
   Label,
   SubHeader,
-} from "../../../assets/stylesheets/styled-components/Global";
+} from "../../assets/stylesheets/styled-components/Global";
 
 const DescribeBlock = (props) => {
   const { test, handleDBlockDescription } = useContext(TestContext);

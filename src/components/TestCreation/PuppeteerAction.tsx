@@ -3,9 +3,9 @@ import {
   Input,
   Select,
   SubHeader,
-} from "../../../assets/stylesheets/styled-components/Global";
-import { TestContext } from "../../../providers/TestProvider";
-import AssertionBlock from "../AssertionBlock/AssertionBlock";
+} from "../../assets/stylesheets/styled-components/Global";
+import { TestContext } from "../../providers/TestProvider";
+import AssertionBlock from "./AssertionBlock";
 
 // STYLES
 import "./PuppeteerAction.scss";

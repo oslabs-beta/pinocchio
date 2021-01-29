@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { TestContext } from "../../../providers/TestProvider";
-import PuppeteerAction from "../PuppeteerBlock/PuppeteerAction";
-import AssertionBlock from "../AssertionBlock/AssertionBlock";
+import { TestContext } from "../../providers/TestProvider";
+import PuppeteerAction from "./PuppeteerAction";
+import AssertionBlock from "./AssertionBlock";
 
 // STYLES
 import "./ItBlock.scss";
@@ -11,8 +11,8 @@ import {
   Input,
   Label,
   SubHeader,
-} from "../../../assets/stylesheets/styled-components/Global";
-import { ItButton } from "../../../assets/stylesheets/styled-components/Buttons";
+} from "../../assets/stylesheets/styled-components/Global";
+import { ItButton } from "../../assets/stylesheets/styled-components/Buttons";
 
 const ItBlock = (props) => {
   const {

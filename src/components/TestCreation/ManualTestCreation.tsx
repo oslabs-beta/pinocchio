@@ -1,8 +1,8 @@
 import React , { useContext }from "react";
-import DescribeBlock from "../DesribeBlock/DescribeBlock";
-import { TestContext } from "../../../providers/TestProvider";
-import { FileContext } from "../../../providers/FileProvider";
-import GenerateTest from '../GenerateTest';
+import DescribeBlock from "./DescribeBlock";
+import { TestContext } from "../../providers/TestProvider";
+import { FileContext } from "../../providers/FileProvider";
+import GenerateTest from './GenerateTest';
 
 // allow communicaiton between react app and electron renderer
 const { remote } = window.require('electron');
@@ -11,7 +11,7 @@ const electronFs = remote.require('fs');
 
 // STYLES
 import './ManualTestCreation.scss';
-import { Button, Header } from "../../../assets/stylesheets/styled-components/Global";
+import { Button, Header } from "../../assets/stylesheets/styled-components/Global";
 // TODO: Possibly rethink naming convention
 const ManualTestCreation = (props) => {
   const { test } = useContext(TestContext);
