@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
-import ItBlock from "../ItBlock/ItBlock";
-import { TestContext } from "../../../providers/TestProvider";
-
+import React, { useContext } from 'react';
+import ItBlock from '../ItBlock/ItBlock';
+import { TestContext } from '../../../providers/TestProvider'
 // STYLES
 import "./DescribeBlock.scss";
 import {
@@ -13,13 +12,22 @@ import {
 } from "../../../assets/stylesheets/styled-components/Global";
 
 const DescribeBlock = (props) => {
-  const { test, handleDBlockDescription } = useContext(TestContext);
+  const { test, handleDBlockDescription, addItBlock } = useContext(TestContext);
+  const newItIndex = Object.keys(test.nestedIts).length;
 
+  const itArray = [];
+  for (let key in test.nestedIts) {
+    itArray.push(
+      <ItBlock
+      key={`it-${key}`} 
+      itIndex={key} 
+    />)
+}
   return (
     <div id="describeCont">
       <SubHeader>Describe Block</SubHeader>
       <Form>
-        <Label>Describe:</Label>
+        <Label> Describe Block</Label>
         <Input
           type="text"
           value={test.description}
@@ -29,10 +37,15 @@ const DescribeBlock = (props) => {
         />
       </Form>
       <div id="describeButtonCont">
-        <Button type="button">Add It Statement</Button>
-        <Button type="button">Add Nested Describe</Button>
+      <Button 
+      type="button"
+      onClick={(e) => addItBlock(newItIndex)}
+      >
+        +It Statement
+      </Button>
+      <Button type="button">+Describe block</Button>
       </div>
-      <ItBlock />
+      {itArray}
     </div>
   );
 };

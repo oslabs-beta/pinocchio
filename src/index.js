@@ -18,6 +18,6 @@ ReactDOM.render(
       </TestProvider>
     </FileProvider>
   </BrowserRouter>,
-  main
+  main,
   // document.querySelector('root')
 );

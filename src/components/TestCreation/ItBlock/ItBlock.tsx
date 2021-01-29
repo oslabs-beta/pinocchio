@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { TestContext } from "../../../providers/TestProvider";
 import PuppeteerAction from "../PuppeteerBlock/PuppeteerAction";
-import AssertionBlock from "../AssertionBlock/AssertionBlock";
-
+import AssertionBlock from '../AssertionBlock/AssertionBlock';
 // STYLES
 import "./ItBlock.scss";
 import {
@@ -14,30 +13,37 @@ import {
 } from "../../../assets/stylesheets/styled-components/Global";
 import { ItButton } from "../../../assets/stylesheets/styled-components/Buttons";
 
-const ItBlock = (props) => {
+const ItBlock = (props: any) => {
   const {
     test,
     handleItBlockDescription,
     addPuppeteerAction,
     addAssertion,
   } = useContext(TestContext);
-  // const [actionsNumber, setActionsNumber] = useState(1)
-  let newAssertIndex = Object.keys(test.nestedIts.assertions).length;
-  let newPuppeteerIndex = Object.keys(test.nestedIts.actions).length;
+  const [assertionPresent, setAssertionPresent] = useState(false);
+  const newPuppeteerIndex = Object.keys(test.nestedIts[props.itIndex].actions).length;
 
   // start with number
   // for how many numbres we iterate and render the puppeteer action componeent
   const puppeteerBlockArray = [];
-  for (let key in test.nestedIts.actions) {
-    puppeteerBlockArray.push(
-      <PuppeteerAction key={`action-${key}`} index={key} />
-    );
+  for (let key in test.nestedIts[props.itIndex].actions) {
+      puppeteerBlockArray.push(
+        <PuppeteerAction
+        key={`action-${key}`} 
+        index={key}
+        itIndex={props.itIndex} 
+      />)
   }
-  const assertionBlockArray = [];
-  for (let key in test.nestedIts.assertions) {
-    assertionBlockArray.push(
-      <AssertionBlock key={`assertion-${key}`} index={key} />
-    );
+  const didMountRef = useRef(false);
+  let assertionButton;
+  
+  useEffect(() => {
+    if (didMountRef.current) setAssertionPresent(true);
+    else didMountRef.current = true;
+  }, [test.nestedIts[props.itIndex].assertions]);
+
+  if (!assertionPresent) {
+    assertionButton = <ItButton type="button" onClick={() => addAssertion(props.itIndex)}>+Assertion</ItButton>;
   }
   return (
     <div id="itCont">
@@ -49,22 +55,20 @@ const ItBlock = (props) => {
           type="text"
           placeholder="ex: clicks the button..."
           value={test.nestedIts.itDescription}
-          onChange={(e) => handleItBlockDescription(e.target.value)}
+          onChange={(e) => handleItBlockDescription(e.target.value, props.itIndex)}
         />
       </Form>
       <div id="itButtonCont">
         <ItButton
           type="button"
-          onClick={() => addPuppeteerAction(newPuppeteerIndex)}
+          onClick={() => addPuppeteerAction(newPuppeteerIndex, props.itIndex)}
         >
           +Puppeteer Action
         </ItButton>
-        <ItButton type="button" onClick={() => addAssertion(newAssertIndex)}>
-          +Assertion
-        </ItButton>
+      {assertionButton}
       </div>
       {puppeteerBlockArray}
-      {assertionBlockArray}
+      {assertionPresent ? <AssertionBlock itIndex={props.itIndex} /> : null}
     </div>
   );
 };
