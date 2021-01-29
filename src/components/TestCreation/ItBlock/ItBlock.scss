@@ -1,0 +1,22 @@
+
+@import '../../../assets/stylesheets/colors.scss';
+@import '../../../assets/stylesheets/fonts.scss';
+
+#itCont {
+  border: solid 2px $burntOrange;
+  border-radius: 3px;
+  padding: 1em;
+  // can obv change, was just fun looking
+  box-shadow: 1px 1px 10px $burntOrange;
+}
+
+#itInput {
+  width: 50%;
+}
+
+#itButtonCont {
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}

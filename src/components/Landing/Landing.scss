@@ -1,0 +1,58 @@
+@import "../../assets/stylesheets/fonts.scss";
+@import '../../assets/stylesheets/colors.scss';
+
+#landingCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100vw;
+  height: 100vh;
+}
+
+#header {
+  font-size: 2em;
+  padding: 1em;
+}
+
+#subheader {
+  font-size: 1.5em;
+  font-weight: 100;
+  padding: 1em;
+}
+
+#titleCont {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: $lora;
+  color: white;
+  background-color: $babyBlue;
+  height: 50%;
+}
+
+#getStarted {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-family: $montserrat;
+  height: 50%;
+}
+
+#imgCont {
+  width: 5em;
+}
+
+#input {
+  width: 30%;
+}
+
+#span {
+  padding: 1em;
+}
+
+#numSpan {
+  padding: 1em;
+}

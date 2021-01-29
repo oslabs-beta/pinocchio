@@ -1,9 +1,23 @@
 import React, { useContext, useState } from "react";
-import { TestContext } from "../../providers/TestProvider";
-import AssertionBlock from "./AssertionBlock";
+import {
+  Input,
+  Select,
+  SubHeader,
+} from "../../../assets/stylesheets/styled-components/Global";
+import { TestContext } from "../../../providers/TestProvider";
+import AssertionBlock from "../AssertionBlock/AssertionBlock";
+
+// STYLES
+import "./PuppeteerAction.scss";
 
 const PuppeteerAction = (props) => {
-  const { handleActions, handleActionSelector,  handleActionKey, handleActionText, handleActionOptions} = useContext(TestContext);
+  const {
+    handleActions,
+    handleActionSelector,
+    handleActionKey,
+    handleActionText,
+    handleActionOptions,
+  } = useContext(TestContext);
   const [selectAction, setSelectAction] = useState("");
 
   // options that the user will see and choose
@@ -20,7 +34,6 @@ const PuppeteerAction = (props) => {
     });
   };
 
-
   // the object holding all the parameters
   const actionObjects = {
     //keyboard.press(key)// >>> takes an argument of a key that you press (ArrowLeft, ArrowUp)
@@ -28,15 +41,15 @@ const PuppeteerAction = (props) => {
     // (text[, options]) >>> takes an argument of your input value, (Optional value of delay between key press)
     'page.keyboard.type' : {selector: false, key: false, text: true},
     //page.focus(selector) >>> takes arugment of ID, Class, Type, Attribute, focuses, asserting presence on DOM
-    'page.focus' : {selector: true, key: false, text: false},
+    "page.focus": { selector: true, key: false, text: false },
     //page.click(selector[, options] >>> takes argument of ID, Class, Type, Attribute, and optional arg of number of clicks
-    'page.click' : {selector: true, key: false, text: false},
+    "page.click": { selector: true, key: false, text: false },
     //page.type(selector, text[, options]
-    'page.type' : {selector: true, key: false, text: true}
+    "page.type": { selector: true, key: false, text: true },
     // '$eval: getLength' -> tell the user (more experienced Puppeteer user) that we will
     // be writing the callback for them
-}
-// ***** Local select state handler *****
+  };
+  // ***** Local select state handler *****
   const handleActionSelect = (value) => {
     setSelectAction(value)
     handleActions(value, props.index, props.itIndex);
@@ -54,44 +67,52 @@ const PuppeteerAction = (props) => {
   }
 
   const determineInputs = () => (
-    <div>
-        {actionObjects[selectAction].selector &&
-        <input
+    <div id="inputCont">
+      {actionObjects[selectAction].selector && (
+        <Input
           placeholder="selector"
           onChange={(e) => handleSelector(e.target.value)}
-        />}
-      {actionObjects[selectAction].key && 
-      <input 
+          id="inputPA"
+        />
+      )}
+      {actionObjects[selectAction].key && (
+        <Input
           placeholder="key"
           onChange={(e) => handleKey(e.target.value)}
-        />}
-      {actionObjects[selectAction].text && 
-      <input type="text" 
+          id="inputPA"
+        />
+      )}
+      {actionObjects[selectAction].text && (
+        <Input
+          type="text"
           placeholder="text"
           onChange={(e) => handleText(e.target.value)}
-          />}
+          id="inputPA"
+        />
+      )}
     </div>
-  )
+  );
 
   // TODO Adjust <select> to reflect chosen option value
   return (
-
-    // actionsObject[selectionAction].callback ? <input  callacbakc information/> 
-    <div style={{ backgroundColor: "#D82802"}}>
-      <h1>PuppeteerAction</h1>
-      <select
-        value={selectAction}
-        onChange={(e) => handleActionSelect(e.target.value)}
-      >
-        <option value="" disabled>
-          Select Puppeteer Action
-        </option>
-        {renderOptions()}
-      </select>
+    // actionsObject[selectionAction].callback ? <input  callacbakc information/>
+    <div id="paCont">
+      <SubHeader>Puppeteer Action</SubHeader>
+      <div id="selectPA">
+        <Select
+          value={selectAction}
+          onChange={(e) => handleActionSelect(e.target.value)}
+        >
+          <option value="" disabled>
+            Select Puppeteer Action
+          </option>
+          {renderOptions()}
+        </Select>
+      </div>
       {/* determine what selectAction use chose --> dyncamilly render those inputs below*/}
       {/* Ternaries based upon selectAction's value */}
       {/*  actionsObject[selectAction].text && render the thing you want*/}
-       {/*TODO create a little 'hint' button they can press?  */}
+      {/*TODO create a little 'hint' button they can press?  */}
       {selectAction.length ? <div>{determineInputs()}</div> : null}
     </div>
   );

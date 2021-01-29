@@ -2,8 +2,8 @@
 // eslint-disable-next-line no-use-before-define
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import { FileContext } from '../providers/FileProvider';
-import { fileInterface } from '../utils/fileTypes';
+import { FileContext } from '../../providers/FileProvider';
+import { fileInterface } from '../../utils/fileTypes';
 
 // allow communicaiton between react app and electron renderer
 const { remote } = window.require('electron');
@@ -11,6 +11,10 @@ const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 // display native system dialogs for opening and saving files, alerting, etc.
 const { dialog } = remote;
+// styles
+import './Landing.scss';
+import { Input, Button } from '../../assets/stylesheets/styled-components/Global';
+import Logo from '../../assets/icons/pinocchio.svg';
 
 const Landing = () => {
   const { myPath, pathHandler, fileTreeHandler } = useContext(FileContext);
@@ -86,14 +90,27 @@ const Landing = () => {
   // conditional rendering of homepage via react router
   if (pathUploaded) return <Redirect to="/home" />;
   return (
-    <div>
-      <h1>Welcome to Pinocchio</h1>
-      <h2>a GUI for Puppeteer test generation with Mocha</h2>
-      <h3>Get started:</h3>
-      <input type="text" placeholder="Insert your URL" />
-      <h3>Or</h3>
-      <button type="button" onClick={handleUploadButton}>Upload your directory</button>
-      <img src="file:///Users/giaotran/Desktop/Codesmith/projects/pinocchio/src/assets/Pinocchio.png" alt="Pinnochio Icon"/>
+    <div id="landingCont">
+      <div id="titleCont">
+        <header id="header">Welcome to Pinocchio</header>
+        <div id="imgCont">
+          <img src={Logo} id="svgLogo" />
+        </div>
+        <header id="subheader">A Puppeteer test GUI</header>
+      </div>
+      <div id="getStarted">
+        <span id="numSpan">1</span>
+        <Input
+          type="text"
+          placeholder="Please Enter Your Applications URL"
+          id="input"
+        />
+        <span id="span"></span>
+        <span id="numSpan">2</span>
+        <Button type="button" onClick={handleUploadButton}>
+          Upload your directory
+        </Button>
+      </div>
     </div>
   );
 };

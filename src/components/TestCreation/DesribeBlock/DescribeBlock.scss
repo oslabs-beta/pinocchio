@@ -1,0 +1,22 @@
+
+@import '../../../assets/stylesheets/colors.scss';
+@import '../../../assets/stylesheets/fonts.scss';
+
+#describeCont {
+  border: solid 2px $babyBlue;
+  border-radius: 3px;
+  padding: 1em;
+  // can obv change, was just fun looking
+  box-shadow: 1px 1px 10px $lightBlue;
+}
+
+#describeInput {
+  width: 50%;
+}
+
+#describeButtonCont {
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}

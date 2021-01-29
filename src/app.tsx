@@ -3,8 +3,9 @@
 // eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Landing from './components/Landing';
-import Home from './components/Home';
+import Landing from './components/Landing/Landing';
+import Home from './components/Home/Home';
+import './assets/stylesheets/reset.scss';
 
 const App = () => (
   <div style={{backgroundColor: 'white'}}>
