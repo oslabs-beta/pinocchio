@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Header } from "../../assets/stylesheets/styled-components/Global";
 import { FileContext } from "../../providers/FileProvider";
 import { fileInterface } from "../../utils/fileTypes";
 
@@ -6,7 +7,7 @@ const { remote } = window.require("electron");
 const electronFs = remote.require("fs");
 
 //  STYLES
-import './FileDirectory.scss';
+import "./FileDirectory.scss";
 
 const FileDirectory = () => {
   const { myPath, fileTree, chosenFileHandler } = useContext(FileContext);
@@ -42,7 +43,7 @@ const FileDirectory = () => {
           <ul key={file.fileName}>
             <li>
               <button
-                id="filesButton"
+                id="filesButtonFolder"
                 type="button"
                 onClick={() => toggleOpenFolder(file.fileName)}
               >
@@ -58,7 +59,7 @@ const FileDirectory = () => {
         <ul key={file.filePath}>
           <li>
             <button
-              id="filesButton"
+              id="filesButtonFile"
               type="button"
               onClick={() => {
                 chosenFileHandler(file.filePath);
@@ -77,9 +78,17 @@ const FileDirectory = () => {
   }, []);
 
   return (
-    <div>
-      <h3>{projectName}</h3>
-      {renderFileTree(fileTree)}
+    <div id="fileTreeCont">
+      {fileTree.length ? (
+        <>
+          <Header id="fileName">{projectName}</Header>
+          <section id='treeCont'>
+          {renderFileTree(fileTree)}
+          </section>
+        </>
+      ) : (
+        <Header id="noTree">No Files Uploaded</Header>
+      )}
     </div>
   );
 };

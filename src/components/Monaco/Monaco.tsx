@@ -1,10 +1,14 @@
 import React, {useState, useEffect, useContext} from 'react';
 import MonacoEditor from 'react-monaco-editor';
+import { Header } from '../../assets/stylesheets/styled-components/Global';
 import { FileContext } from '../../providers/FileProvider';
 
 // import { editor } from 'monaco-editor';
 const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
+
+// STYLES
+import './Monaco.scss'
 
 const Monaco = () => {
   const [ grabContents, setGrabContents ] = useState('');
@@ -39,10 +43,10 @@ const Monaco = () => {
 
 
   return (
-    <div>
-      <h1>Code Preview</h1>
+    <div id='monacoCont'>
+      <Header>Code Preview</Header>
       <MonacoEditor
-        height="100%"
+        height="50%"
         width="33vw"
         language="javascript"
         theme="light-dark"

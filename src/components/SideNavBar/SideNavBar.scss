@@ -1,0 +1,41 @@
+@import '../../assets/stylesheets/fonts.scss';
+@import '../../assets/stylesheets/colors.scss';
+
+#mainNav {
+  display: flex;
+  flex-direction: column;
+  background-color: $babyBlue;
+  color: white;
+  font-family: $montserrat;
+  width: 10%;
+  height: 100%;
+  text-align: center;
+}
+
+#navItemsCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50%;
+}
+#navItem {
+  color: white;
+  text-decoration: none;
+  transition: .5s;
+  cursor: pointer;
+}
+
+#navItem:hover {
+  transition: .5s;
+  letter-spacing: .15em;
+}
+
+#navLogoCont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#navLogo {
+  width: 50%;
+}

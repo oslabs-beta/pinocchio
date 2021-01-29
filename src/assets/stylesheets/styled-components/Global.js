@@ -50,5 +50,11 @@ export const Title = styled.h1`
   export const SubTitle = styled.h3`
   font-family: "Lora", serif;
   font-size: 1.5em;
-
-`
+  
+  `
+  
+  export const Header = styled.header`
+    font-family: "Lora", serif;
+    font-size: 1.25em;
+    text-align: center;
+  `;
