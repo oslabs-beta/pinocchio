@@ -3,7 +3,7 @@
 
 
 // Needs work - differentiate between files and folders here
-
+// Move to flex instead of %s
 #fileTreeCont {
   width: 30%;
 }
@@ -15,7 +15,7 @@
 #fileName {
   font-family: $lora;
   border-bottom: 1px solid $babyBlue;
-  padding: .5em;
+  padding-bottom: .5em;
 }
 
 #filesButtonFolder {
@@ -39,14 +39,14 @@
   font-size: 1em;
   padding: 1em;
   border: none;
-  color: $babyBlue;
+  color: $lightBlue;
   background-color: white;
   transition: .25s;
   // border-bottom: .25px solid $babyBlue;
 }
 
 #filesButtonFile:hover {
-  background-color: $babyBlue;
+  background-color: $lightBlue;
   color:white;
   transition: .25s;
 }
@@ -54,8 +54,4 @@
 ul {
   list-style-type: none;
   // color: $babyBlue;
-}
-
-#noTree {
-  
 }

@@ -90,20 +90,26 @@ const Landing = () => {
   // conditional rendering of homepage via react router
   if (pathUploaded) return <Redirect to="/home" />;
   return (
-    <div id='landingCont'>
-      <div id='titleCont'>
-        <header id='header'>Welcome to Pinocchio</header>
-        <div id='imgCont'>
-        <img src={Logo} style={{color: 'white'}}/>
+    <div id="landingCont">
+      <div id="titleCont">
+        <header id="header">Welcome to Pinocchio</header>
+        <div id="imgCont">
+          <img src={Logo} id="svgLogo" />
         </div>
-      <header id='subheader'>A Puppeteer test GUI</header>
+        <header id="subheader">A Puppeteer test GUI</header>
       </div>
-      <div id='getStarted'>
-        <span>1</span>
-      <Input type="text" placeholder="Please Enter Your Applications URL" id='input'/>
-      <span id='span'></span>
-        <span>2</span>
-      <Button type="button" onClick={handleUploadButton}>Upload your directory</Button>
+      <div id="getStarted">
+        <span id="numSpan">1</span>
+        <Input
+          type="text"
+          placeholder="Please Enter Your Applications URL"
+          id="input"
+        />
+        <span id="span"></span>
+        <span id="numSpan">2</span>
+        <Button type="button" onClick={handleUploadButton}>
+          Upload your directory
+        </Button>
       </div>
     </div>
   );

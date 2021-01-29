@@ -1,0 +1,32 @@
+
+@import '../../../assets/stylesheets/colors.scss';
+@import '../../../assets/stylesheets/fonts.scss';
+
+#paCont {
+  border: solid 2px $red;
+  border-radius: 3px;
+  padding: 1em;
+  margin: 1em 0em;
+
+  // can obv change, was just fun looking
+  box-shadow: 1px 1px 10px $red;
+}
+
+#inputPA {
+  padding: .5em;
+  margin: .5em;
+}
+
+#selectPA {
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: center;
+  padding: .5em;
+}
+
+#inputCont {
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: center;
+
+}

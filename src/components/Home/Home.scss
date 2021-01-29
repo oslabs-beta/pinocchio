@@ -1,6 +1,8 @@
 @import "../../assets/stylesheets/fonts.scss";
 @import "../../assets/stylesheets/colors.scss";
 
+
+// Move to flex instead of %s
 #homeCont {
   display: flex;
   flex-direction: row;

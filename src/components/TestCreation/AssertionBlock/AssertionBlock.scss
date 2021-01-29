@@ -1,0 +1,23 @@
+
+@import '../../../assets/stylesheets/colors.scss';
+@import '../../../assets/stylesheets/fonts.scss';
+
+#assertCont {
+  border: solid 2px $yellow;
+  border-radius: 3px;
+  padding: 1em;
+  margin: 1em 0em;
+  // can obv change, was just fun looking
+  box-shadow: 1px 1px 10px $yellow;
+}
+
+#formCont {
+  display: flex;
+  flex-direction: column;
+}
+
+#selectAssert {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}

@@ -87,7 +87,7 @@ const FileDirectory = () => {
           </section>
         </>
       ) : (
-        <Header id="noTree">No Files Uploaded</Header>
+        <Header>No Files Uploaded</Header>
       )}
     </div>
   );
