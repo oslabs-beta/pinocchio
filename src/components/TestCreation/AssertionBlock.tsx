@@ -33,11 +33,11 @@ const AssertionBlock = (props) => {
         <input
           placeholder="Selector"
           value={selector}
-          onChange={(e) => {setSelector(e.target.value); handleSelectionChoice(e.target.value)}}
+          onChange={(e) => {setSelector(e.target.value); handleSelectionChoice(e.target.value, props.itIndex)}}
         />
       <select
           value={callbackChoice}
-          onChange={(e) => {setCallbackChoice(e.target.value); handleCallbackChoice(e.target.value)}}
+          onChange={(e) => {setCallbackChoice(e.target.value); handleCallbackChoice(e.target.value, props.itIndex)}}
         >
           <option value="" disabled>
             Callbacks
@@ -48,7 +48,7 @@ const AssertionBlock = (props) => {
       <div>
         <select
           value={assertionChoice}
-          onChange={(e) => {setAssertionChoice(e.target.value); handleAssertionsChoice(e.target.value)}}
+          onChange={(e) => {setAssertionChoice(e.target.value); handleAssertionsChoice(e.target.value, props.itIndex)}}
         >
           <option value="" disabled>
             Assertions
@@ -58,7 +58,7 @@ const AssertionBlock = (props) => {
         <input
           placeholder="User input"
           value={userInput}
-          onChange={(e) => {setUserInput(e.target.value); handleAssertionsUserInput(e.target.value)}}
+          onChange={(e) => {setUserInput(e.target.value); handleAssertionsUserInput(e.target.value, props.itIndex)}}
         />
       </div>
     </div>

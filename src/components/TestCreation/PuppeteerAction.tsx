@@ -39,18 +39,18 @@ const PuppeteerAction = (props) => {
 // ***** Local select state handler *****
   const handleActionSelect = (value) => {
     setSelectAction(value)
-    handleActions(value, props.index);
+    handleActions(value, props.index, props.itIndex);
   };
 
   // ***** Global state handlers *****
   const handleSelector = (value) => {
-    handleActionSelector(value, props.index)
+    handleActionSelector(value, props.index, props.itIndex);
   }
   const handleKey = (value) => {
-    handleActionKey(value, props.index)
+    handleActionKey(value, props.index, props.itIndex);
   }
   const handleText = (value) => {
-    handleActionText(value, props.index)
+    handleActionText(value, props.index, props.itIndex);
   }
 
   const determineInputs = () => (
