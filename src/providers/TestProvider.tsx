@@ -26,7 +26,6 @@ const TestProvider = (props) => {
         actions: { 0: { action: '', selector: '', text: '', key: ''}},
       },
     },
-    // nestedDescribes: [],
   });
 
   const handleDBlockDescription = (dBlockDescription: string) => {
