@@ -7,6 +7,7 @@
 #fileTreeCont {
   flex: 1 1 30%;
   padding: 0 .5em;
+  height: 100%;
     // width: 15%;
     // overflow-y: auto;
     
@@ -15,10 +16,12 @@
   #treeCont {
     padding: 0 .5em;
     margin: .5em;
-    border: 1px solid $babyBlue;
+    border: 1px solid $red;
     border-radius: 3px;
-    box-shadow: 1px 1px 5px $lightBlue;
-    height: 60vh;
+    box-shadow: 1px 1px 5px $darkRed;
+    // putting height here makes it automatically
+    // fill to it's parent container
+    // height: 100%;
     overflow-y: auto;
 }
 
@@ -33,14 +36,14 @@
   font-size: .75em;
   padding: .5em;
   border: none;
-  color: $babyBlue;
+  color: $red;
   background-color: white;
   transition: .25s;
-  border-bottom: .25px solid $babyBlue;  
+  border-bottom: .25px solid $red;  
 }
 
 #filesButtonFolder:hover {
-  background-color: $babyBlue;
+  background-color: $red;
   color:white;
   transition: .25s;
 }
@@ -50,14 +53,14 @@
   padding: 1em;
   padding-left: 1.5em;
   border: none;
-  color: $lightBlue;
+  color: $darkRed;
   background-color: white;
   transition: .25s;
   // border-bottom: .25px solid $babyBlue;
 }
 
 #filesButtonFile:hover {
-  background-color: $lightBlue;
+  background-color: $darkRed;
   color:white;
   transition: .25s;
 }
