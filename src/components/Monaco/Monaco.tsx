@@ -56,8 +56,11 @@ const Monaco = () => {
   return (
     <div id="monacoCont">
       <Header id='headerME'>Code Preview</Header>
+      <div id='testME'>
+
       <MonacoEditor
-        height="70vh"
+        height="75vh"
+        id='testME'
         // bug with toggling filetree, flex grow works, but
         // after retoggling tree back to dom, flew shrink does not work
         // and monaco keeps the 50% flex width from only two child elements in flex
@@ -67,7 +70,8 @@ const Monaco = () => {
         editorDidMount={editorDidMount}
         options={options}
         value={grabContents}
-      />
+        />
+        </div>
     </div>
   );
 };

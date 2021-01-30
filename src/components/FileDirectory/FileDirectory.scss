@@ -1,19 +1,15 @@
 @import '../../assets/stylesheets/fonts.scss';
 @import '../../assets/stylesheets/colors.scss';
 
-
-// Needs work - differentiate between files and folders here
-// Move to flex instead of %s
-#fileTreeCont {
+#fileTreeMainCont {
   flex: 1 1 30%;
   padding: 0 .5em;
   height: 100%;
-    // width: 15%;
-    // overflow-y: auto;
-    
+  // width: 15%;
+  // overflow-y: auto;
   }
   
-  #treeCont {
+  #fileTreeCont {
     padding: 0 .5em;
     margin: .5em;
     border: 1px solid $red;
@@ -21,12 +17,12 @@
     box-shadow: 1px 1px 5px $darkRed;
     // putting height here makes it automatically
     // fill to it's parent container
-    // height: 100%;
+    height: 75vh;
     overflow-y: auto;
 }
 
 #fileName {
-  font-family: $lora;
+  font-family: $raleway;
   // border-bottom: 1px solid $babyBlue;
   padding-bottom: .5em;
 }

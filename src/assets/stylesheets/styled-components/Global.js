@@ -10,6 +10,8 @@ const red = "#D82802";
 const gray = "#d5d5d5";
 const lightBlue = "#07b7fd";
 
+const raleway = '"Raleway", sans-serif';
+
 export const Input = styled.input`
   border: none;
   border-bottom: solid 1px black;
@@ -46,23 +48,25 @@ export const Button = styled.button`
 `;
 
 export const Title = styled.h1`
-  font-family: "Lora", serif;
+  font-family: ${raleway};
   font-size: 2em;
-`;
-
-export const SubTitle = styled.h3`
-  font-family: "Lora", serif;
+  letter-spacing: 4px;
+  `;
+  
+  export const SubTitle = styled.h3`
+  font-family: ${raleway};
   font-size: 1.5em;
+  letter-spacing: 3px;
 `;
 
 export const Header = styled.header`
-  font-family: "Lora", serif;
+  font-family: ${raleway};
   font-size: 1.25em;
   text-align: center;
 `;
 
 export const SubHeader = styled.header`
-  font-family: "Lora", serif;
+  font-family: ${raleway};
   font-size: 1em;
   text-align: center;
 `;
