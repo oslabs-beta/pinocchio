@@ -14,7 +14,7 @@
     margin: .5em;
     border: 1px solid $red;
     border-radius: 3px;
-    box-shadow: 1px 1px 5px $darkRed;
+    box-shadow: 1px 1px 5px $red;
     // putting height here makes it automatically
     // fill to it's parent container
     height: 75vh;
@@ -28,40 +28,64 @@
 }
 
 #filesButtonFolder {
+  text-align: start;
+  width: 100%;
   font-family: $montserrat;
+  border-radius: 3px;
   font-size: .75em;
-  padding: .5em;
-  border: none;
-  color: $red;
-  background-color: white;
-  transition: .25s;
-  border-bottom: .25px solid $red;  
-}
-
-#filesButtonFolder:hover {
-  background-color: $red;
-  color:white;
-  transition: .25s;
-}
-#filesButtonFile {
-  font-family: $montserrat;
-  font-size: .75em;
-  padding: 1em;
-  padding-left: 1.5em;
+  margin: .25em 0em;
+  padding: .25em;
   border: none;
   color: $darkRed;
   background-color: white;
   transition: .25s;
-  // border-bottom: .25px solid $babyBlue;
+  border-bottom: .25px solid $darkRed;
+  cursor: pointer;  
+  // font-weight: bold;
+}
+
+// To apply styling to button while selected
+#filesButtonFolder:active, #filesButtonFolder:focus {
+  background-color: $darkRed;
+  color:white;
+}
+
+#filesButtonFolder:hover {
+  background-color: $darkRed;
+  color:white;
+  transition: .25s;
+}
+#filesButtonFile {
+  margin: .25em 0em;
+  text-align: start;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;  
+  font-family: $montserrat;
+  font-size: .65em;
+  padding: .25em;
+  padding-left: 1.5em;
+  border: none;
+  color: $red;
+  background-color: white;
+  transition: .25s;
+  // border-bottom: .5px solid $red;
+  // border-top: .5px solid $red;
+}
+
+// To apply styling to button while selected
+#filesButtonFile:active, #filesButtonFile:focus {
+  background-color: $red;
+  color:white;
 }
 
 #filesButtonFile:hover {
-  background-color: $darkRed;
+  background-color: $red;
   color:white;
   transition: .25s;
 }
 
 ul {
-  list-style-type: none;
+  // list-style-type: none;
   // color: $babyBlue;
 }

@@ -65,7 +65,7 @@ const FileDirectory = () => {
                 chosenFileHandler(file.filePath);
               }}
             >
-              {file.fileName}
+              - {file.fileName}
             </button>
           </li>
         </ul>
