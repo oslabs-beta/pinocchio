@@ -1,8 +1,10 @@
-@import '../../assets/stylesheets/fonts.scss';
-@import '../../assets/stylesheets/colors.scss';
+@import "../../assets/stylesheets/fonts.scss";
+@import "../../assets/stylesheets/colors.scss";
 
-
-// Move to flex instead of %s
 #monacoCont {
-  width: 30%;
+  // bug with toggling filetree, flex grow works, but
+  // after retoggling tree back to dom, flew shrink does not work
+  // and monaco keeps the 50% flex width from only two child elements in flex
+  // flex: 1 !important;
+  width: 33%;
 }

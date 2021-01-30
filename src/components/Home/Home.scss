@@ -18,10 +18,10 @@
 
 #testGrid {
   display: flex;
+  // flex: 1;
   flex-direction: row;
   padding-top: 2em;
   width: 100%;
-  border-top: 5px solid $babyBlue;
 }
 
 #header {

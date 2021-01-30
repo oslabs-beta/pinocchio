@@ -5,7 +5,8 @@
 // Needs work - differentiate between files and folders here
 // Move to flex instead of %s
 #fileTreeCont {
-  width: 30%;
+    flex: 1;
+  // width: 30%;
 }
 
 #treeCont {
@@ -20,7 +21,7 @@
 
 #filesButtonFolder {
   font-family: $montserrat;
-  font-size: 1em;
+  font-size: .75em;
   padding: .5em;
   border: none;
   color: $babyBlue;
@@ -36,7 +37,7 @@
 }
 #filesButtonFile {
   font-family: $montserrat;
-  font-size: 1em;
+  font-size: .75em;
   padding: 1em;
   border: none;
   color: $lightBlue;
