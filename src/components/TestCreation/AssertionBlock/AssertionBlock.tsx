@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import { TestContext } from "../../../providers/TestProvider";
 // STYLES
 import {
+  Form,
   Input,
+  Label,
   Select,
   SubHeader,
 } from "../../../assets/stylesheets/styled-components/Global";
@@ -12,13 +14,19 @@ const AssertionBlock = (props) => {
   const [userInput, setUserInput] = useState("");
   const [assertionChoice, setAssertionChoice] = useState("");
   const [callbackChoice, setCallbackChoice] = useState("");
-  const [selector, setSelector] = useState('');
+  const [selector, setSelector] = useState("");
 
-  const { handleAssertionsChoice, handleAssertionsUserInput, handleCallbackChoice, handleSelectionChoice, test} = useContext(TestContext)
+  const {
+    handleAssertionsChoice,
+    handleAssertionsUserInput,
+    handleCallbackChoice,
+    handleSelectionChoice,
+    test,
+  } = useContext(TestContext);
   // expect (html node) --> assertions compared to (a user input)
 
   const assertionArrays = ["to.be.equal", "to.not.equal"];
-  const evalCallbacks = ['getValue', 'getLength', 'getInnerText'];
+  const evalCallbacks = ["getValue", "getLength", "getInnerText"];
 
   const renderCallbackOptions = () => {
     return evalCallbacks.map((callback) => {
@@ -32,42 +40,64 @@ const AssertionBlock = (props) => {
     });
   };
 
-
   return (
     <div id="assertCont">
       <SubHeader>Assertion Block</SubHeader>
       <div id="formCont">
-      <div id="selectAssert">
-        <Input
-          placeholder="Selector"
-          value={selector}
-          onChange={(e) => {setSelector(e.target.value); handleSelectionChoice(e.target.value, props.itIndex)}}
-        />
-      <Select
-          value={callbackChoice}
-          onChange={(e) => {setCallbackChoice(e.target.value); handleCallbackChoice(e.target.value, props.itIndex)}}
-        >
-          <option value="" disabled>
-            Callbacks
-          </option>
-          {renderCallbackOptions()}
-        </Select>
+        <section id="selectAssertCont">
+          <Form id='assertForm'>
+            <Label>Selector:</Label>
+            <Input
+              placeholder="ex: h1, className, Id"
+              value={selector}
+              onChange={(e) => {
+                setSelector(e.target.value);
+                handleSelectionChoice(e.target.value, props.itIndex);
+              }}
+            />
+          </Form>
+          <section id='selectRow'>
 
-        <Select
-          value={assertionChoice}
-          onChange={(e) => {setAssertionChoice(e.target.value); handleAssertionsChoice(e.target.value, props.itIndex)}}
-        >
-          <option value="" disabled>
-            Assertions
-          </option>
-          {renderAssertionOptions()}
-        </Select>
-      </div>
+          <Select
+            id='selectAssert'
+            value={callbackChoice}
+            onChange={(e) => {
+              setCallbackChoice(e.target.value);
+              handleCallbackChoice(e.target.value, props.itIndex);
+            }}
+            >
+            <option value="" disabled>
+              Callbacks
+            </option>
+            {renderCallbackOptions()}
+          </Select>
+
+          <Select
+            id='selectAssert'
+            value={assertionChoice}
+            onChange={(e) => {
+              setAssertionChoice(e.target.value);
+              handleAssertionsChoice(e.target.value, props.itIndex);
+            }}
+            >
+            <option value="" disabled>
+              Assertions
+            </option>
+            {renderAssertionOptions()}
+          </Select>
+            </section>
+        <Form id='assertForm'>
+            <Label>Expected Result:</Label>
         <Input
-          placeholder="User input"
+          placeholder="ex: Hello world..."
           value={userInput}
-          onChange={(e) => {setUserInput(e.target.value); handleAssertionsUserInput(e.target.value, props.itIndex)}}
-        />
+          onChange={(e) => {
+            setUserInput(e.target.value);
+            handleAssertionsUserInput(e.target.value, props.itIndex);
+          }}
+          />
+          </Form>
+          </section>
       </div>
     </div>
   );

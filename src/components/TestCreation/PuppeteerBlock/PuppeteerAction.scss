@@ -7,14 +7,18 @@
   border-radius: 3px;
   padding: 1em;
   margin: 1em 0em;
-
   // can obv change, was just fun looking
-  box-shadow: 1px 1px 10px $red;
+  box-shadow: 1px 1px 5px $darkRed;
+}
+
+#paSubHeader {
+  padding-bottom: .5em;
+
 }
 
 #inputPA {
-  padding: .5em;
-  margin: .5em;
+  // padding: .5em;
+  // margin: .5em;
 }
 
 #selectPA {

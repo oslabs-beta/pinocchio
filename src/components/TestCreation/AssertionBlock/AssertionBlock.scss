@@ -8,7 +8,11 @@
   padding: 1em;
   margin: 1em 0em;
   // can obv change, was just fun looking
-  box-shadow: 1px 1px 10px $yellow;
+  box-shadow: 1px 1px 5px $yellow;
+}
+
+#assertForm{
+  justify-content: center;
 }
 
 #formCont {
@@ -16,8 +20,20 @@
   flex-direction: column;
 }
 
-#selectAssert {
+#selectAssertCont {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   padding: 1em;
+}
+
+#selectAssert {
+  margin: 1em;
+}
+
+#selectRow {
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: center;
+  // padding: .5em;
 }

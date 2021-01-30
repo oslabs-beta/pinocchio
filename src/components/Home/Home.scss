@@ -11,6 +11,7 @@
 }
 
 #homeGrid {
+  padding-top: 1em;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -21,7 +22,7 @@
   flex: 1;
   flex-flow: row wrap;
   // justify-content: space-between;
-  padding-top: 2em;
+  padding-top: 3em;
   width: 100%;
 }
 
@@ -41,5 +42,6 @@
   flex-flow: row wrap;
   justify-content: center;
   border-bottom: solid 2px $babyBlue;
+  // letter-spacing: .5em;
   padding: 1em;
 }

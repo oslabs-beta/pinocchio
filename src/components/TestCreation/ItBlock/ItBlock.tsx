@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { TestContext } from "../../../providers/TestProvider";
 import PuppeteerAction from "../PuppeteerBlock/PuppeteerAction";
-import AssertionBlock from '../AssertionBlock/AssertionBlock';
+import AssertionBlock from "../AssertionBlock/AssertionBlock";
 // STYLES
 import "./ItBlock.scss";
 import {
@@ -20,50 +20,61 @@ const ItBlock = (props: any) => {
     addPuppeteerAction,
     addAssertion,
   } = useContext(TestContext);
-  
-  const newPuppeteerIndex = Object.keys(test.nestedIts[props.itIndex].actions).length;
+
+  const newPuppeteerIndex = Object.keys(test.nestedIts[props.itIndex].actions)
+    .length;
 
   // start with number
   // for how many numbres we iterate and render the puppeteer action componeent
   const puppeteerBlockArray = [];
   for (let key in test.nestedIts[props.itIndex].actions) {
-      puppeteerBlockArray.push(
-        <PuppeteerAction
-        key={`action-${key}`} 
+    puppeteerBlockArray.push(
+      <PuppeteerAction
+        key={`action-${key}`}
         index={key}
-        itIndex={props.itIndex} 
-      />)
+        itIndex={props.itIndex}
+      />
+    );
   }
 
-   let assertionButton;
-  
+  let assertionButton;
+
   if (!Object.keys(test.nestedIts[props.itIndex].assertions).length) {
-    assertionButton = <ItButton type="button" onClick={() => addAssertion(props.itIndex)}>+Assertion</ItButton>;
+    assertionButton = (
+      <ItButton type="button" id='itButton' onClick={() => addAssertion(props.itIndex)}>
+        +Assertion
+      </ItButton>
+    );
   }
   return (
     <div id="itCont">
-      <SubHeader>It Block</SubHeader>
-      <Form>
+      <SubHeader>It</SubHeader>
+      <Form id='itForm'>
         <Label>It:</Label>
         <Input
           id="itInput"
           type="text"
           placeholder="ex: clicks the button..."
           value={test.nestedIts.itDescription}
-          onChange={(e) => handleItBlockDescription(e.target.value, props.itIndex)}
+          onChange={(e) =>
+            handleItBlockDescription(e.target.value, props.itIndex)
+          }
         />
       </Form>
+      {puppeteerBlockArray}
       <div id="itButtonCont">
         <ItButton
           type="button"
+          id='itButton'
           onClick={() => addPuppeteerAction(newPuppeteerIndex, props.itIndex)}
         >
           +Puppeteer Action
         </ItButton>
-      {assertionButton}
+        {assertionButton}
       </div>
-      {puppeteerBlockArray}
-      {Object.keys(test.nestedIts[props.itIndex].assertions).length  ? <AssertionBlock itIndex={props.itIndex} /> : null}
+      {Object.keys(test.nestedIts[props.itIndex].assertions).length ? (
+        <AssertionBlock itIndex={props.itIndex} />
+      ) : null}
     </div>
   );
 };
