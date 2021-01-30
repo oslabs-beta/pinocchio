@@ -26,35 +26,41 @@ const Monaco = () => {
   };
   // From spearmint component EditorView.jsx
   const options = {
-    selectOnLineNumbers: true,
-    // allows min vw of wrapped code in editor
+    // selectOnLineNumbers: true,
+    // // allows min vw of wrapped code in editor
     wordWrap: "bounded",
+    // // wordWrapColumn: 90,
+    // autoIndent: true,
+    // colorDecorators: true,
+    // wrappingIndent: "indent",
+    // // should automatically resize between toggle of file tree,
+    // // is not working as intended
+    // automaticLayout: true,
+    // // right side minimap disabled
+    minimap: { enabled: false },
+    selectOnLineNumbers: true,
+    // wordWrap: "wordWrapColumn",
     // wordWrapColumn: 90,
     autoIndent: true,
     colorDecorators: true,
     wrappingIndent: "indent",
-    // should automatically resize between toggle of file tree, 
-    // is not working as intended
     automaticLayout: true,
-    // right side minimap disabled
-    minimap: { enabled: false },
   };
 
   const editorDidMount = (editor) => {
     console.log("editorDidMount", editor);
-    // editor.setTheme('light-dark');
-    // editor.focus();
+    
   };
 
   return (
     <div id="monacoCont">
-      <Header>Code Preview</Header>
+      <Header id='headerME'>Code Preview</Header>
       <MonacoEditor
-        height="75%"
+        height="70vh"
         // bug with toggling filetree, flex grow works, but
         // after retoggling tree back to dom, flew shrink does not work
         // and monaco keeps the 50% flex width from only two child elements in flex
-        width="100%"
+        // width="30%"
         language="javascript"
         theme="light-dark"
         editorDidMount={editorDidMount}

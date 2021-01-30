@@ -21,9 +21,13 @@ const Home = () => {
       <div id="homeGrid">
         <Title id="header">pinocchio</Title>
         <div id="testGrid">
-          {toggleTree && <FileDirectory />}
-          <ManualTestCreation />
-          <Monaco />
+          <div id="testColOne">
+            {toggleTree && <FileDirectory />}
+            <ManualTestCreation />
+          </div>
+          <div id="testColTwo">
+            <Monaco />
+          </div>
         </div>
       </div>
     </div>

@@ -27,15 +27,11 @@ const ManualTestCreation = (props) => {
   };
   return (
     <div id='testCont'>
-      <Header>Manual Test Creation</Header>
-      <div id='newButtonCont'>
+      <Header id='manTestHeader'>Manual Test Creation</Header>
+      {/* <div id='newButtonCont'>
       <Button type="button">New Describe Block</Button>
-      </div>
+      </div> */}
       <DescribeBlock />
-      <div id='exportButtonCont'>
-        {/* Potentially move to Navbar and open modal/react thing Adam was talking about */}
-      <Button type="button" onClick={() => exportTestFile()}>Export my Test</Button>
-      </div>
     </div>
   );
 };

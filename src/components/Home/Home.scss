@@ -18,14 +18,28 @@
 
 #testGrid {
   display: flex;
-  // flex: 1;
+  flex: 1;
   flex-direction: row;
+  // justify-content: space-between;
   padding-top: 2em;
   width: 100%;
 }
+
+#testColOne {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  height: 70vh;
+}
+#testColTwo {
+  width: 40%;
+  height: 70vh;
+}
+
 
 #header {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  border-bottom: solid 5px $babyBlue;
 }

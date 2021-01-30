@@ -5,6 +5,15 @@
   // bug with toggling filetree, flex grow works, but
   // after retoggling tree back to dom, flew shrink does not work
   // and monaco keeps the 50% flex width from only two child elements in flex
-  // flex: 1 !important;
-  width: 33%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  // width: 100%;
+  // margin-left: 10em;
+  // position: fixed;
+  // width: 30%;
+}
+
+#headerME {
+  padding-bottom: 1em;
 }

@@ -5,17 +5,26 @@
 // Needs work - differentiate between files and folders here
 // Move to flex instead of %s
 #fileTreeCont {
-    flex: 1;
-  // width: 30%;
-}
-
-#treeCont {
-  padding-left: .5em;
+  flex: 1 1 30%;
+  padding: 0 .5em;
+    // width: 15%;
+    // overflow-y: auto;
+    
+  }
+  
+  #treeCont {
+    padding: 0 .5em;
+    margin: .5em;
+    border: 1px solid $babyBlue;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px $lightBlue;
+    height: 60vh;
+    overflow-y: auto;
 }
 
 #fileName {
   font-family: $lora;
-  border-bottom: 1px solid $babyBlue;
+  // border-bottom: 1px solid $babyBlue;
   padding-bottom: .5em;
 }
 
@@ -39,6 +48,7 @@
   font-family: $montserrat;
   font-size: .75em;
   padding: 1em;
+  padding-left: 1.5em;
   border: none;
   color: $lightBlue;
   background-color: white;

@@ -1,0 +1,15 @@
+@import "../../assets/stylesheets/fonts.scss";
+@import "../../assets/stylesheets/colors.scss";
+
+#mainCont {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+}
+
+#header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}

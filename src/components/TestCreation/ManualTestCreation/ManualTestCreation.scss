@@ -5,11 +5,10 @@
 // Move to flex instead of %s
 
 #testCont {
-    flex: 2;
+    flex: 2 2 70%;
 
-  // width: 30%;
-  overflow-y: auto;
-  padding: 0 1em;
+  // width: 100%;
+  padding: 0 .5em;
   height: 80vh;
 }
 
@@ -26,4 +25,9 @@
   flex-flow: row wrap;
   justify-content: center;
   padding-top: 1em;
+}
+
+#manTestHeader {
+  padding-bottom: .5em;
+
 }
