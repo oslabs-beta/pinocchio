@@ -3,6 +3,7 @@
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { FileContext } from '../../providers/FileProvider';
+import { TestContext } from '../../providers/TestProvider';
 import { fileInterface } from '../../utils/fileTypes';
 
 // allow communicaiton between react app and electron renderer
@@ -17,6 +18,7 @@ import { Input, Button } from '../../assets/stylesheets/styled-components/Global
 import Logo from '../../assets/icons/pinocchio.svg';
 const Landing = () => {
   const { myPath, pathHandler, fileTreeHandler } = useContext(FileContext);
+  const { resetState } = useContext(TestContext);
   const [pathUploaded, setPathUploaded] = useState(false);
   let mainDirectory: string = '';
   const filePathMap: any = {};
@@ -82,6 +84,9 @@ const Landing = () => {
       })
       // boolean used for react router redirection
       .then(() => setPathUploaded(true))
+      .then(() => {
+        if (myPath) resetState();
+      })
       // eslint-disable-next-line no-console
       .catch((err: any) => console.log(err));
   };

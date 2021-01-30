@@ -22,12 +22,23 @@ const TestProvider = (props) => {
     nestedIts: { 0: {
         itDescription: '',
 
-        assertions: {}, // TODO: Is this the best data structure ?
+        assertions: {}, 
         actions: { 0: { action: '', selector: '', text: '', key: ''}},
       },
     },
   });
-
+  const resetState = () => {
+    setTest({
+      dDescription: '',
+      nestedIts: { 0: {
+          itDescription: '',
+  
+          assertions: {},
+          actions: { 0: { action: '', selector: '', text: '', key: ''}},
+        },
+      },
+    });
+  };
   const handleDBlockDescription = (dBlockDescription: string) => {
     setTest({ ...test, dDescription: dBlockDescription });
   };
@@ -246,6 +257,7 @@ const addItBlock = (index: number) => {
         addPuppeteerAction,
         addAssertion,
         addItBlock,
+        resetState,
       }}
     >
       {props.children}

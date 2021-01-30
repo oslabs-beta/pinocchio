@@ -20,7 +20,7 @@ const ItBlock = (props: any) => {
     addPuppeteerAction,
     addAssertion,
   } = useContext(TestContext);
-  const [assertionPresent, setAssertionPresent] = useState(false);
+  
   const newPuppeteerIndex = Object.keys(test.nestedIts[props.itIndex].actions).length;
 
   // start with number
@@ -34,15 +34,10 @@ const ItBlock = (props: any) => {
         itIndex={props.itIndex} 
       />)
   }
-  const didMountRef = useRef(false);
-  let assertionButton;
-  
-  useEffect(() => {
-    if (didMountRef.current) setAssertionPresent(true);
-    else didMountRef.current = true;
-  }, [test.nestedIts[props.itIndex].assertions]);
 
-  if (!assertionPresent) {
+   let assertionButton;
+  
+  if (!Object.keys(test.nestedIts[props.itIndex].assertions).length) {
     assertionButton = <ItButton type="button" onClick={() => addAssertion(props.itIndex)}>+Assertion</ItButton>;
   }
   return (
@@ -68,7 +63,7 @@ const ItBlock = (props: any) => {
       {assertionButton}
       </div>
       {puppeteerBlockArray}
-      {assertionPresent ? <AssertionBlock itIndex={props.itIndex} /> : null}
+      {Object.keys(test.nestedIts[props.itIndex].assertions).length  ? <AssertionBlock itIndex={props.itIndex} /> : null}
     </div>
   );
 };
