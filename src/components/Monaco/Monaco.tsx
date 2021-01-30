@@ -11,19 +11,19 @@ const electronFs = remote.require("fs");
 import "./Monaco.scss";
 
 const Monaco = () => {
-  const [grabContents, setGrabContents] = useState("");
-  const { chosenFile } = useContext(FileContext);
+  const [ grabContents, setGrabContents ] = useState('');
+  const { chosenFile, fileTree } = useContext(FileContext);
 
   useEffect(() => {
-    grabFileContents(chosenFile);
-  }, [chosenFile]);
+    grabFileContents(chosenFile) 
+  }, [chosenFile, fileTree]);
 
   const grabFileContents = (filePath) => {
     if (filePath.length > 0) {
       setGrabContents(electronFs.readFileSync(filePath, "utf8"));
     }
-    console.log(grabContents);
-  };
+    //console.log(grabContents);
+  }
   // From spearmint component EditorView.jsx
   const options = {
     // selectOnLineNumbers: true,
@@ -48,8 +48,9 @@ const Monaco = () => {
   };
 
   const editorDidMount = (editor) => {
-    console.log("editorDidMount", editor);
-    
+    //console.log('editorDidMount', editor)
+    // editor.setTheme('light-dark');
+    // editor.focus();
   };
 
   return (

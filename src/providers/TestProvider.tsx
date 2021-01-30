@@ -22,12 +22,26 @@ const TestProvider = (props) => {
     nestedIts: { 0: {
         itDescription: '',
 
-        assertions: {}, // TODO: Is this the best data structure ?
+        assertions: {}, 
         actions: { 0: { action: '', selector: '', text: '', key: ''}},
       },
     },
   });
+  
+  const [URL, setURL] = useState('');
 
+  const handleResetState = () => {
+    setTest({
+      dDescription: '',
+      nestedIts: { 0: {
+          itDescription: '',
+  
+          assertions: {},
+          actions: { 0: { action: '', selector: '', text: '', key: ''}},
+        },
+      },
+    });
+  };
   const handleDBlockDescription = (dBlockDescription: string) => {
     setTest({ ...test, dDescription: dBlockDescription });
   };
@@ -59,7 +73,7 @@ const TestProvider = (props) => {
           ...test.nestedIts[itIndex],
           actions: {
             ...test.nestedIts[itIndex].actions,
-            [actionIndex]: { ...test.nestedIts[itIndex].actions[actionIndex], action: newAction },
+            [actionIndex]: { action: newAction, selector: '', text: '', key: '' },
           },
         },
       },
@@ -246,6 +260,9 @@ const addItBlock = (index: number) => {
         addPuppeteerAction,
         addAssertion,
         addItBlock,
+        handleResetState,
+        URL,
+        setURL,
       }}
     >
       {props.children}

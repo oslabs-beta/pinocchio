@@ -3,6 +3,7 @@
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { FileContext } from '../../providers/FileProvider';
+import { TestContext } from '../../providers/TestProvider';
 import { fileInterface } from '../../utils/fileTypes';
 
 // allow communicaiton between react app and electron renderer
@@ -15,9 +16,9 @@ const { dialog } = remote;
 import './Landing.scss';
 import { Input, Button } from '../../assets/stylesheets/styled-components/Global';
 import Logo from '../../assets/icons/pinocchio.svg';
-
 const Landing = () => {
   const { myPath, pathHandler, fileTreeHandler } = useContext(FileContext);
+  const { handleResetState, URL, setURL } = useContext(TestContext);
   const [pathUploaded, setPathUploaded] = useState(false);
   let mainDirectory: string = '';
   const filePathMap: any = {};
@@ -60,7 +61,7 @@ const Landing = () => {
       }
       return file;
     });
-    console.log(fileArray); // ? eventually delete
+    // console.log(fileArray); // ? eventually delete
     return fileArray;
   };
 
@@ -83,6 +84,9 @@ const Landing = () => {
       })
       // boolean used for react router redirection
       .then(() => setPathUploaded(true))
+      .then(() => {
+        if (myPath) handleResetState();
+      })
       // eslint-disable-next-line no-console
       .catch((err: any) => console.log(err));
   };
@@ -102,6 +106,8 @@ const Landing = () => {
         <span id="numSpan">1</span>
         <Input
           type="text"
+          value={URL}
+          onChange={(e) => setURL(e.target.value)}
           placeholder="Please Enter Your Applications URL"
           id="input"
         />
@@ -110,6 +116,9 @@ const Landing = () => {
         <Button type="button" onClick={handleUploadButton}>
           Upload your directory
         </Button>
+        {myPath &&<Link to='/home'>
+          <Button>Go Back</Button>
+        </Link>}
       </div>
     </div>
   );
