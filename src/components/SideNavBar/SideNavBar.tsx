@@ -128,6 +128,9 @@ const SideNavbar = () => {
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
+              style: {
+                backgroundColor: '#099cd7'
+              }
               });
           }}
         >
