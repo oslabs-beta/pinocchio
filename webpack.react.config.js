@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
+const REACT_TOASTIFY_DIR = path.resolve(__dirname, './node_modules/react-toastify');
 
 module.exports = {
   resolve: {
@@ -16,7 +17,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        include: MONACO_DIR,
+        include: [MONACO_DIR, REACT_TOASTIFY_DIR],
         use: ["style-loader", "css-loader"],
       },
       {

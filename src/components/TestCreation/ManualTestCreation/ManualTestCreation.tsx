@@ -15,7 +15,6 @@ import './ManualTestCreation.scss';
 import { Button, Header, Input, Label } from "../../../assets/stylesheets/styled-components/Global";
 
 
-// TODO: allow user to name their own test
 const ManualTestCreation = (props) => {
   const { testFileName, setTestFileName } = useContext(FileContext);
 

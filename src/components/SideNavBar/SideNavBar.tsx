@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { FileContext } from "../../providers/FileProvider";
 import { TestContext } from "../../providers/TestProvider";
 import GenerateTest from "../TestCreation/GenerateTest";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // allow communicaiton between react app and electron renderer
 const { remote } = window.require("electron");
@@ -118,6 +120,15 @@ const SideNavbar = () => {
           onClick={() => {
             exportTestFile();
             fileTreeHandler(generateFileTree(myPath));
+            toast.info('Success!', {
+              position: "top-right",
+              autoClose: 2500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
           }}
         >
           Export
