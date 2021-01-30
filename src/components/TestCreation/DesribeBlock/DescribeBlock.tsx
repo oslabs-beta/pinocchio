@@ -30,7 +30,7 @@ const DescribeBlock = (props) => {
         <Label> Describe Block</Label>
         <Input
           type="text"
-          value={test.description}
+          value={test.dDescription}
           placeholder="What are you testing?"
           onChange={(e) => handleDBlockDescription(e.target.value)}
           id="describeInput"
@@ -43,7 +43,7 @@ const DescribeBlock = (props) => {
       >
         +It Statement
       </Button>
-      <Button type="button">+Describe block</Button>
+      {/* <Button type="button">+Describe block</Button> */}
       </div>
       {itArray}
     </div>

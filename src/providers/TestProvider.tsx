@@ -23,7 +23,7 @@ const TestProvider = (props) => {
         itDescription: '',
 
         assertions: {}, 
-        actions: { 0: { action: '', selector: '', text: '', key: ''}},
+        actions: { 0: { action: '', selector: '', text: '', key: ''} },
       },
     },
   });

@@ -49,7 +49,7 @@ const ItBlock = (props: any) => {
           id="itInput"
           type="text"
           placeholder="ex: clicks the button..."
-          value={test.nestedIts.itDescription}
+          value={test.nestedIts[props.itIndex].itDescription}
           onChange={(e) => handleItBlockDescription(e.target.value, props.itIndex)}
         />
       </Form>

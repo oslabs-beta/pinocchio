@@ -9,11 +9,6 @@ import {
 import "./AssertionBlock.scss";
 
 const AssertionBlock = (props) => {
-  const [userInput, setUserInput] = useState("");
-  const [assertionChoice, setAssertionChoice] = useState("");
-  const [callbackChoice, setCallbackChoice] = useState("");
-  const [selector, setSelector] = useState('');
-
   const { handleAssertionsChoice, handleAssertionsUserInput, handleCallbackChoice, handleSelectionChoice, test} = useContext(TestContext)
   // expect (html node) --> assertions compared to (a user input)
 
@@ -40,12 +35,12 @@ const AssertionBlock = (props) => {
       <div id="selectAssert">
         <Input
           placeholder="Selector"
-          value={selector}
-          onChange={(e) => {setSelector(e.target.value); handleSelectionChoice(e.target.value, props.itIndex)}}
+          value={test.nestedIts[props.itIndex].assertions.selector}
+          onChange={(e) => { handleSelectionChoice(e.target.value, props.itIndex)}}
         />
       <Select
-          value={callbackChoice}
-          onChange={(e) => {setCallbackChoice(e.target.value); handleCallbackChoice(e.target.value, props.itIndex)}}
+          value={test.nestedIts[props.itIndex].assertions.callback}
+          onChange={(e) => { handleCallbackChoice(e.target.value, props.itIndex) }}
         >
           <option value="" disabled>
             Callbacks
@@ -54,8 +49,8 @@ const AssertionBlock = (props) => {
         </Select>
 
         <Select
-          value={assertionChoice}
-          onChange={(e) => {setAssertionChoice(e.target.value); handleAssertionsChoice(e.target.value, props.itIndex)}}
+          value={test.nestedIts[props.itIndex].assertions.assertion}
+          onChange={(e) => { handleAssertionsChoice(e.target.value, props.itIndex) }}
         >
           <option value="" disabled>
             Assertions
@@ -65,8 +60,8 @@ const AssertionBlock = (props) => {
       </div>
         <Input
           placeholder="User input"
-          value={userInput}
-          onChange={(e) => {setUserInput(e.target.value); handleAssertionsUserInput(e.target.value, props.itIndex)}}
+          value={test.nestedIts[props.itIndex].assertions.userInput}
+          onChange={(e) => { handleAssertionsUserInput(e.target.value, props.itIndex) }}
         />
       </div>
     </div>

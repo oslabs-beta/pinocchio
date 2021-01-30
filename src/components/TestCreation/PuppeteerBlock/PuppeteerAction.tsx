@@ -69,7 +69,7 @@ const PuppeteerAction = (props) => {
 
   const determineInputs = () => (
     <div id="inputCont">
-      {actionObjects[selectAction].selector && (
+      {actionObjects[test.nestedIts[props.itIndex].actions[props.index].actiongit ].selector && (
         <Input
           placeholder="selector"
           value={test.nestedIts[props.itIndex].actions[props.index].selector}
@@ -77,7 +77,7 @@ const PuppeteerAction = (props) => {
           id="inputPA"
         />
       )}
-      {actionObjects[selectAction].key && (
+      {actionObjects[test.nestedIts[props.itIndex].actions[props.index].action].key && (
         <Input
           placeholder="key"
           value={test.nestedIts[props.itIndex].actions[props.index].key}
@@ -85,7 +85,7 @@ const PuppeteerAction = (props) => {
           id="inputPA"
         />
       )}
-      {actionObjects[selectAction].text && (
+      {actionObjects[test.nestedIts[props.itIndex].actions[props.index].action].text && (
         <Input
           type="text"
           placeholder="text"
@@ -104,7 +104,7 @@ const PuppeteerAction = (props) => {
       <SubHeader>Puppeteer Action</SubHeader>
       <div id="selectPA">
         <Select
-          value={selectAction}
+          value={test.nestedIts[props.itIndex].actions[props.index].action}
           onChange={(e) => handleActionSelect(e.target.value)}
         >
           <option value="" disabled>
@@ -117,7 +117,7 @@ const PuppeteerAction = (props) => {
       {/* Ternaries based upon selectAction's value */}
       {/*  actionsObject[selectAction].text && render the thing you want*/}
       {/*TODO create a little 'hint' button they can press?  */}
-      {selectAction.length ? <div>{determineInputs()}</div> : null}
+      {test.nestedIts[props.itIndex].actions[props.index].action.length ? <div>{determineInputs()}</div> : null}
     </div>
   );
 };
