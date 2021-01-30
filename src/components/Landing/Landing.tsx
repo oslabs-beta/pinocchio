@@ -15,7 +15,6 @@ const { dialog } = remote;
 import './Landing.scss';
 import { Input, Button } from '../../assets/stylesheets/styled-components/Global';
 import Logo from '../../assets/icons/pinocchio.svg';
-
 const Landing = () => {
   const { myPath, pathHandler, fileTreeHandler } = useContext(FileContext);
   const [pathUploaded, setPathUploaded] = useState(false);
@@ -60,7 +59,7 @@ const Landing = () => {
       }
       return file;
     });
-    console.log(fileArray); // ? eventually delete
+    // console.log(fileArray); // ? eventually delete
     return fileArray;
   };
 
@@ -110,6 +109,9 @@ const Landing = () => {
         <Button type="button" onClick={handleUploadButton}>
           Upload your directory
         </Button>
+        {myPath &&<Link to='/home'>
+          <Button>Go Back</Button>
+        </Link>}
       </div>
     </div>
   );

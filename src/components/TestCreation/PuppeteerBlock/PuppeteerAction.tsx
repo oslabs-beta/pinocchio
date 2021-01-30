@@ -12,6 +12,7 @@ import "./PuppeteerAction.scss";
 
 const PuppeteerAction = (props) => {
   const {
+    test,
     handleActions,
     handleActionSelector,
     handleActionKey,
@@ -71,6 +72,7 @@ const PuppeteerAction = (props) => {
       {actionObjects[selectAction].selector && (
         <Input
           placeholder="selector"
+          value={test.nestedIts[props.itIndex].actions[props.index].selector}
           onChange={(e) => handleSelector(e.target.value)}
           id="inputPA"
         />
@@ -78,6 +80,7 @@ const PuppeteerAction = (props) => {
       {actionObjects[selectAction].key && (
         <Input
           placeholder="key"
+          value={test.nestedIts[props.itIndex].actions[props.index].key}
           onChange={(e) => handleKey(e.target.value)}
           id="inputPA"
         />
@@ -86,6 +89,7 @@ const PuppeteerAction = (props) => {
         <Input
           type="text"
           placeholder="text"
+          value={test.nestedIts[props.itIndex].actions[props.index].text}
           onChange={(e) => handleText(e.target.value)}
           id="inputPA"
         />

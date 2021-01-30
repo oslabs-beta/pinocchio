@@ -12,17 +12,17 @@ import './Monaco.scss'
 
 const Monaco = () => {
   const [ grabContents, setGrabContents ] = useState('');
-  const { chosenFile } = useContext(FileContext);
+  const { chosenFile, fileTree } = useContext(FileContext);
 
   useEffect(() => {
     grabFileContents(chosenFile) 
-  }, [chosenFile]);
+  }, [chosenFile, fileTree]);
 
   const grabFileContents = (filePath) => {
     if (filePath.length > 0){
       setGrabContents(electronFs.readFileSync(filePath, 'utf8'));
     }
-    console.log(grabContents);
+    //console.log(grabContents);
   }
   // From spearmint component EditorView.jsx
   const options = {
@@ -36,7 +36,7 @@ const Monaco = () => {
   };
 
   const editorDidMount = (editor) => {
-    console.log('editorDidMount', editor)
+    //console.log('editorDidMount', editor)
     // editor.setTheme('light-dark');
     // editor.focus();
   };

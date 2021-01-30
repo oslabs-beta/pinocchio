@@ -59,7 +59,7 @@ const TestProvider = (props) => {
           ...test.nestedIts[itIndex],
           actions: {
             ...test.nestedIts[itIndex].actions,
-            [actionIndex]: { ...test.nestedIts[itIndex].actions[actionIndex], action: newAction },
+            [actionIndex]: { action: newAction, selector: '', text: '', key: '' },
           },
         },
       },

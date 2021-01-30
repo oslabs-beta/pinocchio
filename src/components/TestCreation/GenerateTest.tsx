@@ -83,7 +83,8 @@ function GenerateTest(testObject: any, APP: any) {
     const result = `await page.waitForSelector('${assertionObj.selector}');
     const result = page.$eval('${assertionObj.selector}', ${actionMap[assertionObj.callback]});
     expect(result).${assertionObj.assertion}('${assertionObj.userInput}')`;
-    
+
+    if (!Object.keys(assertionObj).length) return '';
     return result;
   };
 
