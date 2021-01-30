@@ -6,6 +6,7 @@ const FileProvider = ({ children }) => {
   const [myPath, setMyPath] = useState("");
   const [fileTree, setFileTree] = useState([]);
   const [chosenFile, setChosenFile] = useState("");
+  const [testFileName, setTestFileName] = useState('');
   const [toggleTree, setToggleTree] = useState(true);
 
   // lifecycle methods --> useEffect
@@ -41,7 +42,9 @@ const FileProvider = ({ children }) => {
         chosenFile,
         chosenFileHandler,
         handleToggleTree,
-        toggleTree
+        toggleTree,
+        testFileName,
+        setTestFileName,
       }}
     >
       {children}

@@ -17,7 +17,7 @@ const SideNavbar = () => {
   // On export testFile success - do something - toggle to true
   const [exportSuccess, setExportSuccess] = useState(false);
   const { test, URL } = useContext(TestContext);
-  const { handleToggleTree, myPath, fileTreeHandler } = useContext(FileContext);
+  const { handleToggleTree, myPath, fileTreeHandler, testFileName} = useContext(FileContext);
 
 
   const filePathMap: any = {};
@@ -80,7 +80,7 @@ const SideNavbar = () => {
       electronFs.mkdirSync(myPath + "/__tests__");
     }
     electronFs.writeFileSync(
-      myPath + `/__tests__/pinocchio.test.js`,
+      myPath + `/__tests__/${testFileName}.js`,
       GenerateTest(test, URL)
     );
   };
