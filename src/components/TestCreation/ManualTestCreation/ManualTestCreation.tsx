@@ -16,14 +16,14 @@ import { Button, Header } from "../../../assets/stylesheets/styled-components/Gl
 
 // TODO: Possibly rethink naming convention
 const ManualTestCreation = (props) => {
-  const { test } = useContext(TestContext);
+  const { test, URL } = useContext(TestContext);
   const { myPath, fileTreeHandler } = useContext(FileContext);
 
   const exportTestFile = () => {
     if (!electronFs.existsSync(myPath + '/__tests__')) {
       electronFs.mkdirSync(myPath + '/__tests__');
     }
-    electronFs.writeFileSync(myPath + `/__tests__/pinocchio.test.js`, GenerateTest(test, 'www.google.com')); // TODO: THIS
+    electronFs.writeFileSync(myPath + `/__tests__/pinocchio.test.js`, GenerateTest(test, URL)); // TODO: THIS
   };
   const filePathMap: any = {};
 

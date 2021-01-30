@@ -18,7 +18,7 @@ import { Input, Button } from '../../assets/stylesheets/styled-components/Global
 import Logo from '../../assets/icons/pinocchio.svg';
 const Landing = () => {
   const { myPath, pathHandler, fileTreeHandler } = useContext(FileContext);
-  const { resetState } = useContext(TestContext);
+  const { handleResetState, URL, setURL } = useContext(TestContext);
   const [pathUploaded, setPathUploaded] = useState(false);
   let mainDirectory: string = '';
   const filePathMap: any = {};
@@ -85,7 +85,7 @@ const Landing = () => {
       // boolean used for react router redirection
       .then(() => setPathUploaded(true))
       .then(() => {
-        if (myPath) resetState();
+        if (myPath) handleResetState();
       })
       // eslint-disable-next-line no-console
       .catch((err: any) => console.log(err));
@@ -106,6 +106,8 @@ const Landing = () => {
         <span id="numSpan">1</span>
         <Input
           type="text"
+          value={URL}
+          onChange={(e) => setURL(e.target.value)}
           placeholder="Please Enter Your Applications URL"
           id="input"
         />

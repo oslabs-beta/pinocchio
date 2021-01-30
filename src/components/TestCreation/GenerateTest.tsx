@@ -27,33 +27,15 @@ describe('Your generated test: ', function() {
 const endString = `});`
 
 
-// From Context
-  // const [test, setTest] = useState({
-  //   dDescription: "",
-  //   nestedIts: 
-  //     {0 :{itDescription: "",
-
-  //       assertions: {assertion: '', userInput: '', $evalSelector: '', $evalCallback: ''},
-  //       actions: {0: {action: 'keyboardPress', selector: '', text: '', key: 'Backspace'}},
-  //     }
-  //      1: {
-    //        itDesc
-  //}
-
-  //}
-  //     ,
 const actionMap = {
   'getValue': `(el) => el.value`,
   'getLength': `(el) => el.length`,
   'getInnerText': `(el) => el.innerText`,
 }
-//page.type: `page.type(${puppeteerActionObj[key].selector}, ${puppeteerActionObj[key].text}
-  //page.focus: `page.focus(
+
 function GenerateTest(testObject: any, APP: any) {
   const dBlockDescription = testObject.dDescription;
   const its = testObject.nestedIts;
-
-  // const puppeteerHtmlNode = testObject.nestedIts.actions[0].htmlNode;
 
   // input: object of puppeteer actions
   // output: a string of test code that transcribes the actions object to puppeteer code

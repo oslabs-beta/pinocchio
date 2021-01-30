@@ -27,7 +27,10 @@ const TestProvider = (props) => {
       },
     },
   });
-  const resetState = () => {
+  
+  const [URL, setURL] = useState('');
+
+  const handleResetState = () => {
     setTest({
       dDescription: '',
       nestedIts: { 0: {
@@ -257,7 +260,9 @@ const addItBlock = (index: number) => {
         addPuppeteerAction,
         addAssertion,
         addItBlock,
-        resetState,
+        handleResetState,
+        URL,
+        setURL,
       }}
     >
       {props.children}
