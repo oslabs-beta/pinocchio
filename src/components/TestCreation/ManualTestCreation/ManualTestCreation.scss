@@ -1,14 +1,13 @@
-
-@import '../../../assets/stylesheets/colors.scss';
-@import '../../../assets/stylesheets/fonts.scss';
+@import "../../../assets/stylesheets/colors.scss";
+@import "../../../assets/stylesheets/fonts.scss";
 
 // Move to flex instead of %s
 
 #testCont {
-    flex: 2 2 70%;
+  flex: 2 2 70%;
 
   // width: 100%;
-  padding: 0 .5em;
+  padding: 0 0.5em;
   height: 80vh;
 }
 
@@ -17,7 +16,6 @@
   flex-flow: row wrap;
   justify-content: flex-end;
   padding: 1em;
-
 }
 
 #exportButtonCont {
@@ -28,6 +26,5 @@
 }
 
 #manTestHeader {
-  padding-bottom: .5em;
-
+  padding-bottom: 0.5em;
 }

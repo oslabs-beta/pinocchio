@@ -11,17 +11,18 @@
 }
 
 #homeGrid {
+  padding-top: 1em;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-#testGrid {
+#testMainRow {
   display: flex;
   flex: 1;
-  flex-direction: row;
+  flex-flow: row wrap;
   // justify-content: space-between;
-  padding-top: 2em;
+  padding-top: 3em;
   width: 100%;
 }
 
@@ -36,10 +37,11 @@
   height: 80vh;
 }
 
-
-#header {
+#homeHeader {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  border-bottom: solid 5px $babyBlue;
+  border-bottom: solid 2px $babyBlue;
+  // letter-spacing: .5em;
+  padding: 1em;
 }

@@ -31,8 +31,8 @@ const Home = () => {
           draggable
           pauseOnHover
         />
-        <Title id="header">pinocchio</Title>
-        <div id="testGrid">
+        <Title id="homeHeader">pinocchio</Title>
+        <div id="testMainRow">
           <div id="testColOne">
             {toggleTree && <FileDirectory />}
             <ManualTestCreation />
@@ -44,6 +44,6 @@ const Home = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

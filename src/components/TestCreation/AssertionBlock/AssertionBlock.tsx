@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import { TestContext } from "../../../providers/TestProvider";
 // STYLES
 import {
+  Form,
   Input,
+  Label,
   Select,
   SubHeader,
 } from "../../../assets/stylesheets/styled-components/Global";
@@ -13,7 +15,7 @@ const AssertionBlock = (props) => {
   // expect (html node) --> assertions compared to (a user input)
 
   const assertionArrays = ["to.be.equal", "to.not.equal"];
-  const evalCallbacks = ['getValue', 'getLength', 'getInnerText'];
+  const evalCallbacks = ["getValue", "getLength", "getInnerText"];
 
   const renderCallbackOptions = () => {
     return evalCallbacks.map((callback) => {
@@ -27,42 +29,64 @@ const AssertionBlock = (props) => {
     });
   };
 
-
   return (
     <div id="assertCont">
       <SubHeader>Assertion Block</SubHeader>
       <div id="formCont">
-      <div id="selectAssert">
-        <Input
-          placeholder="Selector"
-          value={test.nestedIts[props.itIndex].assertions.selector}
-          onChange={(e) => { handleSelectionChoice(e.target.value, props.itIndex)}}
-        />
-      <Select
-          value={test.nestedIts[props.itIndex].assertions.callback}
-          onChange={(e) => { handleCallbackChoice(e.target.value, props.itIndex) }}
-        >
-          <option value="" disabled>
-            Callbacks
-          </option>
-          {renderCallbackOptions()}
-        </Select>
+        <section id="selectAssertCont">
+          <Form id='assertForm'>
+            <Label>Selector:</Label>
+            <Input
+              placeholder="ex: h1, className, Id"
+              value={test.nestedIts[props.itIndex].assertions.selector}
+              onChange={(e) => {
+                setSelector(e.target.value);
+                handleSelectionChoice(e.target.value, props.itIndex);
+              }}
+            />
+          </Form>
+          <section id='selectRow'>
 
-        <Select
-          value={test.nestedIts[props.itIndex].assertions.assertion}
-          onChange={(e) => { handleAssertionsChoice(e.target.value, props.itIndex) }}
-        >
-          <option value="" disabled>
-            Assertions
-          </option>
-          {renderAssertionOptions()}
-        </Select>
-      </div>
+          <Select
+            id='selectAssert'
+            value={test.nestedIts[props.itIndex].assertions.callback}
+            onChange={(e) => {
+              setCallbackChoice(e.target.value);
+              handleCallbackChoice(e.target.value, props.itIndex);
+            }}
+            >
+            <option value="" disabled>
+              Callbacks
+            </option>
+            {renderCallbackOptions()}
+          </Select>
+
+          <Select
+            id='selectAssert'
+            value={test.nestedIts[props.itIndex].assertions.assertion}
+            onChange={(e) => {
+              setAssertionChoice(e.target.value);
+              handleAssertionsChoice(e.target.value, props.itIndex);
+            }}
+            >
+            <option value="" disabled>
+              Assertions
+            </option>
+            {renderAssertionOptions()}
+          </Select>
+            </section>
+        <Form id='assertForm'>
+            <Label>Expected Result:</Label>
         <Input
-          placeholder="User input"
+          placeholder="ex: Hello world..."
           value={test.nestedIts[props.itIndex].assertions.userInput}
-          onChange={(e) => { handleAssertionsUserInput(e.target.value, props.itIndex) }}
-        />
+          onChange={(e) => {
+            setUserInput(e.target.value);
+            handleAssertionsUserInput(e.target.value, props.itIndex);
+          }}
+          />
+          </Form>
+          </section>
       </div>
     </div>
   );

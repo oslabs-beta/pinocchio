@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 50%;
+  height: 60%;
 }
 #navItem {
   color: white;
@@ -28,7 +28,7 @@
 
 #navItem:hover {
   transition: .5s;
-  letter-spacing: .15em;
+  letter-spacing: .1em;
 }
 
 #navLogoCont {

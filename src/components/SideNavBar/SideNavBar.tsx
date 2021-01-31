@@ -21,7 +21,6 @@ const SideNavbar = () => {
   const { test, URL } = useContext(TestContext);
   const { handleToggleTree, myPath, fileTreeHandler, testFileName} = useContext(FileContext);
 
-
   const filePathMap: any = {};
   const generateFileTree = (directory: string) => {
     // use readdirSync fs node module through electron to read folder contents at given path
@@ -86,16 +85,6 @@ const SideNavbar = () => {
       GenerateTest(test, URL)
     );
   };
-
-  // const exportTestFile = () => {
-  //   if (!electronFs.existsSync(myPath + "/__tests__")) {
-  //     electronFs.mkdirSync(myPath + "/__tests__");
-  //   }
-  //   electronFs.writeFileSync(
-  //     myPath + `/__tests__/pinocchio.test.js`,
-  //     GenerateTest(test, URL)
-  //   ); // TODO: THIS
-  // };
 
   return (
     <nav id="mainNav">
