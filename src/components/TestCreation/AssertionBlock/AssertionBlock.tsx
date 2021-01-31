@@ -11,7 +11,7 @@ import {
 import "./AssertionBlock.scss";
 
 const AssertionBlock = (props) => {
-  const { handleAssertionsChoice, handleAssertionsUserInput, handleCallbackChoice, handleSelectionChoice, test} = useContext(TestContext)
+  const { handleAssertionsChoice, handleAssertionsUserInput, handleCallbackChoice, handleSelectionChoice,  test } = useContext(TestContext)
   // expect (html node) --> assertions compared to (a user input)
 
   const assertionArrays = ["to.be.equal", "to.not.equal"];
@@ -40,7 +40,6 @@ const AssertionBlock = (props) => {
               placeholder="ex: h1, className, Id"
               value={test.nestedIts[props.itIndex].assertions.selector}
               onChange={(e) => {
-                setSelector(e.target.value);
                 handleSelectionChoice(e.target.value, props.itIndex);
               }}
             />
@@ -51,7 +50,6 @@ const AssertionBlock = (props) => {
             id='selectAssert'
             value={test.nestedIts[props.itIndex].assertions.callback}
             onChange={(e) => {
-              setCallbackChoice(e.target.value);
               handleCallbackChoice(e.target.value, props.itIndex);
             }}
             >
@@ -65,7 +63,6 @@ const AssertionBlock = (props) => {
             id='selectAssert'
             value={test.nestedIts[props.itIndex].assertions.assertion}
             onChange={(e) => {
-              setAssertionChoice(e.target.value);
               handleAssertionsChoice(e.target.value, props.itIndex);
             }}
             >
@@ -81,7 +78,6 @@ const AssertionBlock = (props) => {
           placeholder="ex: Hello world..."
           value={test.nestedIts[props.itIndex].assertions.userInput}
           onChange={(e) => {
-            setUserInput(e.target.value);
             handleAssertionsUserInput(e.target.value, props.itIndex);
           }}
           />

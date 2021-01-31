@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ItBlock from "../ItBlock/ItBlock";
 import { TestContext } from "../../../providers/TestProvider";
-import { FileContext } from "../../../provider/FileProvider";
+import { FileContext } from "../../../providers/FileProvider";
 // STYLES
 import "./DescribeBlock.scss";
 import {
