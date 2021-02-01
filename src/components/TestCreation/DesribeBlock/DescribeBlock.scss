@@ -5,10 +5,10 @@
 #describeCont {
   border: solid 2px $babyBlue;
   border-radius: 3px;
-  padding: 1em;
+  padding-top: 1em;
   overflow-y: auto;
   height: 90%;
-  margin: .5em;
+  margin-top: .5em;
   // can obv change, was just fun looking
   box-shadow: 1px 1px 10px $lightBlue; 
 }
