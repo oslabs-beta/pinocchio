@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import {
-  describeInterface,
-  itInterface,
-  puppeteerActionInterface,
-  assertionInterface,
-} from '../utils/testTypes';
+// import {
+//   describeInterface,
+//   itInterface,
+//   puppeteerActionInterface,
+//   assertionInterface,
+// } from '../utils/testTypes';
 
 export const TestContext = React.createContext(null);
 
-const TestProvider = (props) => {
+const TestProvider = ({ children }: any) => {
   // conversation to have:
   // determine if assertions, actions, pretty much everything
   // if it should be an object or array.
@@ -20,111 +20,157 @@ const TestProvider = (props) => {
   const [test, setTest] = useState({
     dDescription: '',
     nestedIts: {
+      0: {
         itDescription: '',
-
-        assertions: { 0: { assertion: '', userInput: '' } }, // TODO: Is this the best data structure ?
-        actions: {0: {action: '', selector: '', text: '', key: ''}},
+        assertions: {}, // ? can this be moved below actions?
+        actions: {
+          0: {
+            action: '',
+            selector: '',
+            text: '',
+            key: '',
+          },
+        },
       },
-    // nestedDescribes: [],
+    },
   });
 
-  const handleDBlockDescription = (dBlockDescription: string) => {
+  const [URL, setURL] = useState('');
+
+  const handleResetState = (): void => {
+    setTest({
+      dDescription: '',
+      nestedIts: {
+        0: {
+          itDescription: '',
+          assertions: {},
+          actions: {
+            0: {
+              action: '', selector: '', text: '', key: '',
+            },
+          },
+        },
+      },
+    });
+  };
+  const handleDBlockDescription = (dBlockDescription: string): void => {
     setTest({ ...test, dDescription: dBlockDescription });
   };
 
   const handleItBlockDescription = (
     itBlockDesription: string,
-    nestedItIndex: number
-  ) => {
+    itIndex: number,
+  ): void => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
           itDescription: itBlockDesription,
-        
+        },
       },
     });
   };
-  
+
   // ********************* ACTIONS *********************
-  const handleActions = (newAction: string, actionIndex: number) => {
+  const handleActions = (newAction: string, actionIndex: number, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
-        actions: {
-          ...test.nestedIts.actions,
-          [actionIndex]: { ...test.nestedIts.actions[actionIndex], action: newAction },
-        },
-      },
-    });
-  };
-
-  const handleActionSelector = (selector: string, actionIndex: number) => {
-    setTest({
-      ...test,
-      nestedIts: {
-        ...test.nestedIts,
-        actions: {
-          ...test.nestedIts.actions,
-          [actionIndex]: { ...test.nestedIts.actions[actionIndex], selector: selector },
-        },
-      },
-    });
-  };
-
-  
-  const handleActionKey = (key: string, actionIndex: number) => {
-    setTest({
-      ...test,
-      nestedIts: {
-        ...test.nestedIts,
-        actions: {
-          ...test.nestedIts.actions,
-          [actionIndex]: { ...test.nestedIts.actions[actionIndex], key: key },
-        },
-      },
-    });
-  };
-
-  const handleActionText = (text: string, actionIndex: number) => {
-    setTest({
-      ...test,
-      nestedIts: {
-        ...test.nestedIts,
-        actions: {
-          ...test.nestedIts.actions,
-          [actionIndex]: { ...test.nestedIts.actions[actionIndex], text: text },
-        },
-      },
-    });
-  };
-
-
-  const handleAssertionsChoice = (newAssert: string, index: number) => {
-    setTest({
-      ...test,
-      nestedIts: {
-        ...test.nestedIts,
-        assertions: {
-          ...test.nestedIts.assertions,
-          [index]: { ...test.nestedIts.assertions[index],
-             assertion: newAssert,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          actions: {
+            ...test.nestedIts[itIndex].actions,
+            [actionIndex]: {
+              action: newAction,
+              selector: '',
+              text: '',
+              key: '',
+            },
           },
         },
       },
     });
   };
 
-  const handleAssertionsUserInput = (newAssertInput: string, index: number) => {
+  const handleActionSelector = (newSelector: string, actionIndex: number, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
-        assertions: {
-          ...test.nestedIts.assertions,
-          [index]: {
-            ...test.nestedIts.assertions[index],
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          actions: {
+            ...test.nestedIts[itIndex].actions,
+            [actionIndex]: {
+              ...test.nestedIts[itIndex].actions[actionIndex],
+              selector: newSelector,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleActionKey = (newKey: string, actionIndex: number, itIndex: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          actions: {
+            ...test.nestedIts[itIndex].actions,
+            [actionIndex]: { ...test.nestedIts[itIndex].actions[actionIndex], key: newKey },
+          },
+        },
+      },
+    });
+  };
+
+  const handleActionText = (newText: string, actionIndex: number, itIndex: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          actions: {
+            ...test.nestedIts[itIndex].actions,
+            [actionIndex]: { ...test.nestedIts[itIndex].actions[actionIndex], text: newText },
+          },
+        },
+      },
+    });
+  };
+
+  const handleAssertionsChoice = (newAssert: string, itIndex: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          assertions: {
+            ...test.nestedIts[itIndex].assertions,
+            assertion: newAssert,
+          },
+        },
+      },
+    });
+  };
+
+  const handleAssertionsUserInput = (newAssertInput: string, itIndex: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          assertions: {
+            ...test.nestedIts[itIndex].assertions,
             userInput: newAssertInput,
           },
         },
@@ -132,36 +178,95 @@ const TestProvider = (props) => {
     });
   };
 
-  const handleTest = (updatedTest) => {
+  const handleCallbackChoice = (newAssertCB: string, itIndex: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          assertions: {
+            ...test.nestedIts[itIndex].assertions,
+            callback: newAssertCB,
+          },
+        },
+      },
+    });
+  };
+
+  const handleSelectionChoice = (newAssertSel: string, itIndex: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          assertions: {
+            ...test.nestedIts[itIndex].assertions,
+            selector: newAssertSel,
+          },
+        },
+      },
+    });
+  };
+
+  const handleTest = (updatedTest: any): void => {
     setTest(updatedTest);
   };
-/***************************************************************************** */
-  const addAssertion = (index) => {
+  // ***************************************************************************** //
+  const addAssertion = (itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
-        assertions: {
-          ...test.nestedIts.assertions,
-          [index]: { assertion: '', userInput: '' },
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          assertions: {
+            assertion: '', userInput: '', selector: '', callback: '',
+          },
         },
       },
     });
   };
 
-  const addPuppeteerAction = (index) => {
+  const addPuppeteerAction = (index: number, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
-        actions: {
-          ...test.nestedIts.actions,
-          [index]: { action: '', selector: '', text: '', key: '' },
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          actions: {
+            ...test.nestedIts[itIndex].actions,
+            [index]: {
+              action: '',
+              selector: '',
+              text: '',
+              key: '',
+            },
+          },
         },
       },
     });
   };
 
+  const addItBlock = (index: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [index]: {
+          itDescription: '',
+          assertions: {},
+          actions: {
+            0: {
+              action: '', selector: '', text: '', key: '',
+            },
+          },
+        },
+      },
+    });
+  };
   return (
     <TestContext.Provider
       value={{
@@ -175,11 +280,17 @@ const TestProvider = (props) => {
         handleActionText,
         handleAssertionsChoice,
         handleAssertionsUserInput,
+        handleCallbackChoice,
+        handleSelectionChoice,
         addPuppeteerAction,
         addAssertion,
+        addItBlock,
+        handleResetState,
+        URL,
+        setURL,
       }}
     >
-      {props.children}
+      {children}
     </TestContext.Provider>
   );
 };

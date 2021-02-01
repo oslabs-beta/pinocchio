@@ -1,0 +1,67 @@
+@import "../../assets/stylesheets/fonts.scss";
+@import '../../assets/stylesheets/colors.scss';
+
+#landingCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100vw;
+  height: 100vh;
+}
+
+#landingHeaders {
+  padding: 1em;
+}
+
+
+#titleCont {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: $raleway;
+  color: white;
+  background-color: $babyBlue;
+  height: 50%;
+}
+
+#getStarted {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  font-family: $montserrat;
+  height: 50%;
+}
+
+#getStartedRowOne {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $montserrat;
+  width: 70%;
+}
+
+#imgCont {
+  width: 5em;
+}
+
+#inputCol {
+  display: flex;
+  width: 50%;
+}
+#buttonCol {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+#inputLanding {
+  width: 75%;
+}
+
+#numSpan {
+  padding: 0em 1em;
+}
