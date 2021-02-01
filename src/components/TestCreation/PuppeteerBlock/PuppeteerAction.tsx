@@ -1,3 +1,4 @@
+// REACT LIBRARIES
 import React, { useContext } from 'react';
 import {
   Form,
@@ -6,6 +7,7 @@ import {
   Select,
   SubHeader,
 } from '../../../assets/stylesheets/styled-components/Global';
+// GLOBAL STATE PROVIDER
 import { TestContext } from '../../../providers/TestProvider';
 // STYLES
 import './PuppeteerAction.scss';

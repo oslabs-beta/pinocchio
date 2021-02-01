@@ -1,4 +1,6 @@
+// REACT LIBRARIES
 import React, { useContext } from 'react';
+// GLOBAL STATE PROVIDERS
 import { TestContext } from '../../../providers/TestProvider';
 // STYLES
 import {

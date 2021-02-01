@@ -1,5 +1,8 @@
+// REACT LIBRARIES
 import React, { useContext } from 'react';
+// GLOBAL STATE PROVIDERS
 import { TestContext } from '../../../providers/TestProvider';
+// REACT COMPONENTS
 import PuppeteerAction from '../PuppeteerBlock/PuppeteerAction';
 import AssertionBlock from '../AssertionBlock/AssertionBlock';
 // STYLES

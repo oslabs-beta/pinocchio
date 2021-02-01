@@ -131,7 +131,7 @@ const Landing = () => {
                 // setInputNull(!URL);
                 setURL(e.target.value);
               }}
-              placeholder="Please Enter Your Applications URL"
+              placeholder="Please Enter Your Application's URL"
               id="inputLanding"
               required
             />

@@ -1,25 +1,32 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+// REACT LIBRARIES
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FileContext } from "../../providers/FileProvider";
-import { TestContext } from "../../providers/TestProvider";
-import GenerateTest from "../TestCreation/GenerateTest";
 import 'react-toastify/dist/ReactToastify.min.css';
+// GLOBAL STATE PROVIDERS
+import { FileContext } from '../../providers/FileProvider';
+import { TestContext } from '../../providers/TestProvider';
+// TYPESCRIPT INTERFACES
+import { fileInterface } from '../../utils/fileTypes';
+// STYLES
+import './SideNavBar.scss';
+import Logo from '../../assets/icons/pinocchio.svg';
+// FUNCTIONS
+import GenerateTest from '../TestCreation/GenerateTest';
 
 // allow communicaiton between react app and electron renderer
-const { remote } = window.require("electron");
+const { remote } = window.require('electron');
 // allow remote process to have access to node fs module
-const electronFs = remote.require("fs");
-
-// STYLES
-import "./SideNavBar.scss";
-import Logo from "../../assets/icons/pinocchio.svg";
+const electronFs = remote.require('fs');
 
 const SideNavbar = () => {
-  // On export testFile success - do something - toggle to true
-  const [exportSuccess, setExportSuccess] = useState(false);
-  const { test, URL } = useContext(TestContext);
-  const { handleToggleTree, myPath, fileTreeHandler, testFileName} = useContext(FileContext);
+  const { test, URL }: any = useContext(TestContext);
+  const {
+    handleToggleTree,
+    myPath,
+    fileTreeHandler,
+    testFileName,
+  }: any = useContext(FileContext);
 
   const filePathMap: any = {};
   const generateFileTree = (directory: string) => {
@@ -29,16 +36,16 @@ const SideNavbar = () => {
     const filterArray: Array<string> = electronFs
       .readdirSync(directory)
       .filter(
-        (element: string) => element !== "node_modules" && element[0] !== "."
+        (element: string) => element !== 'node_modules' && element[0] !== '.',
       );
 
     const fileArray: Array<fileInterface> = filterArray.map(
       (fileName: string) => {
         // remove backslashes from path of the directory and replace with forward (for PC)
-        let filePath: string = directory.replace(/\\/g, "/");
+        let filePath: string = directory.replace(/\\/g, '/');
         // create a filepath to the current file/folder being iterated over
         filePath = `${filePath}/${fileName}`;
-        // returned after each iteration: The path to the current file/folder, file name, nested files
+        // returned after each iteration: path to the current file/folder, file name, nested files
         const file: fileInterface = {
           filePath,
           fileName,
@@ -47,42 +54,41 @@ const SideNavbar = () => {
         // Allow access to meta data about current file/folder being iterated over
         // any is used here since we are interacting with a 3rd party API
         const fileData: any = electronFs.statSync(file.filePath);
-        if (file.fileName !== "node_modules" && file.fileName[0] !== ".") {
+        if (file.fileName !== 'node_modules' && file.fileName[0] !== '.') {
           if (fileData.isDirectory()) {
             // if the current element being iterated over is a folder...
-            // use recursion to assign all nested files/folders arbitrarily deep to current file.files
+            // use recursion to assign all nested files/folders arbitrarily deep
             file.files = generateFileTree(file.filePath);
             // if any files in dir have appropriate file ext, save name + filepath to filePathMap
             file.files.forEach((nestedFile: fileInterface) => {
               // ? applied to all nested files?
               const javaScriptFileTypes: Array<string> = [
-                "js",
-                "jsx",
-                "ts",
-                "tsx",
+                'js',
+                'jsx',
+                'ts',
+                'tsx',
               ];
-              const fileType = nestedFile.fileName.split(".")[1];
+              const fileType = nestedFile.fileName.split('.')[1];
               if (javaScriptFileTypes.includes(fileType)) {
-                const componentName: string = nestedFile.fileName.split(".")[0];
+                const componentName: string = nestedFile.fileName.split('.')[0];
                 filePathMap[componentName] = nestedFile.filePath;
               }
             });
           }
         }
         return file;
-      }
+      },
     );
-    // console.log(fileArray); // ? eventually delete
     return fileArray;
   };
 
   const exportTestFile = () => {
-    if (!electronFs.existsSync(myPath + "/__tests__")) {
-      electronFs.mkdirSync(myPath + "/__tests__");
+    if (!electronFs.existsSync(`${myPath}/__tests__`)) {
+      electronFs.mkdirSync(`${myPath}/__tests__`);
     }
     electronFs.writeFileSync(
-      myPath + `/__tests__/${testFileName}.js`,
-      GenerateTest(test, URL)
+      `${myPath}/__tests__/${testFileName}.js`,
+      GenerateTest(test, URL),
     );
   };
 
@@ -91,11 +97,19 @@ const SideNavbar = () => {
       <div id="navItemsCont">
         <Link to="/home">
           <div id="navLogoCont">
-            <img src={Logo} id="navLogo" />
+            <img src={Logo} id="navLogo" alt="Pinocchio-logo" />
           </div>
         </Link>
-        <div id="navItem" onClick={() => handleToggleTree()}>
-          Toggle <div>Tree</div>
+        <div
+          id="navItem"
+          role="button"
+          tabIndex={0}
+          onClick={() => handleToggleTree()}
+          // onKeyDown meets accessibility standards
+          onKeyDown={() => handleToggleTree()}
+        >
+          Toggle
+          <div>Tree</div>
         </div>
         <Link to="/" id="navItem">
           Upload
@@ -106,11 +120,13 @@ const SideNavbar = () => {
         </Link>
         <div
           id="navItem"
+          role="button"
+          tabIndex={0}
           onClick={() => {
             exportTestFile();
             fileTreeHandler(generateFileTree(myPath));
             toast.info('Success!', {
-              position: "top-right",
+              position: 'top-right',
               autoClose: 2500,
               hideProgressBar: true,
               closeOnClick: true,
@@ -118,9 +134,26 @@ const SideNavbar = () => {
               draggable: true,
               progress: undefined,
               style: {
-                backgroundColor: '#099cd7'
-              }
-              });
+                backgroundColor: '#099cd7',
+              },
+            });
+          }}
+          // onKeyDown meets accessibility standards
+          onKeyDown={() => {
+            exportTestFile();
+            fileTreeHandler(generateFileTree(myPath));
+            toast.info('Success!', {
+              position: 'top-right',
+              autoClose: 2500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              style: {
+                backgroundColor: '#099cd7',
+              },
+            });
           }}
         >
           Export

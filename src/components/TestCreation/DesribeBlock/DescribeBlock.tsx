@@ -1,7 +1,10 @@
+// REACT LIBRARIES
 import React, { useContext } from 'react';
-import ItBlock from '../ItBlock/ItBlock';
+// GLOBAL STATE PROVIDERS
 import { TestContext } from '../../../providers/TestProvider';
 import { FileContext } from '../../../providers/FileProvider';
+// REACT COMPONENTS
+import ItBlock from '../ItBlock/ItBlock';
 // STYLES
 import './DescribeBlock.scss';
 import {
