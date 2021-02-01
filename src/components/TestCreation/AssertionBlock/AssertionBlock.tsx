@@ -22,6 +22,7 @@ const AssertionBlock = ({ itIndex }: any) => {
   const thisAssertion = test.nestedIts[itIndex].assertions;
 
   const assertionArrays = ['to.be.equal', 'to.not.equal'];
+  // $eval puppeteer action callback choices
   const evalCallbacks = ['getValue', 'getLength', 'getInnerText'];
 
   const renderCallbackOptions = () => evalCallbacks.map(

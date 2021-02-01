@@ -22,7 +22,7 @@ const TestProvider = ({ children }: any) => {
     nestedIts: {
       0: {
         itDescription: '',
-        assertions: {},
+        assertions: {}, // ? can this be moved below actions?
         actions: {
           0: {
             action: '',

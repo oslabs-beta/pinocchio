@@ -7,7 +7,6 @@ import {
   SubHeader,
 } from '../../../assets/stylesheets/styled-components/Global';
 import { TestContext } from '../../../providers/TestProvider';
-
 // STYLES
 import './PuppeteerAction.scss';
 
@@ -20,7 +19,7 @@ const PuppeteerAction = ({ index, itIndex }: any) => {
     handleActionText,
   }: any = useContext(TestContext);
 
-  // options that the user will see and choose
+  // Available Puppeteer actions
   const actionsList = [
     'page.keyboard.press',
     'page.keyboard.type',
@@ -35,8 +34,8 @@ const PuppeteerAction = ({ index, itIndex }: any) => {
     (action) => <option key={action} value={action}>{action}</option>,
   );
 
-  // the object holding all the parameters
-  const actionObjects = {
+  // Conditionally rendered user inputs based on user selection of Puppeteer action
+  const actionObjects: any = {
     // keyboard.press(key)// >>> takes an argument of a key that you press (ArrowLeft, ArrowUp)
     'page.keyboard.press': { selector: false, key: true, text: false },
     // (text[, options]) >>> takes an argument of your input value
@@ -45,11 +44,10 @@ const PuppeteerAction = ({ index, itIndex }: any) => {
     'page.focus': { selector: true, key: false, text: false },
     // page.click(selector[, options] >>> takes argument of ID, Class, Type, Attribute
     'page.click': { selector: true, key: false, text: false },
-    // page.type(selector, text[, options]
+    // page.type(selector, text[, options] >>> takes argument 
     'page.type': { selector: true, key: false, text: true },
-    // '$eval: getLength' -> tell the user (more experienced Puppeteer user) that we will
-    // be writing the callback for them
   };
+
   // ***** Local select state handler *****
   const handleActionSelect = (value: any): void => {
     handleActions(value, index, itIndex);
