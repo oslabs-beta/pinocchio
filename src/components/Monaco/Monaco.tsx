@@ -45,6 +45,8 @@ const Monaco = () => {
     colorDecorators: true,
     wrappingIndent: "indent",
     automaticLayout: true,
+    lineDecorationsWidth: "1px",
+    lineNumbersMinChars: 3,
   };
 
   const editorDidMount = (editor) => {

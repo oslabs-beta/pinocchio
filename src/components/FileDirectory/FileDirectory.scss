@@ -11,13 +11,13 @@
   
   #fileTreeCont {
     padding: 0 .5em;
-    margin: .5em;
+    margin: .5em;// .5em 0em .5em;
     border: 1px solid $red;
     border-radius: 3px;
     box-shadow: 1px 1px 5px $red;
     // putting height here makes it automatically
     // fill to it's parent container
-    height: 75vh;
+    height: 74vh;
     overflow-y: auto;
 }
 
