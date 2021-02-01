@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { FileContext } from "../../providers/FileProvider";
 import { TestContext } from "../../providers/TestProvider";
 import GenerateTest from "../TestCreation/GenerateTest";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // allow communicaiton between react app and electron renderer
 const { remote } = window.require("electron");
@@ -17,7 +19,7 @@ const SideNavbar = () => {
   // On export testFile success - do something - toggle to true
   const [exportSuccess, setExportSuccess] = useState(false);
   const { test, URL } = useContext(TestContext);
-  const { handleToggleTree, myPath, fileTreeHandler } = useContext(FileContext);
+  const { handleToggleTree, myPath, fileTreeHandler, testFileName} = useContext(FileContext);
 
   const filePathMap: any = {};
   const generateFileTree = (directory: string) => {
@@ -79,7 +81,7 @@ const SideNavbar = () => {
       electronFs.mkdirSync(myPath + "/__tests__");
     }
     electronFs.writeFileSync(
-      myPath + `/__tests__/pinocchio.test.js`,
+      myPath + `/__tests__/${testFileName}.js`,
       GenerateTest(test, URL)
     );
   };
@@ -107,6 +109,18 @@ const SideNavbar = () => {
           onClick={() => {
             exportTestFile();
             fileTreeHandler(generateFileTree(myPath));
+            toast.info('Success!', {
+              position: "top-right",
+              autoClose: 2500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              style: {
+                backgroundColor: '#099cd7'
+              }
+              });
           }}
         >
           Export

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import {
-  describeInterface,
-  itInterface,
-  puppeteerActionInterface,
-  assertionInterface,
-} from '../utils/testTypes';
+// import {
+//   describeInterface,
+//   itInterface,
+//   puppeteerActionInterface,
+//   assertionInterface,
+// } from '../utils/testTypes';
 
 export const TestContext = React.createContext(null);
 
-const TestProvider = (props) => {
+const TestProvider = ({ children }: any) => {
   // conversation to have:
   // determine if assertions, actions, pretty much everything
   // if it should be an object or array.
@@ -19,37 +19,48 @@ const TestProvider = (props) => {
   // But if we do objects, it can get a little weird with how we create those objects initially
   const [test, setTest] = useState({
     dDescription: '',
-    nestedIts: { 0: {
+    nestedIts: {
+      0: {
         itDescription: '',
-
-        assertions: {}, 
-        actions: { 0: { action: '', selector: '', text: '', key: ''}},
+        assertions: {}, // ? can this be moved below actions?
+        actions: {
+          0: {
+            action: '',
+            selector: '',
+            text: '',
+            key: '',
+          },
+        },
       },
     },
   });
-  
+
   const [URL, setURL] = useState('');
 
-  const handleResetState = () => {
+  const handleResetState = (): void => {
     setTest({
       dDescription: '',
-      nestedIts: { 0: {
+      nestedIts: {
+        0: {
           itDescription: '',
-  
           assertions: {},
-          actions: { 0: { action: '', selector: '', text: '', key: ''}},
+          actions: {
+            0: {
+              action: '', selector: '', text: '', key: '',
+            },
+          },
         },
       },
     });
   };
-  const handleDBlockDescription = (dBlockDescription: string) => {
+  const handleDBlockDescription = (dBlockDescription: string): void => {
     setTest({ ...test, dDescription: dBlockDescription });
   };
 
   const handleItBlockDescription = (
     itBlockDesription: string,
     itIndex: number,
-  ) => {
+  ): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -57,14 +68,13 @@ const TestProvider = (props) => {
         [itIndex]: {
           ...test.nestedIts[itIndex],
           itDescription: itBlockDesription,
-        }
-        
+        },
       },
     });
   };
-  
+
   // ********************* ACTIONS *********************
-  const handleActions = (newAction: string, actionIndex: number, itIndex: number) => {
+  const handleActions = (newAction: string, actionIndex: number, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -73,14 +83,19 @@ const TestProvider = (props) => {
           ...test.nestedIts[itIndex],
           actions: {
             ...test.nestedIts[itIndex].actions,
-            [actionIndex]: { action: newAction, selector: '', text: '', key: '' },
+            [actionIndex]: {
+              action: newAction,
+              selector: '',
+              text: '',
+              key: '',
+            },
           },
         },
       },
     });
   };
 
-  const handleActionSelector = (newSelector: string, actionIndex: number, itIndex: number) => {
+  const handleActionSelector = (newSelector: string, actionIndex: number, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -89,15 +104,17 @@ const TestProvider = (props) => {
           ...test.nestedIts[itIndex],
           actions: {
             ...test.nestedIts[itIndex].actions,
-            [actionIndex]: { ...test.nestedIts[itIndex].actions[actionIndex], selector: newSelector },
+            [actionIndex]: {
+              ...test.nestedIts[itIndex].actions[actionIndex],
+              selector: newSelector,
+            },
           },
         },
       },
     });
   };
 
-  
-  const handleActionKey = (newKey: string, actionIndex: number, itIndex: number) => {
+  const handleActionKey = (newKey: string, actionIndex: number, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -113,7 +130,7 @@ const TestProvider = (props) => {
     });
   };
 
-  const handleActionText = (newText: string, actionIndex: number, itIndex: number) => {
+  const handleActionText = (newText: string, actionIndex: number, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -129,8 +146,7 @@ const TestProvider = (props) => {
     });
   };
 
-
-  const handleAssertionsChoice = (newAssert: string, itIndex: number) => {
+  const handleAssertionsChoice = (newAssert: string, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -139,14 +155,14 @@ const TestProvider = (props) => {
           ...test.nestedIts[itIndex],
           assertions: {
             ...test.nestedIts[itIndex].assertions,
-            assertion: newAssert
+            assertion: newAssert,
           },
         },
       },
     });
   };
 
-  const handleAssertionsUserInput = (newAssertInput: string, itIndex: number) => {
+  const handleAssertionsUserInput = (newAssertInput: string, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -162,7 +178,7 @@ const TestProvider = (props) => {
     });
   };
 
-  const handleCallbackChoice = (newAssertCB: string, itIndex: number) => {
+  const handleCallbackChoice = (newAssertCB: string, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -178,7 +194,7 @@ const TestProvider = (props) => {
     });
   };
 
-  const handleSelectionChoice = (newAssertSel: string, itIndex: number) => {
+  const handleSelectionChoice = (newAssertSel: string, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -187,18 +203,18 @@ const TestProvider = (props) => {
           ...test.nestedIts[itIndex],
           assertions: {
             ...test.nestedIts[itIndex].assertions,
-              selector: newAssertSel,
+            selector: newAssertSel,
           },
         },
       },
     });
   };
 
-  const handleTest = (updatedTest: any) => {
+  const handleTest = (updatedTest: any): void => {
     setTest(updatedTest);
   };
-/***************************************************************************** */
-  const addAssertion = (itIndex: number) => {
+  // ***************************************************************************** //
+  const addAssertion = (itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
@@ -213,35 +229,44 @@ const TestProvider = (props) => {
     });
   };
 
-  const addPuppeteerAction = (index: number, itIndex: number) => {
+  const addPuppeteerAction = (index: number, itIndex: number): void => {
     setTest({
       ...test,
       nestedIts: {
         ...test.nestedIts,
         [itIndex]: {
           ...test.nestedIts[itIndex],
-         actions: {
-           ...test.nestedIts[itIndex].actions,
-            [index]: { action: '', selector: '', text: '', key: ''}   
+          actions: {
+            ...test.nestedIts[itIndex].actions,
+            [index]: {
+              action: '',
+              selector: '',
+              text: '',
+              key: '',
+            },
+          },
         },
       },
-    },
-  });
-};
+    });
+  };
 
-const addItBlock = (index: number) => {
-  setTest({
-    ...test,
-    nestedIts: {
-      ...test.nestedIts,
-      [index]: {
-      itDescription: '',
-      assertions: {}, 
-      actions: { 0: { action: '', selector: '', text: '', key: '' } },
-      }
-    },
-  });
-};
+  const addItBlock = (index: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [index]: {
+          itDescription: '',
+          assertions: {},
+          actions: {
+            0: {
+              action: '', selector: '', text: '', key: '',
+            },
+          },
+        },
+      },
+    });
+  };
   return (
     <TestContext.Provider
       value={{
@@ -265,7 +290,7 @@ const addItBlock = (index: number) => {
         setURL,
       }}
     >
-      {props.children}
+      {children}
     </TestContext.Provider>
   );
 };
