@@ -1,0 +1,27 @@
+@import "../../assets/stylesheets/fonts.scss";
+@import "../../assets/stylesheets/colors.scss";
+
+#monacoCont {
+  // bug with toggling filetree, flex grow works, but
+  // after retoggling tree back to dom, flew shrink does not work
+  // and monaco keeps the 50% flex width from only two child elements in flex
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  // width: 100%;
+  // margin-left: 10em;
+  // position: fixed;
+  // width: 30%;
+}
+
+#headerME {
+  padding-bottom: 1em;
+}
+
+#testME {
+  border: solid 2px $burntOrange;
+  box-shadow: 1px 1px 10px $burntOrange;
+  margin: 0em 2em 0em 1em;
+  height: 70%;
+  border-radius: 3px;
+}

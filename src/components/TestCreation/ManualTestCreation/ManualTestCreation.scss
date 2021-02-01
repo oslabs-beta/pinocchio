@@ -1,0 +1,30 @@
+@import "../../../assets/stylesheets/colors.scss";
+@import "../../../assets/stylesheets/fonts.scss";
+
+// Move to flex instead of %s
+
+#testCont {
+  flex: 2 2 70%;
+
+  // width: 100%;
+  padding: 0 0.5em;
+  height: 80vh;
+}
+
+#newButtonCont {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  padding: 1em;
+}
+
+#exportButtonCont {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding-top: 1em;
+}
+
+#manTestHeader {
+  padding-bottom: 0.5em;
+}
