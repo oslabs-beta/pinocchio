@@ -1,4 +1,6 @@
+/* eslint-disable import/no-unresolved */ // * Be careful
 // REACT LIBRARIES
+// eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -123,8 +125,11 @@ const SideNavbar = () => {
           role="button"
           tabIndex={0}
           onClick={() => {
+            // Export user created test
             exportTestFile();
+            // Update UI with new file tree
             fileTreeHandler(generateFileTree(myPath));
+            // Throw notification
             toast.info('Success!', {
               position: 'top-right',
               autoClose: 2500,

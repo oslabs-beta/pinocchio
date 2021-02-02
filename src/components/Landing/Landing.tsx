@@ -41,7 +41,7 @@ const Landing = () => {
     const filterArray: Array<string> = electronFs
       .readdirSync(directory)
       .filter(
-        (element: string) => element !== 'node_modules' && element[0] !== '.'
+        (element: string) => element !== 'node_modules' && element[0] !== '.',
       );
 
     const fileArray: Array<fileInterface> = filterArray.map(
@@ -97,7 +97,7 @@ const Landing = () => {
         properties: ['openDirectory'],
         message: 'Please choose your project folder',
       })
-      .then((filePath) => {
+      .then((filePath: any) => {
         // extract directory file path, send it to global state and create a file tree from it
         mainDirectory = filePath.filePaths[0];
         fileTreeHandler(generateFileTree(mainDirectory));
@@ -108,7 +108,7 @@ const Landing = () => {
       .then(() => {
         if (myPath) handleResetState();
       })
-      .catch((err: any) => console.log(err));
+      .catch((err: any) => console.log(err)); // ! @babel/plugin-proposal-throw-expressions
   };
 
   // conditional rendering of homepage via react router
@@ -118,7 +118,7 @@ const Landing = () => {
       <div id="titleCont">
         <Title id="landingHeaders">Welcome to Pinocchio</Title>
         <div id="imgCont">
-          <img src={Logo} id="svgLogo" />
+          <img alt="pinocchio logo" src={Logo} id="svgLogo" />
         </div>
         <SubTitle id="landingHeaders">A Puppeteer Test GUI</SubTitle>
       </div>
@@ -130,7 +130,7 @@ const Landing = () => {
             <Input
               type="text"
               value={URL}
-              onChange={(e) => {
+              onChange={(e: { target: { value: any; }; }) => {
                 setURL(e.target.value);
               }}
               placeholder="Please Enter Your Application's URL"
@@ -146,11 +146,12 @@ const Landing = () => {
           </div>
         </div>
         <div>
-          {myPath && <Link to='/home'>
-        <Button>Go Back</Button>
-        </Link>}
-        {/* </div> */}
-      </div>
+          {myPath && (
+          <Link to="/home">
+            <Button>Go Back</Button>
+          </Link>
+          )}
+        </div>
       </div>
     </div>
   );

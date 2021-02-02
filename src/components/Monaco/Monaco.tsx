@@ -24,7 +24,6 @@ const Monaco = () => {
     grabFileContents(chosenFile);
   }, [chosenFile, fileTree]);
 
-  // From spearmint component EditorView.jsx
   const options: any = {
     wordWrap: 'bounded',
     minimap: { enabled: false },
@@ -43,11 +42,6 @@ const Monaco = () => {
       <div id="testME">
         <MonacoEditor
           height="74vh"
-          // id="testME"
-          // bug with toggling filetree, flex grow works, but
-          // after retoggling tree back to dom, flew shrink does not work
-          // and monaco keeps the 50% flex width from only two child elements in flex
-          // width="30%"
           language="javascript"
           theme="light-dark"
           options={options}
