@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const FileContext = React.createContext(null); // ! Throwing an error because of null
+export const FileContext = React.createContext(null);
 
 const FileProvider = ({ children }: any) => {
   const [myPath, setMyPath] = useState('');
@@ -9,21 +9,15 @@ const FileProvider = ({ children }: any) => {
   const [testFileName, setTestFileName] = useState('');
   const [toggleTree, setToggleTree] = useState(true);
 
-  // lifecycle methods --> useEffect
 
-  // any other functions/handlers we need to interact with our state
   const pathHandler = (pathValue: string): void => {
-    // eslint-disable-next-line no-console
-    // console.log("hitting provider handler");
     setMyPath(pathValue);
   };
   const fileTreeHandler = (tree: any): void => {
-    // console.log("hitting tree handler");
     setFileTree(tree);
   };
 
   const chosenFileHandler = (chosen: string): void => {
-    // console.log("hitting chosen handler");
     setChosenFile(chosen);
   };
 
