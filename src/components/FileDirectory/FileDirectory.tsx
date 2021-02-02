@@ -8,15 +8,16 @@ import { fileInterface } from '../../utils/fileTypes';
 //  STYLES
 import './FileDirectory.scss';
 
-//
+// Render file tree of uploaded directory on homepage
 const FileDirectory = () => {
   const { myPath, fileTree, chosenFileHandler }: any = useContext(FileContext);
 
   // Used with useEffect to update opened and closed folders after first render
-  const [isFolderOpen, setFolderOpen] = useState({});
-  const folderOpenObj = {};
+  const initialState: {[key: string]: boolean} = {};
+  const [isFolderOpen, setFolderOpen] = useState(initialState);
 
   // Keeps track of opened closed folders upon first render
+  const folderOpenObj: {[key: string]: boolean} = {};
 
   // handler to toggle whether a folder is opened or closed
   const toggleOpenFolder = (fileName: string): void => {
@@ -28,6 +29,7 @@ const FileDirectory = () => {
   useEffect(() => {
     setFolderOpen(folderOpenObj);
   }, []);
+
   // Extract name of file directory/project
   const idx: number = myPath.lastIndexOf('/');
   const projectName: string = myPath.substring(idx + 1);
