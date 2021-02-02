@@ -43,6 +43,9 @@ function createWindow() {
     // if not in development mode, do the following...
     mainWindow.loadURL(
       url.format({
+        // SPEARMINT
+    // isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
+  // );
         pathname: path.join(__dirname, 'index.html'), // ? This path may be incorrect
         protocol: 'file:',
         slashes: true,

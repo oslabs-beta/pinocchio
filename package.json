@@ -16,7 +16,8 @@
     "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
     "build:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
     "build:react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
-    "build": "npm run build:electron && npm run build:react",
+    "build": "NODE_ENV=production npm run build:electron && npm run build:react",
+    "release": "npm run react-build && electron-builder --publish=always",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -29,11 +30,14 @@
       "node_modules/",
       "package.json"
     ],
-    "productName": "example",
-    "appId": "com.example.app",
+    "productName": "pinocchio",
+    "appId": "com.electron.pinocchio",
     "directories": {
       "output": "dist"
-    }
+    },
+    "mac": {
+    "category": "public.app-category.developer-tools"
+  }
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
