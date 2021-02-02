@@ -1,23 +1,10 @@
+// eslint-disable-next-line no-use-before-define
 import React, { useState } from 'react';
-// import {
-//   describeInterface,
-//   itInterface,
-//   puppeteerActionInterface,
-//   assertionInterface,
-// } from '../utils/testTypes';
 
 export const TestContext = React.createContext(null);
 
 const TestProvider = ({ children }: any) => {
-  // conversation to have:
-  // determine if assertions, actions, pretty much everything
-  // if it should be an object or array.
-  // starting off, array could be more simple, but the further we get,
-  // what if a user wants to delete/cancel one of these blocks?
-  // we would have to re evaluate all of the indexes
-  // You don't have to necessarily do that with an object, you only refer to the key.
-  // But if we do objects, it can get a little weird with how we create those objects initially
-  const [test, setTest] = useState({
+  const initialState: {[key: string]: any, [key: number]: any} = {
     dDescription: '',
     nestedIts: {
       0: {
@@ -33,7 +20,8 @@ const TestProvider = ({ children }: any) => {
         },
       },
     },
-  });
+  };
+  const [test, setTest] = useState(initialState);
 
   const [URL, setURL] = useState('');
 
@@ -95,6 +83,7 @@ const TestProvider = ({ children }: any) => {
     });
   };
 
+  // eslint-disable-next-line max-len
   const handleActionSelector = (newSelector: string, actionIndex: number, itIndex: number): void => {
     setTest({
       ...test,

@@ -1,5 +1,10 @@
+/* eslint-disable import/no-unresolved */ // * Be careful
+// REACT LIBRARIES
+// eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
+// GLOBAL STATE PROVIDERS
 import { TestContext } from '../../../providers/TestProvider';
+// REACT COMPONENTS
 import PuppeteerAction from '../PuppeteerBlock/PuppeteerAction';
 import AssertionBlock from '../AssertionBlock/AssertionBlock';
 // STYLES
@@ -22,20 +27,8 @@ const ItBlock = ({ itIndex }: any) => {
   const thisIt = test.nestedIts[itIndex];
   const newPuppeteerIndex = Object.keys(thisIt.actions).length;
 
-  // start with number
-  // for how many numbres we iterate and render the puppeteer action componeent
   const puppeteerBlockArray: Array<any> = [];
   Object.keys(thisIt.actions).forEach((key: string) => puppeteerBlockArray.push(<PuppeteerAction key={`action-${key}`} index={key} itIndex={itIndex} />));
-
-  // for (let key in test.nestedIts[itIndex].actions) {
-  //   puppeteerBlockArray.push(
-  //     <PuppeteerAction
-  //       key={`action-${key}`}
-  //       index={key}
-  //       itIndex={itIndex}
-  //     />
-  //   );
-  // }
 
   let assertionButton;
 

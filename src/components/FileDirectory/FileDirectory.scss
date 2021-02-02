@@ -5,8 +5,6 @@
   flex: 1 1 30%;
   padding: 0 .5em;
   height: 100%;
-  // width: 15%;
-  // overflow-y: auto;
   }
   
   #fileTreeCont {
@@ -17,13 +15,12 @@
     box-shadow: 1px 1px 5px $red;
     // putting height here makes it automatically
     // fill to it's parent container
-    height: 75vh;
+    height: 74vh;
     overflow-y: auto;
 }
 
 #fileName {
   font-family: $raleway;
-  // border-bottom: 1px solid $babyBlue;
   padding-bottom: .5em;
 }
 
@@ -41,7 +38,6 @@
   transition: .25s;
   border-bottom: .25px solid $darkRed;
   cursor: pointer;  
-  // font-weight: bold;
 }
 
 // To apply styling to button while selected
@@ -69,8 +65,6 @@
   color: $red;
   background-color: white;
   transition: .25s;
-  // border-bottom: .5px solid $red;
-  // border-top: .5px solid $red;
 }
 
 // To apply styling to button while selected
@@ -83,9 +77,4 @@
   background-color: $red;
   color:white;
   transition: .25s;
-}
-
-ul {
-  // list-style-type: none;
-  // color: $babyBlue;
 }
