@@ -9,7 +9,6 @@
   overflow-y: auto;
   height: 90%;
   margin-top: .5em;
-  // can obv change, was just fun looking
   box-shadow: 1px 1px 10px $lightBlue; 
 }
 
@@ -24,9 +23,7 @@
 
 #describeForm {
   justify-content: center;
-  // justify-content: flex-start;
   padding-top: 1em;
-  // width: 100%;
 }
 
 #describeInput {

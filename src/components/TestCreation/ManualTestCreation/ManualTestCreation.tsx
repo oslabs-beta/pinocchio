@@ -1,5 +1,7 @@
 // REACT LIBRARIES
+// eslint-disable-next-line no-use-before-define
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import DescribeBlock from '../DesribeBlock/DescribeBlock';
 // STYLES
 import './ManualTestCreation.scss';

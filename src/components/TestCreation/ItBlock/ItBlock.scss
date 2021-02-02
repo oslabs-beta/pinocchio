@@ -7,7 +7,6 @@
   border-radius: 3px;
   padding: 1em;
   margin: 2em 1em;
-  // can obv change, was just fun looking
   box-shadow: 1px 1px 5px $burntOrange;
 }
 
@@ -15,17 +14,9 @@
   width: 50%;
 }
 
-#itButton {
-  // width: 25%;
-  // margin: 0em 2em;
-  // flex: 1 1 0;
-}
-
 #itForm {
   justify-content: center;
-  // justify-content: flex-start;
   padding-top: 1em;
-  // width: 100%;
 }
 
 #itButtonCont {
@@ -33,5 +24,4 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  // width: 50%;
 }

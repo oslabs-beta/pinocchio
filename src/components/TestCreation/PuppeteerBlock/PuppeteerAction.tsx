@@ -1,4 +1,5 @@
 // REACT LIBRARIES
+// eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
 import {
   Form,
@@ -8,6 +9,7 @@ import {
   SubHeader,
 } from '../../../assets/stylesheets/styled-components/Global';
 // GLOBAL STATE PROVIDER
+// eslint-disable-next-line import/no-unresolved
 import { TestContext } from '../../../providers/TestProvider';
 // STYLES
 import './PuppeteerAction.scss';
@@ -38,15 +40,15 @@ const PuppeteerAction = ({ index, itIndex }: any) => {
 
   // Conditionally rendered user inputs based on user selection of Puppeteer action
   const actionObjects: any = {
-    // keyboard.press(key)// >>> takes an argument of a key that you press (ArrowLeft, ArrowUp)
+    // page.keyboard.press(key)// >>> takes an argument of a key that you press (ArrowLeft, ArrowUp)
     'page.keyboard.press': { selector: false, key: true, text: false },
-    // (text[, options]) >>> takes an argument of your input value
+    // page.keyboard.type(text[, options]) >>> takes an argument of your input value
     'page.keyboard.type': { selector: false, key: false, text: true },
     // page.focus(selector) >>> takes arg of ID, Class, Type, Attribute; focuses on a DOM element
     'page.focus': { selector: true, key: false, text: false },
     // page.click(selector[, options] >>> takes argument of ID, Class, Type, Attribute
     'page.click': { selector: true, key: false, text: false },
-    // page.type(selector, text[, options] >>> takes argument 
+    // page.type(selector, text[, options] >>> takes argument of user input
     'page.type': { selector: true, key: false, text: true },
   };
 
@@ -106,7 +108,6 @@ const PuppeteerAction = ({ index, itIndex }: any) => {
   );
 
   return (
-    // actionsObject[selectionAction].callback ? <input  callacbakc information/>
     <div id="paCont">
       <SubHeader id="paSubHeader">Puppeteer Action</SubHeader>
       <div id="selectPA">

@@ -1,4 +1,6 @@
+/* eslint-disable import/no-unresolved */ // * Be careful
 // REACT LIBRARIES
+// eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
 // GLOBAL STATE PROVIDERS
 import { TestContext } from '../../../providers/TestProvider';
@@ -24,6 +26,7 @@ const AssertionBlock = ({ itIndex }: any) => {
   const thisAssertion = test.nestedIts[itIndex].assertions;
 
   const assertionArrays = ['to.be.equal', 'to.not.equal'];
+
   // $eval puppeteer action callback choices
   const evalCallbacks = ['getValue', 'getLength', 'getInnerText'];
 

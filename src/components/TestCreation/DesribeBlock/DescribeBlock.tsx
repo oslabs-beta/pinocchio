@@ -1,4 +1,6 @@
+/* eslint-disable import/no-unresolved */ // * Be careful
 // REACT LIBRARIES
+// eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
 // GLOBAL STATE PROVIDERS
 import { TestContext } from '../../../providers/TestProvider';
@@ -22,9 +24,6 @@ const DescribeBlock = () => {
 
   const itArray: any = [];
   Object.keys(test.nestedIts).forEach((key: any) => itArray.push(<ItBlock key={`it-${key}`} itIndex={key} />));
-  // for (let key in test.nestedIts) {
-  //   itArray.push(<ItBlock key={`it-${key}`} itIndex={key} />);
-  // }
   return (
     <div id="describeCont">
       <SubHeader id="getStartedTestHeader">Get Started</SubHeader>
@@ -50,7 +49,7 @@ const DescribeBlock = () => {
         <Button type="button" onClick={() => addItBlock(newItIndex)}>
           +It Statement
         </Button>
-        {/* <Button type="button">+Describe block:</Button> */}
+        {/* <Button type="button">+Describe block:</Button> */ /* For multiple Describe blocks */}
       </div>
     </div>
   );
