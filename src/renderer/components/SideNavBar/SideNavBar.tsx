@@ -32,14 +32,14 @@ const SideNavbar = () => {
         (element: string) => element !== "node_modules" && element[0] !== "."
       );
 
-    const fileArray: Array<fileInterface> = filterArray.map(
+    const fileArray = filterArray.map(
       (fileName: string) => {
         // remove backslashes from path of the directory and replace with forward (for PC)
         let filePath: string = directory.replace(/\\/g, "/");
         // create a filepath to the current file/folder being iterated over
         filePath = `${filePath}/${fileName}`;
         // returned after each iteration: The path to the current file/folder, file name, nested files
-        const file: fileInterface = {
+        const file: any = {
           filePath,
           fileName,
           files: [],
@@ -53,7 +53,7 @@ const SideNavbar = () => {
             // use recursion to assign all nested files/folders arbitrarily deep to current file.files
             file.files = generateFileTree(file.filePath);
             // if any files in dir have appropriate file ext, save name + filepath to filePathMap
-            file.files.forEach((nestedFile: fileInterface) => {
+            file.files.forEach((nestedFile: any) => {
               // ? applied to all nested files?
               const javaScriptFileTypes: Array<string> = [
                 "js",

@@ -3,32 +3,34 @@ import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
+// import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
 // type check mainwindow to either be null or an instantiation of BrowserWindow object
-let mainWindow: BrowserWindow | null;
+// let mainWindow: BrowserWindow | null;
+let mainWindow;
 
 // eslint-disable-next-line no-console
 console.log('electron version', process.versions.electron);
 
 // when electron is initialized, install react dev tools
-app.whenReady().then(() => {
-  installExtension(REACT_DEVELOPER_TOOLS)
+// app.whenReady().then(() => {
+  // installExtension(REACT_DEVELOPER_TOOLS)
     // eslint-disable-next-line no-console
-    .then((name: string) => console.log(`Added Extension:  ${name}`))
+    // .then((name) => console.log(`Added Extension:  ${name}`))
     // eslint-disable-next-line no-console
-    .catch((err: any) => console.log('An error occurred: ', err));
-});
+    // .catch((err) => console.log('An error occurred: ', err));
+// });
 
 function createWindow() {
   // create a new instance of BrowserWindow w/ specifications on the chromium browser itself
   mainWindow = new BrowserWindow({
-    minWidth: 600,
-    minHeight: 400,
+    minWidth: 650,
+    minHeight: 600,
     height: 800,
     width: 800,
     title: 'pinocchio',
     // icon
+    icon: path.join(__dirname, 'build/icon.png'),
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
@@ -43,10 +45,11 @@ function createWindow() {
     // if not in development mode, do the following...
     mainWindow.loadURL(
       url.format({
+        // win.loadFile('index.html')
         // SPEARMINT
     // isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
   // );
-        pathname: path.join(__dirname, 'index.html'), // ? This path may be incorrect
+        pathname:  `file://${path.join(__dirname, 'index.html')}`, // ? This path may be incorrect
         protocol: 'file:',
         slashes: true,
       }),

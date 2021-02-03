@@ -2,15 +2,15 @@ const path = require('path');
 
 module.exports = {
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   devtool: 'source-map',
-  entry: './electron/main.ts',
+  entry: './public/electron.js',
   target: 'electron-main',
   module: {
     rules: [
       {
-        test: /\.(js|ts|tsx)$/,
+        test: /\.(js|ts|tsx|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -23,6 +23,6 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: 'main.js',
   },
 };

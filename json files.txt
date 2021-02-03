@@ -1,0 +1,7 @@
+  //   "mac": {
+  //   "category": "public.app-category.developer-tools"
+  // },
+
+      "icon": "./build/pinocchio.icns"
+      "output": "dist",
+    "babel-loader": "^8.1.0",

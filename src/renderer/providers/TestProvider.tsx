@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 //   itInterface,
 //   puppeteerActionInterface,
 //   assertionInterface,
-// } from '../utils/testTypes';
+// } fro../renderer/utils/testTypespes';
+const testMeAdam: any = {};
 
-export const TestContext = React.createContext(null);
+export const TestContext = React.createContext(testMeAdam);
 
 const TestProvider = ({ children }: any) => {
   // conversation to have:
