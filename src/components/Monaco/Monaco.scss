@@ -1,0 +1,20 @@
+@import "../../assets/stylesheets/fonts.scss";
+@import "../../assets/stylesheets/colors.scss";
+
+#monacoCont {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  height: 80vh;
+}
+
+#headerME {
+  padding-bottom: .9em;
+}
+
+#testME {
+  border: solid 2px $burntOrange;
+  box-shadow: 1px 1px 10px $burntOrange;
+  margin: 0em 2em 0em 1em;
+  border-radius: 3px;
+}

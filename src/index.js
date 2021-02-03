@@ -3,8 +3,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './app.tsx';
+import App from './App.tsx';
 import FileProvider from './providers/FileProvider';
+import TestProvider from './providers/TestProvider';
 
 const main = document.createElement('div');
 document.body.appendChild(main);
@@ -12,8 +13,11 @@ document.body.appendChild(main);
 ReactDOM.render(
   <BrowserRouter>
     <FileProvider>
-      <App />
+      <TestProvider>
+        <App />
+      </TestProvider>
     </FileProvider>
   </BrowserRouter>,
   main,
+  // document.querySelector('root')
 );

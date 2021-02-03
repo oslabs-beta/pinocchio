@@ -1,0 +1,27 @@
+
+@import '../../../assets/stylesheets/colors.scss';
+@import '../../../assets/stylesheets/fonts.scss';
+
+#itCont {
+  border: solid 2px $burntOrange;
+  border-radius: 3px;
+  padding: 1em;
+  margin: 2em 1em;
+  box-shadow: 1px 1px 5px $burntOrange;
+}
+
+#itInput {
+  width: 50%;
+}
+
+#itForm {
+  justify-content: center;
+  padding-top: 1em;
+}
+
+#itButtonCont {
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}

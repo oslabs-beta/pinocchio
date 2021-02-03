@@ -23,14 +23,17 @@ app.whenReady().then(() => {
 function createWindow() {
   // create a new instance of BrowserWindow w/ specifications on the chromium browser itself
   mainWindow = new BrowserWindow({
-    // TODO: Harlan: We can create a minWidth and minHeight
-    width: 800,
+    minWidth: 600,
+    minHeight: 400,
     height: 800,
+    width: 800,
     title: 'pinocchio',
+    // icon
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
     },
+    backgroundColor: '#ffffff',
   });
   // if in development mode, launch electorn app at localhost:4000 and immediately open dev tools
   if (process.env.NODE_ENV === 'development') {
@@ -40,7 +43,7 @@ function createWindow() {
     // if not in development mode, do the following...
     mainWindow.loadURL(
       url.format({
-        pathname: path.join(__dirname, 'index.html'), // ? This path may be incorrect
+        pathname: path.join(__dirname, '../index.html'), // ? This path may be incorrect
         protocol: 'file:',
         slashes: true,
       }),

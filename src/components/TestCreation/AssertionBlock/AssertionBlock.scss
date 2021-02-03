@@ -1,0 +1,37 @@
+
+@import '../../../assets/stylesheets/colors.scss';
+@import '../../../assets/stylesheets/fonts.scss';
+
+#assertCont {
+  border: solid 2px $yellow;
+  border-radius: 3px;
+  padding: 1em;
+  margin: 1em 0em;
+  box-shadow: 1px 1px 5px $yellow;
+}
+
+#assertForm{
+  justify-content: center;
+}
+
+#formCont {
+  display: flex;
+  flex-direction: column;
+}
+
+#selectAssertCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1em;
+}
+
+#selectAssert {
+  margin: 1em;
+}
+
+#selectRow {
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: center;
+}
