@@ -1,57 +1,91 @@
 @import '../../assets/stylesheets/fonts.scss';
 @import '../../assets/stylesheets/colors.scss';
 
-
-// Needs work - differentiate between files and folders here
-// Move to flex instead of %s
-#fileTreeCont {
-  width: 30%;
-}
-
-#treeCont {
-  padding-left: .5em;
+#fileTreeMainCont {
+  flex: 1 1 30%;
+  padding: 0 .5em;
+  height: 100%;
+  // width: 15%;
+  // overflow-y: auto;
+  }
+  
+  #fileTreeCont {
+    padding: 0 .5em;
+    margin: .5em;// .5em 0em .5em;
+    border: 1px solid $red;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px $red;
+    // putting height here makes it automatically
+    // fill to it's parent container
+    height: 74vh;
+    overflow-y: auto;
 }
 
 #fileName {
-  font-family: $lora;
-  border-bottom: 1px solid $babyBlue;
+  font-family: $raleway;
+  // border-bottom: 1px solid $babyBlue;
   padding-bottom: .5em;
 }
 
 #filesButtonFolder {
+  text-align: start;
+  width: 100%;
   font-family: $montserrat;
-  font-size: 1em;
-  padding: .5em;
+  border-radius: 3px;
+  font-size: .75em;
+  margin: .25em 0em;
+  padding: .25em;
   border: none;
-  color: $babyBlue;
+  color: $darkRed;
   background-color: white;
   transition: .25s;
-  border-bottom: .25px solid $babyBlue;  
+  border-bottom: .25px solid $darkRed;
+  cursor: pointer;  
+  // font-weight: bold;
+}
+
+// To apply styling to button while selected
+#filesButtonFolder:active, #filesButtonFolder:focus {
+  background-color: $darkRed;
+  color:white;
 }
 
 #filesButtonFolder:hover {
-  background-color: $babyBlue;
+  background-color: $darkRed;
   color:white;
   transition: .25s;
 }
 #filesButtonFile {
+  margin: .25em 0em;
+  text-align: start;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;  
   font-family: $montserrat;
-  font-size: 1em;
-  padding: 1em;
+  font-size: .65em;
+  padding: .25em;
+  padding-left: 1.5em;
   border: none;
-  color: $lightBlue;
+  color: $red;
   background-color: white;
   transition: .25s;
-  // border-bottom: .25px solid $babyBlue;
+  // border-bottom: .5px solid $red;
+  // border-top: .5px solid $red;
+}
+
+// To apply styling to button while selected
+#filesButtonFile:active, #filesButtonFile:focus {
+  background-color: $red;
+  color:white;
 }
 
 #filesButtonFile:hover {
-  background-color: $lightBlue;
+  background-color: $red;
   color:white;
   transition: .25s;
 }
 
 ul {
-  list-style-type: none;
+  // list-style-type: none;
   // color: $babyBlue;
 }

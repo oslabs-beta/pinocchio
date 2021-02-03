@@ -5,9 +5,28 @@
 #describeCont {
   border: solid 2px $babyBlue;
   border-radius: 3px;
-  padding: 1em;
+  padding-top: 1em;
+  overflow-y: auto;
+  height: 90%;
+  margin-top: .5em;
   // can obv change, was just fun looking
-  box-shadow: 1px 1px 10px $lightBlue;
+  box-shadow: 1px 1px 10px $lightBlue; 
+}
+
+#getStartedTestHeader {
+  padding-bottom: .5em;
+  border-bottom: 1px solid $babyBlue;
+}
+
+#getStartedSection {
+  padding: 1em 0em;
+}
+
+#describeForm {
+  justify-content: center;
+  // justify-content: flex-start;
+  padding-top: 1em;
+  // width: 100%;
 }
 
 #describeInput {
@@ -15,8 +34,13 @@
 }
 
 #describeButtonCont {
-  padding: 1em;
+  padding: .5em;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+#spanNumber {
+  font-family: $montserrat;
+  font-size: .75em;
 }

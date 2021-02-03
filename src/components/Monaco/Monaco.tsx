@@ -1,59 +1,78 @@
-import React, {useState, useEffect, useContext} from 'react';
-import MonacoEditor from 'react-monaco-editor';
-import { Header } from '../../assets/stylesheets/styled-components/Global';
-import { FileContext } from '../../providers/FileProvider';
+import React, { useState, useEffect, useContext } from "react";
+import MonacoEditor from "react-monaco-editor";
+import { Header } from "../../assets/stylesheets/styled-components/Global";
+import { FileContext } from "../../providers/FileProvider";
 
 // import { editor } from 'monaco-editor';
-const { remote } = window.require('electron');
-const electronFs = remote.require('fs');
+const { remote } = window.require("electron");
+const electronFs = remote.require("fs");
 
 // STYLES
-import './Monaco.scss'
+import "./Monaco.scss";
 
 const Monaco = () => {
   const [ grabContents, setGrabContents ] = useState('');
-  const { chosenFile } = useContext(FileContext);
+  const { chosenFile, fileTree } = useContext(FileContext);
 
   useEffect(() => {
     grabFileContents(chosenFile) 
-  }, [chosenFile]);
+  }, [chosenFile, fileTree]);
 
   const grabFileContents = (filePath) => {
-    if (filePath.length > 0){
-      setGrabContents(electronFs.readFileSync(filePath, 'utf8'));
+    if (filePath.length > 0) {
+      setGrabContents(electronFs.readFileSync(filePath, "utf8"));
     }
-    console.log(grabContents);
+    //console.log(grabContents);
   }
   // From spearmint component EditorView.jsx
   const options = {
+    // selectOnLineNumbers: true,
+    // // allows min vw of wrapped code in editor
+    wordWrap: "bounded",
+    // // wordWrapColumn: 90,
+    // autoIndent: true,
+    // colorDecorators: true,
+    // wrappingIndent: "indent",
+    // // should automatically resize between toggle of file tree,
+    // // is not working as intended
+    // automaticLayout: true,
+    // // right side minimap disabled
+    minimap: { enabled: false },
     selectOnLineNumbers: true,
-    wordWrap: 'wordWrapColumn',
-    wordWrapColumn: 90,
+    // wordWrap: "wordWrapColumn",
+    // wordWrapColumn: 90,
     autoIndent: true,
     colorDecorators: true,
-    wrappingIndent: 'indent',
+    wrappingIndent: "indent",
     automaticLayout: true,
+    lineDecorationsWidth: "1px",
+    lineNumbersMinChars: 3,
   };
 
   const editorDidMount = (editor) => {
-    console.log('editorDidMount', editor)
+    //console.log('editorDidMount', editor)
     // editor.setTheme('light-dark');
     // editor.focus();
   };
 
-
   return (
-    <div id='monacoCont'>
-      <Header>Code Preview</Header>
+    <div id="monacoCont">
+      <Header id='headerME'>Code Preview</Header>
+      <div id='testME'>
       <MonacoEditor
-        height="50%"
-        width="33vw"
+        height="74vh"
+        id='testME'
+        // bug with toggling filetree, flex grow works, but
+        // after retoggling tree back to dom, flew shrink does not work
+        // and monaco keeps the 50% flex width from only two child elements in flex
+        // width="30%"
         language="javascript"
         theme="light-dark"
         editorDidMount={editorDidMount}
         options={options}
         value={grabContents}
-      />
+        />
+        </div>
     </div>
   );
 };

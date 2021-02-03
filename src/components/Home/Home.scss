@@ -11,21 +11,40 @@
 }
 
 #homeGrid {
+  // padding-top: .5em;
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
+  // border: solid 3px;
 }
 
-#testGrid {
+#testMainRow {
+  display: flex;
+  flex: 1;
+  flex-flow: row wrap;
+  // justify-content: space-between;
+  padding-top: 1em;
+  // height:max-content;
+  width: 100%;
+}
+
+#testColOne {
   display: flex;
   flex-direction: row;
-  padding-top: 2em;
-  width: 100%;
-  border-top: 5px solid $babyBlue;
+  width: 60%;
+  height: 80vh;
+}
+#testColTwo {
+  width: 40%;
+  height: 80vh;
 }
 
-#header {
+#homeHeader {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  border-bottom: solid 2px $babyBlue;
+  // letter-spacing: .5em;
+  padding: .5em;
 }

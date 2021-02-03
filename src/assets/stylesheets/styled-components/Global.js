@@ -10,10 +10,11 @@ const red = "#D82802";
 const gray = "#d5d5d5";
 const lightBlue = "#07b7fd";
 
+const raleway = '"Raleway", sans-serif';
+
 export const Input = styled.input`
   border: none;
   border-bottom: solid 1px black;
-  padding: 0.5em;
   text-align: center;
   color: ${babyBlue};
   ::placeholder {
@@ -46,26 +47,30 @@ export const Button = styled.button`
 `;
 
 export const Title = styled.h1`
-  font-family: "Lora", serif;
+  font-family: ${raleway};
   font-size: 2em;
-`;
-
-export const SubTitle = styled.h3`
-  font-family: "Lora", serif;
+  letter-spacing: 4px;
+  `;
+  
+  export const SubTitle = styled.h3`
+  font-family: ${raleway};
   font-size: 1.5em;
-`;
-
-export const Header = styled.header`
-  font-family: "Lora", serif;
+  letter-spacing: 3px;
+  `;
+  
+  export const Header = styled.header`
+  font-family: ${raleway};
   font-size: 1.25em;
   text-align: center;
-`;
-
-export const SubHeader = styled.header`
-  font-family: "Lora", serif;
+  letter-spacing: 2px;
+  `;
+  
+  export const SubHeader = styled.header`
+  font-family: ${raleway};
   font-size: 1em;
   text-align: center;
-`;
+  letter-spacing: 2px;
+  `;
 
 export const Label = styled.label`
   font-family: "Montserrat", sans-serif;
@@ -74,7 +79,9 @@ export const Label = styled.label`
 `;
 
 export const Form = styled.form`
-  padding: 0.5em;
+  padding: .5em;
+  display: flex;
+  align-items: flex-end;
 `;
 
 export const Select = styled.select`

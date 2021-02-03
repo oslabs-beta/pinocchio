@@ -65,7 +65,7 @@ const FileDirectory = () => {
                 chosenFileHandler(file.filePath);
               }}
             >
-              {file.fileName}
+              - {file.fileName}
             </button>
           </li>
         </ul>
@@ -78,13 +78,11 @@ const FileDirectory = () => {
   }, []);
 
   return (
-    <div id="fileTreeCont">
+    <div id="fileTreeMainCont">
       {fileTree.length ? (
         <>
           <Header id="fileName">{projectName}</Header>
-          <section id='treeCont'>
-          {renderFileTree(fileTree)}
-          </section>
+          <section id="fileTreeCont">{renderFileTree(fileTree)}</section>
         </>
       ) : (
         <Header>No Files Uploaded</Header>

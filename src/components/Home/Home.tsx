@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import ManualTestCreation from '../TestCreation/ManualTestCreation/ManualTestCreation';
 import FileDirectory from '../FileDirectory/FileDirectory';
 import Monaco from '../Monaco/Monaco';
@@ -19,15 +20,30 @@ const Home = () => {
     <div id="homeCont">
       <SideNavbar />
       <div id="homeGrid">
-        <Title id="header">pinocchio</Title>
-        <div id="testGrid">
-          {toggleTree && <FileDirectory />}
-          <ManualTestCreation />
-          <Monaco />
+        <ToastContainer
+          position="top-right"
+          autoClose={2100}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Title id="homeHeader">pinocchio</Title>
+        <div id="testMainRow">
+          <div id="testColOne">
+            {toggleTree && <FileDirectory />}
+            <ManualTestCreation />
+          </div>
+          <div id="testColTwo">
+            <Monaco />
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Home;
