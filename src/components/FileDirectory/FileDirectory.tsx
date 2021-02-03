@@ -1,4 +1,6 @@
-/* eslint-disable import/no-unresolved */ // * Be careful
+/* eslint-disable import/no-unresolved */ // ! Be careful
+
+// REACT LIBRARIES
 // eslint-disable-next-line no-use-before-define
 import React, { useContext, useEffect, useState } from 'react';
 import { Header } from '../../assets/stylesheets/styled-components/Global';
@@ -13,11 +15,11 @@ const FileDirectory = () => {
   const { myPath, fileTree, chosenFileHandler }: any = useContext(FileContext);
 
   // Used with useEffect to update opened and closed folders after first render
-  const initialState: {[key: string]: boolean} = {};
+  const initialState: { [key: string]: boolean } = {};
   const [isFolderOpen, setFolderOpen] = useState(initialState);
 
   // Keeps track of opened closed folders upon first render
-  const folderOpenObj: {[key: string]: boolean} = {};
+  const folderOpenObj: { [key: string]: boolean } = {};
 
   // handler to toggle whether a folder is opened or closed
   const toggleOpenFolder = (fileName: string): void => {
@@ -26,12 +28,18 @@ const FileDirectory = () => {
     } else setFolderOpen({ ...isFolderOpen, [fileName]: true });
   };
 
+  // After components did mount, set 'isFolderOpen' obj (which is empty) to 'folderOpenObj'
   useEffect(() => {
     setFolderOpen(folderOpenObj);
   }, []);
 
   // Extract name of file directory/project
-  const idx: number = myPath.lastIndexOf('/');
+  let idx: number;
+  if (myPath.lastIndexOf('/') === -1) {
+    idx = myPath.lastIndexOf('\\');
+  } else {
+    idx = myPath.lastIndexOf('/');
+  }
   const projectName: string = myPath.substring(idx + 1);
 
   // Recursively create a file tree from uploaded file directory
@@ -42,6 +50,7 @@ const FileDirectory = () => {
       return (
         <ul key={file.fileName}>
           <li>
+            {/* Folder represented as a button that can be open/closed */}
             <button
               id="filesButtonFolder"
               type="button"
@@ -58,6 +67,7 @@ const FileDirectory = () => {
     return (
       <ul key={file.filePath}>
         <li>
+          {/* Files represented as a button that can be selected */}
           <button
             id="filesButtonFile"
             type="button"
@@ -76,14 +86,17 @@ const FileDirectory = () => {
   // If a directory has been uploaded, display the file tree, otherwise display 'No Files Uploaded'
   return (
     <div id="fileTreeMainCont">
+      {/* Ternary operator to only render tree if it exists */}
       {fileTree.length ? (
         <>
           <Header id="fileName">{projectName}</Header>
           <section id="fileTreeCont">{renderFileTree(fileTree)}</section>
         </>
-      ) : (
-        <Header>No Files Uploaded</Header>
-      )}
+      )
+        : (
+          <Header>No Files Uploaded</Header>
+          // If no tree, show above header
+        )}
     </div>
   );
 };

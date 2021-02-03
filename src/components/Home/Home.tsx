@@ -1,4 +1,6 @@
-/* eslint-disable import/no-unresolved */ // * Be careful
+/* eslint-disable import/no-unresolved */ // ! Be careful
+
+// REACT LIBRARIES
 // eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -9,10 +11,11 @@ import Monaco from '../Monaco/Monaco';
 import { Title } from '../../assets/stylesheets/styled-components/Global';
 import './Home.scss';
 import SideNavbar from '../SideNavBar/SideNavBar';
-// GLOBAL STATE
+// GLOBAL STATE PROVIDER
 import { FileContext } from '../../providers/FileProvider';
 
 const Home = () => {
+  // GLOBAL STATE
   // toggles open/close of filetree
   const { toggleTree }: any = useContext(FileContext);
 
@@ -20,7 +23,7 @@ const Home = () => {
     <div id="homeCont">
       <SideNavbar />
       <div id="homeGrid">
-        {/* Notification upon export */}
+        {/* Pop-up notification upon export */}
         <ToastContainer
           position="top-right"
           autoClose={2100}
@@ -35,6 +38,7 @@ const Home = () => {
         <Title id="homeHeader">pinocchio</Title>
         <div id="testMainRow">
           <div id="testColOne">
+            {/* conditional rendering of FileDirectory */}
             {toggleTree && <FileDirectory />}
             <ManualTestCreation />
           </div>

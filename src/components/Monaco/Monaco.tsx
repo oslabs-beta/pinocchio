@@ -12,14 +12,20 @@ const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 
 const Monaco = () => {
-  const [grabContents, setGrabContents] = useState('');
+  // GLOBAL STATE
   const { chosenFile, fileTree }: any = useContext(FileContext);
+  // LOCAL STATE
+  const [grabContents, setGrabContents] = useState('');
+
+  // Reads the chosen file provided from global state and puts it to local state
   const grabFileContents = (filePath: string) => {
     if (filePath.length > 0) {
       setGrabContents(electronFs.readFileSync(filePath, 'utf8'));
     }
   };
 
+  // Anytime 'chosenFile' or 'fileTree' get updated, update local state
+  // This means anytime a file is chosen or test is exported, Monaco updates accordingly
   useEffect(() => {
     grabFileContents(chosenFile);
   }, [chosenFile, fileTree]);

@@ -1,9 +1,11 @@
 /* eslint-disable max-len */
-/* eslint-disable import/no-unresolved */ // * be careful
+/* eslint-disable import/no-unresolved */ // ! Be careful
+
+// REACT LIBRARIES
 // eslint-disable-next-line no-use-before-define
 import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-// GLOBAL STATE
+// GLOBAL STATE PROVIDER
 import { FileContext } from '../../providers/FileProvider';
 import { TestContext } from '../../providers/TestProvider';
 // TYPESCRIPT INTERFACE
@@ -27,10 +29,12 @@ const electronFs = remote.require('fs');
 // display native system dialogs for opening and saving files, alerting, etc.
 const { dialog } = remote;
 const Landing = () => {
+  // GLOBAL STATE
   const { myPath, pathHandler, fileTreeHandler }: any = useContext(FileContext);
   const { handleResetState, URL, setURL }: any = useContext(TestContext);
-
+  // LOCAL STATE
   const [pathUploaded, setPathUploaded] = useState(false);
+
   let mainDirectory: string = '';
   const filePathMap: any = {};
 
@@ -108,7 +112,7 @@ const Landing = () => {
       .then(() => {
         if (myPath) handleResetState();
       })
-      .catch((err: any) => console.log(err)); // ! @babel/plugin-proposal-throw-expressions
+      .catch((err: any) => { throw err; });
   };
 
   // conditional rendering of homepage via react router
@@ -123,10 +127,12 @@ const Landing = () => {
         <SubTitle id="landingHeaders">A Puppeteer Test GUI</SubTitle>
       </div>
       <div id="getStarted">
+        {/* Filler div used to provide proper spacing */}
         <div id="fillerDiv" />
         <div id="getStartedRowOne">
           <div id="inputCol">
             <span id="numSpan">1</span>
+            {/* Input for application's host URL */}
             <Input
               type="text"
               value={URL}
@@ -140,16 +146,18 @@ const Landing = () => {
           </div>
           <div id="buttonCol">
             <span id="numSpan">2</span>
+            {/* Button to upload application directory */}
             <Button type="button" onClick={handleUploadButton} disabled={!URL}>
               Upload your directory
             </Button>
           </div>
         </div>
         <div>
+          {/* Button to go back to test creation conditionally rendered only if app already uploaded */}
           {myPath && (
-          <Link to="/home">
-            <Button>Go Back</Button>
-          </Link>
+            <Link to="/home">
+              <Button>Go Back</Button>
+            </Link>
           )}
         </div>
       </div>

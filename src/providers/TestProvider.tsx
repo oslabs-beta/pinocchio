@@ -1,15 +1,15 @@
-// eslint-disable-next-line no-use-before-define
+/* eslint-disable-next-line no-use-before-define */
 import React, { useState } from 'react';
 
-export const TestContext = React.createContext(null);
+export const TestContext = React.createContext({});
 
 const TestProvider = ({ children }: any) => {
-  const initialState: {[key: string]: any, [key: number]: any} = {
+  // declaration of the type of the initial state of test object
+  const initialState: { [key: string]: any, [key: number]: any } = {
     dDescription: '',
     nestedIts: {
       0: {
         itDescription: '',
-        assertions: {}, // ? can this be moved below actions?
         actions: {
           0: {
             action: '',
@@ -18,13 +18,20 @@ const TestProvider = ({ children }: any) => {
             key: '',
           },
         },
+        assertions: {},
       },
     },
   };
+  // test object that holds necessary info to generate test file
   const [test, setTest] = useState(initialState);
-
+  // URL where the uploaded application will be hosted on
   const [URL, setURL] = useState('');
 
+  const handleTest = (updatedTest: any): void => {
+    setTest(updatedTest);
+  };
+
+  // Reset test object to initial state
   const handleResetState = (): void => {
     setTest({
       dDescription: '',
@@ -45,6 +52,25 @@ const TestProvider = ({ children }: any) => {
     setTest({ ...test, dDescription: dBlockDescription });
   };
 
+  // ********************* ITS *********************
+  const addItBlock = (index: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [index]: {
+          itDescription: '',
+          assertions: {},
+          actions: {
+            0: {
+              action: '', selector: '', text: '', key: '',
+            },
+          },
+        },
+      },
+    });
+  };
+
   const handleItBlockDescription = (
     itBlockDesription: string,
     itIndex: number,
@@ -62,6 +88,27 @@ const TestProvider = ({ children }: any) => {
   };
 
   // ********************* ACTIONS *********************
+  const addPuppeteerAction = (index: number, itIndex: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          actions: {
+            ...test.nestedIts[itIndex].actions,
+            [index]: {
+              action: '',
+              selector: '',
+              text: '',
+              key: '',
+            },
+          },
+        },
+      },
+    });
+  };
+
   const handleActions = (newAction: string, actionIndex: number, itIndex: number): void => {
     setTest({
       ...test,
@@ -135,6 +182,22 @@ const TestProvider = ({ children }: any) => {
     });
   };
 
+  // ********************* ASSERTIONS *********************
+  const addAssertion = (itIndex: number): void => {
+    setTest({
+      ...test,
+      nestedIts: {
+        ...test.nestedIts,
+        [itIndex]: {
+          ...test.nestedIts[itIndex],
+          assertions: {
+            assertion: '', userInput: '', selector: '', callback: '',
+          },
+        },
+      },
+    });
+  };
+
   const handleAssertionsChoice = (newAssert: string, itIndex: number): void => {
     setTest({
       ...test,
@@ -199,65 +262,9 @@ const TestProvider = ({ children }: any) => {
     });
   };
 
-  const handleTest = (updatedTest: any): void => {
-    setTest(updatedTest);
-  };
-  // ***************************************************************************** //
-  const addAssertion = (itIndex: number): void => {
-    setTest({
-      ...test,
-      nestedIts: {
-        ...test.nestedIts,
-        [itIndex]: {
-          ...test.nestedIts[itIndex],
-          assertions: {
-            assertion: '', userInput: '', selector: '', callback: '',
-          },
-        },
-      },
-    });
-  };
-
-  const addPuppeteerAction = (index: number, itIndex: number): void => {
-    setTest({
-      ...test,
-      nestedIts: {
-        ...test.nestedIts,
-        [itIndex]: {
-          ...test.nestedIts[itIndex],
-          actions: {
-            ...test.nestedIts[itIndex].actions,
-            [index]: {
-              action: '',
-              selector: '',
-              text: '',
-              key: '',
-            },
-          },
-        },
-      },
-    });
-  };
-
-  const addItBlock = (index: number): void => {
-    setTest({
-      ...test,
-      nestedIts: {
-        ...test.nestedIts,
-        [index]: {
-          itDescription: '',
-          assertions: {},
-          actions: {
-            0: {
-              action: '', selector: '', text: '', key: '',
-            },
-          },
-        },
-      },
-    });
-  };
   return (
     <TestContext.Provider
+      // State available for any file that imports FileProvider and uses UseContext hook if below
       value={{
         test,
         handleTest,
@@ -279,6 +286,7 @@ const TestProvider = ({ children }: any) => {
         setURL,
       }}
     >
+      {/* children must be passed below for children componenets of provider to render */}
       {children}
     </TestContext.Provider>
   );

@@ -1,4 +1,5 @@
-/* eslint-disable import/no-unresolved */ // * Be careful
+/* eslint-disable import/no-unresolved */ // ! Be careful
+
 // REACT LIBRARIES
 // eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react';
@@ -22,6 +23,7 @@ const { remote } = window.require('electron');
 const electronFs = remote.require('fs');
 
 const SideNavbar = () => {
+  // GLOBAL STATE
   const { test, URL }: any = useContext(TestContext);
   const {
     handleToggleTree,
@@ -84,6 +86,8 @@ const SideNavbar = () => {
     return fileArray;
   };
 
+  // Use 'fs' from node.js to check/find test directory and write on test file with test
+  // New test file is created if 'testFileName' doesn't exist
   const exportTestFile = () => {
     if (!electronFs.existsSync(`${myPath}/__tests__`)) {
       electronFs.mkdirSync(`${myPath}/__tests__`);

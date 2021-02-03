@@ -1,11 +1,17 @@
+// These interfaces are currently not being fully implemented
+
 export interface assertionInterface {
   assertion: string,
-  input: unknown
+  userInput: string,
+  selector: string,
+  callback: string,
 }
 
 export interface puppeteerActionInterface {
-  method: string,
-  tag: string | undefined,
+  action: string,
+  selector: string,
+  text: string,
+  key: string,
 }
 
 export interface itInterface {
