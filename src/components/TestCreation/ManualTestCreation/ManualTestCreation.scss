@@ -1,16 +1,11 @@
 @import "../../../assets/stylesheets/colors.scss";
 @import "../../../assets/stylesheets/fonts.scss";
 
-// Move to flex instead of %s
-
 #testCont {
   flex: 2 2 70%;
-
-  // width: 100%;
   padding: 0 0.5em;
   height: 100%;
 }
-
 
 #manTestHeader {
   padding-bottom: 0.5em;

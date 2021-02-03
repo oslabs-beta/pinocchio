@@ -2,7 +2,6 @@
 @import "../../assets/stylesheets/colors.scss";
 
 
-// Move to flex instead of %s
 #homeCont {
   display: flex;
   flex-direction: row;
@@ -11,21 +10,17 @@
 }
 
 #homeGrid {
-  // padding-top: .5em;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  // border: solid 3px;
 }
 
 #testMainRow {
   display: flex;
   flex: 1;
   flex-flow: row wrap;
-  // justify-content: space-between;
   padding-top: 1em;
-  // height:max-content;
   width: 100%;
 }
 
@@ -45,6 +40,5 @@
   flex-flow: row wrap;
   justify-content: center;
   border-bottom: solid 2px $babyBlue;
-  // letter-spacing: .5em;
   padding: .5em;
 }
