@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-export const FileContext = React.createContext(null); // ! Throwing an error because of null
+const testMeLex: any = {};
+
+export const FileContext = React.createContext(testMeLex); // ! Throwing an error because of null
 
 const FileProvider = ({ children }: any) => {
   const [myPath, setMyPath] = useState('');

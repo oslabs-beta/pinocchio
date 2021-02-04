@@ -1,9 +1,12 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
-const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
-const REACT_TOASTIFY_DIR = path.resolve(__dirname, './node_modules/react-toastify');
+const MONACO_DIR = path.resolve(__dirname, "./node_modules/monaco-editor");
+const REACT_TOASTIFY_DIR = path.resolve(
+  __dirname,
+  "./node_modules/react-toastify"
+);
 
 module.exports = {
   resolve: {
@@ -23,6 +26,16 @@ module.exports = {
       {
         test: /\.ttf$/,
         use: ["file-loader"],
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: "ts-loader",
+            // disable typescript issues on build
+            options: { happyPackMode: true },
+          },
+        ],
       },
       {
         test: /\.js|ts|tsx|jsx$/, // previously /\.(js|ts|tsx|jsx)$/
@@ -65,7 +78,7 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, "../dist/renderer"),
+    contentBase: path.join(__dirname, "./dist/renderer"),
     historyApiFallback: true,
     compress: true,
     hot: true,
@@ -73,8 +86,15 @@ module.exports = {
     publicPath: "/",
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "js/[name].js",
+    path: path.resolve(__dirname, "./dist/renderer"),
+    filename: "js/index.js",
+    publicPath: './'
   },
-  plugins: [new HtmlWebpackPlugin(), new MonacoWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      // Catalyst
+      template: "./src/index.html",
+    }),
+    new MonacoWebpackPlugin(),
+  ],
 };

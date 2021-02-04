@@ -2,7 +2,7 @@
   "name": "pinocchio",
   "version": "1.0.0",
   "description": "A GUI for Puppeteer Test Creation",
-  "main": "./dist/main.js",
+  "main": "dist/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oslabs-beta/pinocchio.git"
@@ -14,30 +14,57 @@
   "scripts": {
     "dev:electron": "cross-env NODE_ENV=development concurrently \"webpack --config webpack.electron.config.js --mode development\" \"electron .\"",
     "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
-    "build:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
-    "build:react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
-    "build": "npm run build:electron && npm run build:react",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dev": " concurrently \"npm run dev:electron\" \"npm run dev:react\"",
+    "prod:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production && electron .",
+    "prod:react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
+    "prod": "npm run prod:react && npm run prod:electron",
+    "deploy": "electron-builder"
   },
   "keywords": [],
   "author": "Team Geppetto",
   "license": "ISC",
   "build": {
+    "extends": null,
     "files": [
-      "dist/",
-      "node_modules/",
-      "package.json"
+      "dist/**/*",
+      "node_modules/**/*"
     ],
-    "productName": "example",
-    "appId": "com.example.app",
+    "productName": "pinocchio",
+    "appId": "com.electron.pinocchio",
     "directories": {
-      "output": "dist"
+      "output": "build",
+      "buildResources": "assets"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "dmg": {
+      "icon": "./assets/icon.icns",
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 340,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": "NSIS"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
     }
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-decorators": "^7.12.12",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
@@ -62,16 +89,19 @@
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
     "svg-url-loader": "^7.1.1",
+    "ts-loader": "^8.0.14",
     "url-loader": "^4.1.1",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.12.12",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "concurrently": "^5.3.0",
     "electron-is-dev": "^1.2.0",
+    "electron-webpack": "^2.8.2",
     "html-webpack-plugin": "^4.5.1",
     "monaco-editor": "^0.21.2",
     "monaco-editor-electron": "^1.0.6",
@@ -81,6 +111,7 @@
     "react-dom": "^16.13.1",
     "react-monaco-editor": "^0.41.2",
     "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.1",
     "react-toastify": "^7.0.2",
     "styled-components": "^5.2.1",
     "typescript": "^4.1.3"

@@ -18,14 +18,14 @@ const Monaco = () => {
     grabFileContents(chosenFile) 
   }, [chosenFile, fileTree]);
 
-  const grabFileContents = (filePath) => {
+  const grabFileContents = (filePath: any) => {
     if (filePath.length > 0) {
       setGrabContents(electronFs.readFileSync(filePath, "utf8"));
     }
     //console.log(grabContents);
   }
   // From spearmint component EditorView.jsx
-  const options = {
+  const options: any = {
     // selectOnLineNumbers: true,
     // // allows min vw of wrapped code in editor
     wordWrap: "bounded",
@@ -49,7 +49,7 @@ const Monaco = () => {
     lineNumbersMinChars: 3,
   };
 
-  const editorDidMount = (editor) => {
+  const editorDidMount = (editor: any) => {
     //console.log('editorDidMount', editor)
     // editor.setTheme('light-dark');
     // editor.focus();
@@ -61,7 +61,6 @@ const Monaco = () => {
       <div id='testME'>
       <MonacoEditor
         height="74vh"
-        id='testME'
         // bug with toggling filetree, flex grow works, but
         // after retoggling tree back to dom, flew shrink does not work
         // and monaco keeps the 50% flex width from only two child elements in flex
