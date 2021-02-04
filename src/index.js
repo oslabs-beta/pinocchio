@@ -7,8 +7,6 @@ import App from './App.tsx';
 import FileProvider from './providers/FileProvider.tsx';
 import TestProvider from './providers/TestProvider';
 
-// const main = document.createElement('div');
-// document.body.appendChild(main);
 
 ReactDom.render(
   <HashRouter>
@@ -18,6 +16,5 @@ ReactDom.render(
       </TestProvider>
     </FileProvider>
   </HashRouter>,
-  // main,
   document.getElementById('root')
 );

@@ -30,7 +30,7 @@ function createWindow() {
     width: 800,
     title: 'pinocchio',
     // icon
-    icon: path.join(__dirname, 'build/icon.png'),
+    icon: path.join(__dirname, 'assets/icon.png'),
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
