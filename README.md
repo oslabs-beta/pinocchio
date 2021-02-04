@@ -34,7 +34,6 @@ To get started,
 1) Download the app from our [website](https://pinocchio.dev).
 
 2) Install Puppeteer, Mocha, and Chai.
-<br>
 <h3 align="center"><code>npm install puppeteer mocha chai</code></h3>
 
 3) Now, let's generate some tests!
