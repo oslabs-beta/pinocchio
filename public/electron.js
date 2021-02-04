@@ -47,12 +47,14 @@ function createWindow() {
       url.format({
         // win.loadFile('index.html')
         // SPEARMINT
-    // isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
-  // );
-        pathname:  `file://${path.join(__dirname, 'index.html')}`, // ? This path may be incorrect
-        protocol: 'file:',
+        // isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
+        // );
+        pathname: path.resolve(__dirname, "../dist/renderer/index.html"), // whatever index.html file that is in the dist that we need to render
+        // pathname: path.resolve(__dirname, "../dist/renderer/index.html"),
+          // Catalyst ^^
+        protocol: "file:",
         slashes: true,
-      }),
+      })
     );
   }
   // when electron app is closed, set mainWindow to null

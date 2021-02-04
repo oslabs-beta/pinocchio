@@ -78,7 +78,7 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, "../dist/js/index.js"),
+    contentBase: path.join(__dirname, "./dist/renderer"),
     historyApiFallback: true,
     compress: true,
     hot: true,
@@ -86,8 +86,9 @@ module.exports = {
     publicPath: "/",
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "./dist/renderer"),
     filename: "js/index.js",
+    publicPath: './'
   },
   plugins: [
     new HtmlWebpackPlugin({
