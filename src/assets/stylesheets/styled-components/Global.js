@@ -1,14 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-// $lora: 'Lora', serif;
-// $montserrat:  'Montserrat', sans-serif;
-
-const yellow = "#FEDE87";
-const burntOrange = "#FEAE20";
-const babyBlue = "#099CD7";
-const red = "#D82802";
-const gray = "#d5d5d5";
-const lightBlue = "#07b7fd";
+const babyBlue = '#099CD7';
+const gray = '#d5d5d5';
 
 const raleway = '"Raleway", sans-serif';
 
@@ -51,21 +44,21 @@ export const Title = styled.h1`
   font-size: 2em;
   letter-spacing: 4px;
   `;
-  
-  export const SubTitle = styled.h3`
+
+export const SubTitle = styled.h3`
   font-family: ${raleway};
   font-size: 1.5em;
   letter-spacing: 3px;
   `;
-  
-  export const Header = styled.header`
+
+export const Header = styled.header`
   font-family: ${raleway};
   font-size: 1.25em;
   text-align: center;
   letter-spacing: 2px;
   `;
-  
-  export const SubHeader = styled.header`
+
+export const SubHeader = styled.header`
   font-family: ${raleway};
   font-size: 1em;
   text-align: center;

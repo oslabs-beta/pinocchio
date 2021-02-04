@@ -1,37 +1,37 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
-const MONACO_DIR = path.resolve(__dirname, "./node_modules/monaco-editor");
+const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
 const REACT_TOASTIFY_DIR = path.resolve(
   __dirname,
-  "./node_modules/react-toastify"
+  './node_modules/react-toastify',
 );
 
 module.exports = {
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
-    mainFields: ["main", "module", "browser"],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.css'],
+    mainFields: ['main', 'module', 'browser'],
   },
-  entry: "./src/index.js",
-  target: "electron-renderer",
-  devtool: "source-map",
+  entry: './src/index.js',
+  target: 'electron-renderer',
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.css$/,
         include: [MONACO_DIR, REACT_TOASTIFY_DIR],
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.ttf$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
       {
         test: /\.tsx?$/,
         use: [
           {
-            loader: "ts-loader",
+            loader: 'ts-loader',
             // disable typescript issues on build
             options: { happyPackMode: true },
           },
@@ -40,18 +40,18 @@ module.exports = {
       {
         test: /\.js|ts|tsx|jsx$/, // previously /\.(js|ts|tsx|jsx)$/
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: 'babel-loader',
       },
       // SCSS
       {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader",
+          'sass-loader',
         ],
       },
       // Images
@@ -59,7 +59,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
           },
         ],
       },
@@ -68,32 +68,37 @@ module.exports = {
         test: /\.svg$/,
         use: [
           {
-            loader: "svg-url-loader",
+            loader: 'svg-url-loader',
             options: {
               limit: 10000,
             },
           },
         ],
       },
+      // HTML
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, "./dist/renderer"),
+    contentBase: path.join(__dirname, './dist/renderer'),
     historyApiFallback: true,
     compress: true,
     hot: true,
     port: 4000,
-    publicPath: "/",
+    publicPath: '/',
   },
   output: {
-    path: path.resolve(__dirname, "./dist/renderer"),
-    filename: "js/index.js",
-    publicPath: './'
+    path: path.resolve(__dirname, './dist/renderer'),
+    filename: 'js/index.js',
+    publicPath: './',
   },
   plugins: [
     new HtmlWebpackPlugin({
       // Catalyst
-      template: "./src/index.html",
+      template: path.join(__dirname, './src/index.html'),
     }),
     new MonacoWebpackPlugin(),
   ],

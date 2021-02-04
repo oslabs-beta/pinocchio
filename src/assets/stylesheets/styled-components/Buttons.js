@@ -1,15 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-// $lora: 'Lora', serif;
-// $montserrat:  'Montserrat', sans-serif;
-
-const yellow = "#FEDE87";
-const burntOrange = "#FEAE20";
-const babyBlue = "#099CD7";
-const red = "#D82802";
-const gray = "#d5d5d5";
-const lightBlue = "#07b7fd";
-
+const burntOrange = '#FEAE20';
+const red = '#D82802';
+const gray = '#d5d5d5';
 
 export const ItButton = styled.button`
   background-color: ${burntOrange};

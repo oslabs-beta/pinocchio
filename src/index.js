@@ -1,12 +1,14 @@
-/* eslint-disable import/no-unresolved */ // * be careful
+/* eslint-disable import/no-unresolved */ // ! be careful
 // eslint-disable-next-line no-use-before-define
 import React from 'react';
 import ReactDom from 'react-dom';
 import { HashRouter } from 'react-router-dom';
-import App from './App.tsx';
+import App from './App';
 import FileProvider from './providers/FileProvider.tsx';
 import TestProvider from './providers/TestProvider';
 
+// const main = document.createElement('div');
+// document.body.appendChild(main);
 
 ReactDom.render(
   <HashRouter>
@@ -16,5 +18,6 @@ ReactDom.render(
       </TestProvider>
     </FileProvider>
   </HashRouter>,
-  document.getElementById('root')
+  // main,
+  document.getElementById('root'),
 );

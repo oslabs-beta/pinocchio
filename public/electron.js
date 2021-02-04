@@ -5,8 +5,6 @@ import * as url from 'url';
 // eslint-disable-next-line import/no-extraneous-dependencies
 // import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
-// type check mainwindow to either be null or an instantiation of BrowserWindow object
-// let mainWindow: BrowserWindow | null;
 let mainWindow;
 
 // eslint-disable-next-line no-console
@@ -14,12 +12,12 @@ console.log('electron version', process.versions.electron);
 
 // when electron is initialized, install react dev tools
 // app.whenReady().then(() => {
-  // installExtension(REACT_DEVELOPER_TOOLS)
-    // eslint-disable-next-line no-console
-    // .then((name) => console.log(`Added Extension:  ${name}`))
-    // eslint-disable-next-line no-console
-    // .catch((err) => console.log('An error occurred: ', err));
-// });
+//   installExtension(REACT_DEVELOPER_TOOLS)
+//     eslint-disable-next-line no-console
+//     .then((name) => console.log(`Added Extension:  ${name}`))
+//     eslint-disable-next-line no-console
+//     .catch((err) => console.log('An error occurred: ', err));
+//   });
 
 function createWindow() {
   // create a new instance of BrowserWindow w/ specifications on the chromium browser itself
@@ -35,7 +33,7 @@ function createWindow() {
       nodeIntegration: true,
       webSecurity: false,
     },
-    backgroundColor: '#ffffff'
+    backgroundColor: '#ffffff',
   });
   // if in development mode, launch electorn app at localhost:4000 and immediately open dev tools
   if (process.env.NODE_ENV === 'development') {
@@ -45,16 +43,10 @@ function createWindow() {
     // if not in development mode, do the following...
     mainWindow.loadURL(
       url.format({
-        // win.loadFile('index.html')
-        // SPEARMINT
-        // isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
-        // );
-        pathname: path.resolve(__dirname, "../dist/renderer/index.html"), // whatever index.html file that is in the dist that we need to render
-        // pathname: path.resolve(__dirname, "../dist/renderer/index.html"),
-          // Catalyst ^^
-        protocol: "file:",
+        pathname: path.resolve(__dirname, '../dist/renderer/index.html'), // whatever index.html file that is in the dist that we need to render
+        protocol: 'file:',
         slashes: true,
-      })
+      }),
     );
   }
   // when electron app is closed, set mainWindow to null
