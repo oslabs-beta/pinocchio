@@ -1,7 +1,9 @@
 /* eslint-disable-next-line no-use-before-define */
 import React, { useState } from 'react';
 
-export const FileContext = React.createContext({});
+const testMeLex: any = {};
+
+export const FileContext = React.createContext(testMeLex);
 
 const FileProvider = ({ children }: any) => {
   // Path to application directory on user machine

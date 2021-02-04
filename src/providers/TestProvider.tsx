@@ -1,7 +1,14 @@
 /* eslint-disable-next-line no-use-before-define */
 import React, { useState } from 'react';
+// import {
+//   describeInterface,
+//   itInterface,
+//   puppeteerActionInterface,
+//   assertionInterface,
+// } fro../renderer/utils/testTypespes';
+const testMeAdam: any = {};
 
-export const TestContext = React.createContext({});
+export const TestContext = React.createContext(testMeAdam);
 
 const TestProvider = ({ children }: any) => {
   // declaration of the type of the initial state of test object
