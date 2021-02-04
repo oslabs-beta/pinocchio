@@ -5,8 +5,6 @@ import * as url from 'url';
 // eslint-disable-next-line import/no-extraneous-dependencies
 // import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
-// type check mainwindow to either be null or an instantiation of BrowserWindow object
-// let mainWindow: BrowserWindow | null;
 let mainWindow;
 
 // eslint-disable-next-line no-console
@@ -45,13 +43,7 @@ function createWindow() {
     // if not in development mode, do the following...
     mainWindow.loadURL(
       url.format({
-        // win.loadFile('index.html')
-        // SPEARMINT
-        // isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
-        // );
         pathname: path.resolve(__dirname, '../dist/renderer/index.html'), // whatever index.html file that is in the dist that we need to render
-        // pathname: path.resolve(__dirname, "../dist/renderer/index.html"),
-        // Catalyst ^^
         protocol: 'file:',
         slashes: true,
       }),
