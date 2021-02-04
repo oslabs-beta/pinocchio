@@ -13,7 +13,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
     mainFields: ["main", "module", "browser"],
   },
-  entry: "./src/renderer/index.js",
+  entry: "./src/index.js",
   target: "electron-renderer",
   devtool: "source-map",
   module: {
@@ -93,7 +93,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       // Catalyst
-      template: "./src/renderer/index.html",
+      template: "./src/index.html",
     }),
     new MonacoWebpackPlugin(),
   ],
