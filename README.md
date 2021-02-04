@@ -32,8 +32,6 @@ As a fresh beta product, Pinocchio was developed for the open source community w
 To get started, 
 
 1) Download the app from our [website](https://pinocchio.dev).
-<br>
-<br>
 
 2) Install Puppeteer, Mocha, and Chai.
 <br>
