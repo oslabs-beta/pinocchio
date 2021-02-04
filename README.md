@@ -31,9 +31,7 @@ As a fresh beta product, Pinocchio was developed for the open source community w
 # Installation
 To get started, 
 
-1) Download the app from our [website](https://pinocchio.dev).
-<br>
-(If you are on MacOS you will need to open the app in your Folder directory directly, since licensing is still in progress.)
+1) Download the app from our [website](https://pinocchio.dev), which is available on MacOS, Window, and Linux. (If you are on MacOS you will need to open the app in your Folder directory directly, since licensing is still in progress.)
 <br>
 
 2) Install Puppeteer, Mocha, and Chai.
