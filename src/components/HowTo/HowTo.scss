@@ -8,8 +8,113 @@
   width: 100vw;
 }
 
-#header {
+#howToContCol {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  width: 90vw;
+  height: 95vh;
+  padding: 1em 2em 0em;
+}
+
+#headerRow {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  border-bottom: solid 2px $babyBlue;
+  padding: .5em;
 }
+
+#subheaderCont {
+  padding: 2em 0em 1em;
+}
+
+#contentCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90%;
+  overflow-y: scroll;
+  font-family: $montserrat;
+}
+
+#topImageCont {
+  width: 50vw;
+  padding: 1em 0em 2em;
+}
+
+#topImage {
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 3px 3px 6px gray;
+}
+
+#pTextCont {
+text-align: center;
+padding-bottom: 1em;
+}
+
+#hThree {
+  padding: .5em 0em;
+}
+
+#hThreeRow {
+  display: flex;
+  justify-content: center;
+  padding: .5em 0em;
+}
+
+#hThreeHow {
+  padding: .5em 0em;
+  border-bottom: solid 1px gray;
+}
+
+#hThreeHowList {
+  padding: .5em 0em;
+  border-bottom: solid 1px gray;
+}
+
+#installationCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1em 0em;
+  height: 100%;
+}
+
+#names {
+  font-size: 1.15em;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1em 0em;
+  font-size: .75em;
+}
+
+// #header {
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: center;
+// }
+// #image{
+//   justify-self: center;
+// }
+
+
+// h2 {
+//   font-size: 25;
+//   font-family: $montserrat
+// }
+
+// h3 {
+//   font-size: 20;
+//   font-family: $montserrat
+// }
+
+// p {
+//   font-family: $montserrat
+// }
