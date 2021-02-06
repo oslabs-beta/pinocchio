@@ -77,7 +77,7 @@ pinocchiodevs@gmail.com<br>
 We encourage and appreciate any feedback, suggestions, and stars if you feel so inclined!
 <b><h3>Co-Creators:</h3></b>
 - **Adam Joesten** - [@AdamJoesten](https://github.com/AdamJoesten)  | [LinkedIn](https://www.linkedin.com/in/adamjoesten/)
-- **Brandi Richardson** - [@bjr2008](https://github.com/bjr2008)| [LinkedIn](https://www.linkedin.com/in/brandi-richardson-28295158/)
-- **Giao ("Yao") Tran** - [@gd-tran](https://github.com/gd-tran)| [LinkedIn](https://www.linkedin.com/in/giao-tran-91353654/)
-- **Harlan Evans** - [@harlanevans](https://github.com/harlanevans)| [LinkedIn](https://www.linkedin.com/in/harlan-evans/)
-- **Lex Choi** - [@lexiphur](https://github.com/lexiphur)| [LinkedIn](https://www.linkedin.com/in/lexchoi3/)
+- **Brandi Richardson** - [@bjr2008](https://github.com/bjr2008) | [LinkedIn](https://www.linkedin.com/in/brandi-richardson-28295158/)
+- **Giao ("Yao") Tran** - [@gd-tran](https://github.com/gd-tran) | [LinkedIn](https://www.linkedin.com/in/giao-tran-91353654/)
+- **Harlan Evans** - [@harlanevans](https://github.com/harlanevans) | [LinkedIn](https://www.linkedin.com/in/harlan-evans/)
+- **Lex Choi** - [@lexiphur](https://github.com/lexiphur) | [LinkedIn](https://www.linkedin.com/in/lexchoi3/)
