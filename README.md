@@ -11,7 +11,7 @@
     </strong>
 </h1>
 
-<h2 align="center"> Pinocchio is an Electron powered GUI for Puppeteer test generation with Mocha and Chai. It allows users to identify selectors for tests and preview code in the provided code editor. Once the tests have been created, an exportation of the test suites into the user's application is only a button click away.
+<h2 align="center"> Pinocchio is an codeless test generator for Puppeteer with Mocha and Chai. It allows users to identify selectors for tests and preview code in the provided code editor. Once the tests have been created, an exportation of the test suites into the user's application is only a button click away.
 </h2>
 <br>
 <p align="center"><img  src="./assets/what-is-pinocchio.jpeg"/></p>
